@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="comment-container" id="container">
+</div>
+
+<!-- user input form -->
+<form class="blog-form">
+    <div class="input-container">
+        <label> Name:* </label> <input type="text" id="name" placeholder="Your Name" required />
+        <label> Date/Time: </label> <input id="date" class="dateTime" readonly /><br />
+    </div>
+    <div class="fields">
+        <label> Comment:* </label> <textarea id="bodyText" placeholder="Your Comment" required></textarea><br />
+    </div>
+    <button class="comment-button" id="addComment"> Add Comment </button>
+</form>
+

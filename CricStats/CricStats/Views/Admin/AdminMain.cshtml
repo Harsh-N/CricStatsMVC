@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "AdminMain";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Stats Update</h2>
+
+<form>
+    <h3>
+        Player
+    </h3>
+    <div class="form-group">
+        <label> Player Name: </label> <input type="text" id="name" placeholder="Player Full Name" required />
+    </div>
+    <h3>
+        performance
+    </h3>
+    <div class="fields">
+        <label> Runs Scored: </label> <input type="number" id="name" placeholder="" required />
+        <label> Balls Faced: </label> <input type="number" id="name" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Fours: </label> <input type="number" id="name" placeholder="" required />
+        <label> Sixes: </label> <input type="number" id="name" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Wickets Taken: </label> <input type="number" id="name" placeholder="" required />
+        <label> Overs Bowled: </label> <input type="number" id="name" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Runs Conceded: </label> <input type="number" id="name" placeholder="" required />
+        <label> Catches Taken: </label> <input type="number" id="name" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Run Outs: </label> <input type="number" id="name" placeholder="" required />
+        <label> Batting Strike Rate: </label> <input type="number" id="name" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Bowling Economy: </label> <input type="number" id="name" placeholder="" required />
+        <label> Batting Average: </label> <input type="number" id="name" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Bowling Average: </label> <input type="number" id="name" placeholder="" required />
+    </div>
+    <button class="btn btn-primary" id="statsSubmit"> Submit </button>
+    <button class="btn btn-warning" id="statsClear"> Clear </button>
+
+
+</form>
+
+<h2>News Update</h2>
+
+<form>
+    <div class="fields">
+        <label> Title: </label> <input type="text" id="name" placeholder="" required />
+        <label> Image: </label> <input type="text" id="name" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Article: </label> <textarea id="bodyText" placeholder="Type aricle here..." required></textarea>
+    </div>
+    <button class="submit-button" id="newsSubmit"> Submit </button>
+    <button class="submit-button" id="newsClear"> Clear </button>
+</form>
+
+
+<h2>Result and Fixture Update</h2>
+<form>
+    <div class="fields">
+        <label> Date of the Match: </label> <input id="date" class="dateTime" />
+        <label> Opposition: </label> <input type="text" id="name" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Toss Result:</label>
+        <div class="checkbox-fields">
+            <input type="checkbox" id="TResult" value="Won" required />Won
+            <input type="checkbox" id="TResult" value="Lost" required />Lost
+        </div>
+        <label> Home Score: </label> <input type="number" id="name" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Home Wicket Fallen: </label> <input type="number" id="name" placeholder="" required />
+        <label> Opposition Score: </label> <input type="number" id="name" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Opposition wickets: </label> <input type="number" id="name" placeholder="" required />
+        <label> Match Result: </label>
+        <div class="checkbox-fields">
+            <input type="checkbox" id="MResult" value="Won" required />Won
+            <input type="checkbox" id="MResult" value="Lost" required />Lost
+        </div>
+    </div>
+
+    <button class="submit-button" id="resultSubmit"> Submit </button>
+    <button class="submit-button" id="resultClear"> Clear </button>
+
+
+</form>

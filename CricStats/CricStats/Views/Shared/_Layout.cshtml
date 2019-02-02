@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="wrapper">
+        <!-- wrapper for fixed menu header on desktop version -->
+        <header class="header">CricStats</header><!-- logo -->
+        <!-- mobile menu button -->
+        <div class="menu">
+            <!-- <button id="menu-button" class="button">
+                <span class="wrap">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </span>
+            </button> -->
+            <!-- Menu items -->
+            <nav id="menu-items" class="menubar">
+                <ul>
+                    <li class="close"><a href="#" id="close" class="fas fa-times"></a></li>
+                    @*<li ><a href="#">Home</a></li>*@
+                    <li id="home" class="menu-item">@Html.ActionLink("HomePgae", "Index", "Home")</li>
+                    <li class="menu-item"><a href="gallery.html">Gallery</a></li>
+                    @*<li class="menu-item"><a href="fixtures.html">Fixtures</a></li>*@
+                    <li class="menu-item">@Html.ActionLink("Fixtures", "Index", "Fixtures")</li>
+                    <li class="menu-item">
+                        <a href="stats.html">Stats <i class="fas fa-caret-down"></i></a>
+                        <ul>
+                            <li class="sub-menu"><a href="graph.html">Graph</a>
+                        </ul>
+                    </li>
+                    <li id="last-li">@Html.ActionLink("Adminwrfr4", "AdminMain", "Admin")</li>
+                    @*<li ><a href="admin.html">Admin</a></li>*@
+                </ul>
+            </nav>
+        </div>
+    </div>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+
+    </div>
+
+
+    <div class="navigation">
+
+        <section class="sec1">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="fixtures.html">Fixtures</a></li>
+        </section>
+        <section class="sec2">
+            <li><a href="stats.html">Stats </i></a></li>
+            <li><a href="graph.html">Graph</a>
+            <li><a href="admin.html">Admin</a></li>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
