@@ -1,0 +1,11 @@
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\bin\Debug\CricStats.BLL.dll
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\bin\Debug\CricStats.BLL.pdb
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\obj\Debug\CricStats.BLL.csproj.CoreCompileInputs.cache
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\obj\Debug\CricStats.BLL.dll
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\obj\Debug\CricStats.BLL.pdb
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\bin\Debug\CricStats.DAL.dll
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\bin\Debug\CricStats.Models.dll
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\bin\Debug\CricStats.DAL.pdb
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\bin\Debug\CricStats.Models.pdb
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\obj\Debug\CricStats.BLL.csprojAssemblyReference.cache
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.BLL\obj\Debug\CricStats.BLL.csproj.CopyComplete

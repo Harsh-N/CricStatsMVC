@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CricStatsDatabaseModelStoreContainer" CdmEntityContainer="DBEntities">
+    <EntitySetMapping Name="Matches">
+      <EntityTypeMapping TypeName="IsTypeOf(CricStatsDatabaseModel.Match)">
+        <MappingFragment StoreEntitySet="Matches">
+          <ScalarProperty Name="MatchId" ColumnName="MatchId" />
+          <ScalarProperty Name="dateOfMatch" ColumnName="dateOfMatch" />
+          <ScalarProperty Name="Opposition" ColumnName="Opposition" />
+          <ScalarProperty Name="isTossWin" ColumnName="isTossWin" />
+          <ScalarProperty Name="homeScore" ColumnName="homeScore" />
+          <ScalarProperty Name="homeWicketsFallen" ColumnName="homeWicketsFallen" />
+          <ScalarProperty Name="oppositionScore" ColumnName="oppositionScore" />
+          <ScalarProperty Name="oppositionWicketsFallen" ColumnName="oppositionWicketsFallen" />
+          <ScalarProperty Name="isWin" ColumnName="isWin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MatchPlayers">
+      <EntityTypeMapping TypeName="IsTypeOf(CricStatsDatabaseModel.MatchPlayer)">
+        <MappingFragment StoreEntitySet="MatchPlayers">
+          <ScalarProperty Name="MatchId" ColumnName="MatchId" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="runsScored" ColumnName="runsScored" />
+          <ScalarProperty Name="ballsFaced" ColumnName="ballsFaced" />
+          <ScalarProperty Name="Fours" ColumnName="Fours" />
+          <ScalarProperty Name="Sixes" ColumnName="Sixes" />
+          <ScalarProperty Name="wicketsTaken" ColumnName="wicketsTaken" />
+          <ScalarProperty Name="oversBowled" ColumnName="oversBowled" />
+          <ScalarProperty Name="runConceded" ColumnName="runConceded" />
+          <ScalarProperty Name="Catches" ColumnName="Catches" />
+          <ScalarProperty Name="runOuts" ColumnName="runOuts" />
+          <ScalarProperty Name="BattingStrikeRate" ColumnName="BattingStrikeRate" />
+          <ScalarProperty Name="BowlingEconomy" ColumnName="BowlingEconomy" />
+          <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+          <ScalarProperty Name="BoiwlingAverage" ColumnName="BoiwlingAverage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="IsTypeOf(CricStatsDatabaseModel.News)">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Article" ColumnName="Article" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="IsTypeOf(CricStatsDatabaseModel.Player)">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="playerName" ColumnName="playerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

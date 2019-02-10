@@ -21,7 +21,8 @@ namespace CricStats
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/fixtures.js"));
+                      "~/Scripts/fixtures.js",
+                      "~/Scripts/Index.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.css",

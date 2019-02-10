@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CricStatsDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Match">
+    <Key>
+      <PropertyRef Name="MatchId" />
+    </Key>
+    <Property Name="MatchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateOfMatch" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Opposition" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="isTossWin" Type="Boolean" Nullable="false" />
+    <Property Name="homeScore" Type="Int32" Nullable="false" />
+    <Property Name="homeWicketsFallen" Type="Int32" Nullable="false" />
+    <Property Name="oppositionScore" Type="Int32" Nullable="false" />
+    <Property Name="oppositionWicketsFallen" Type="Int32" Nullable="false" />
+    <Property Name="isWin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="MatchPlayers" Relationship="Self.FK_MatchesMatchPlayer" FromRole="Matches" ToRole="MatchPlayers" />
+  </EntityType>
+  <EntityType Name="MatchPlayer">
+    <Key>
+      <PropertyRef Name="MatchId" />
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="runsScored" Type="Int32" Nullable="false" />
+    <Property Name="ballsFaced" Type="Int32" Nullable="false" />
+    <Property Name="Fours" Type="Int32" Nullable="false" />
+    <Property Name="Sixes" Type="Int32" Nullable="false" />
+    <Property Name="wicketsTaken" Type="Int32" Nullable="false" />
+    <Property Name="oversBowled" Type="Int32" Nullable="false" />
+    <Property Name="runConceded" Type="Int32" Nullable="false" />
+    <Property Name="Catches" Type="Int32" Nullable="false" />
+    <Property Name="runOuts" Type="Int32" Nullable="false" />
+    <Property Name="BattingStrikeRate" Type="Int32" Nullable="false" />
+    <Property Name="BowlingEconomy" Type="Int32" Nullable="false" />
+    <Property Name="BattingAverage" Type="Int32" Nullable="false" />
+    <Property Name="BoiwlingAverage" Type="Int32" Nullable="false" />
+    <Property Name="MatchId" Type="Int32" Nullable="false" />
+    <Property Name="PlayerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Match" Relationship="Self.FK_MatchesMatchPlayer" FromRole="MatchPlayers" ToRole="Matches" />
+    <NavigationProperty Name="Player" Relationship="Self.FK_PlayersMatchPlayer" FromRole="MatchPlayers" ToRole="Players" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsId" />
+    </Key>
+    <Property Name="NewsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Article" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="playerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MatchPlayers" Relationship="Self.FK_PlayersMatchPlayer" FromRole="Players" ToRole="MatchPlayers" />
+  </EntityType>
+  <Association Name="FK_MatchesMatchPlayer">
+    <End Role="Matches" Type="Self.Match" Multiplicity="1" />
+    <End Role="MatchPlayers" Type="Self.MatchPlayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Matches">
+        <PropertyRef Name="MatchId" />
+      </Principal>
+      <Dependent Role="MatchPlayers">
+        <PropertyRef Name="MatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayersMatchPlayer">
+    <End Role="Players" Type="Self.Player" Multiplicity="1" />
+    <End Role="MatchPlayers" Type="Self.MatchPlayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="MatchPlayers">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Matches" EntityType="Self.Match" />
+    <EntitySet Name="MatchPlayers" EntityType="Self.MatchPlayer" />
+    <EntitySet Name="News" EntityType="Self.News" />
+    <EntitySet Name="Players" EntityType="Self.Player" />
+    <AssociationSet Name="FK_MatchesMatchPlayer" Association="Self.FK_MatchesMatchPlayer">
+      <End Role="Matches" EntitySet="Matches" />
+      <End Role="MatchPlayers" EntitySet="MatchPlayers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayersMatchPlayer" Association="Self.FK_PlayersMatchPlayer">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="MatchPlayers" EntitySet="MatchPlayers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

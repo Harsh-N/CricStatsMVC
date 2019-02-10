@@ -4,95 +4,152 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Stats Update</h2>
+<h1>Stats Update</h1>
+
+
+
+
+<form >
+    <h2>
+        Player
+    </h2>
+    <div class="form-group">
+        <label> Player Name: </label> <input type="text" id="playerName" name="playerName" placeholder="Player Full Name" required />
+        <input type="number" id="PlayerId" name="PlayerId" value=0 hidden />
+    </div>
+
+    <button type="submit" class="btn btn-primary" name="btnSavePlayer" id="btnSavePlayer"> Submit </button>
+    <button class="btn btn-warning" name="statsClear"> Clear </button>
+
+</form>
+
+<h2>Result and Fixture Update</h2>
 
 <form>
-    <h3>
-        Player
-    </h3>
-    <div class="form-group">
-        <label> Player Name: </label> <input type="text" id="name" placeholder="Player Full Name" required />
-    </div>
-    <h3>
-        performance
-    </h3>
     <div class="fields">
-        <label> Runs Scored: </label> <input type="number" id="name" placeholder="" required />
-        <label> Balls Faced: </label> <input type="number" id="name" placeholder="" required />
+        <label> Date of the Match: </label> <input id="dateOfMatch" class="dateTime" />
+        <label> Opposition: </label> <input type="text" id="Opposition" placeholder="" required />
     </div>
     <div class="fields">
-        <label> Fours: </label> <input type="number" id="name" placeholder="" required />
-        <label> Sixes: </label> <input type="number" id="name" placeholder="" required />
+        <label> Toss Result:</label>
+        <div class="checkbox-fields">
+            <input type="checkbox" id="isTossWon" value="Won" required />Won
+        </div>
+        <label> Home Score: </label> <input type="number" id="homeScore" placeholder="" required />
     </div>
     <div class="fields">
-        <label> Wickets Taken: </label> <input type="number" id="name" placeholder="" required />
-        <label> Overs Bowled: </label> <input type="number" id="name" placeholder="" required />
+        <label> Home Wicket Fallen: </label> <input type="number" id="homeWicketsFallen" placeholder="" required />
+        <label> Opposition Score: </label> <input type="number" id="oppositionScore" placeholder="" required />
     </div>
     <div class="fields">
-        <label> Runs Conceded: </label> <input type="number" id="name" placeholder="" required />
-        <label> Catches Taken: </label> <input type="number" id="name" placeholder="" required />
+        <label> Opposition wickets: </label> <input type="number" id="oppositionWicketsFallen" placeholder="" required />
+        <label> Match Result: </label>
+        <div class="checkbox-fields">
+            <input type="checkbox" id="isWin" value="Won" required />Won
+        </div>
     </div>
-    <div class="fields">
-        <label> Run Outs: </label> <input type="number" id="name" placeholder="" required />
-        <label> Batting Strike Rate: </label> <input type="number" id="name" placeholder="" required />
-    </div>
-    <div class="fields">
-        <label> Bowling Economy: </label> <input type="number" id="name" placeholder="" required />
-        <label> Batting Average: </label> <input type="number" id="name" placeholder="" required />
-    </div>
-    <div class="fields">
-        <label> Bowling Average: </label> <input type="number" id="name" placeholder="" required />
-    </div>
-    <button class="btn btn-primary" id="statsSubmit"> Submit </button>
-    <button class="btn btn-warning" id="statsClear"> Clear </button>
 
+    <button class="btn btn-primary" id="resultSubmit"> Submit </button>
+    <button class="btn btn-warning" id="resultClear"> Clear </button>
+</form>
 
+<h2>performance</h2>
+
+<form>
+    <div class="fields">
+        <label> Select Player: </label> @Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id="ddPlayerList" })
+        <label> BSelect Match: </label> <input type="number" id="ballFaced" name="ballFaced" placeholder="" required />
+    </div>
+
+    <div class="fields">
+        <label> Runs Scored: </label> <input type="number" id="runsScored" name="runsScored" placeholder="" required />
+        <label> Balls Faced: </label> <input type="number" id="ballFaced" name="ballFaced" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Fours: </label> <input type="number" id="Fours" name="Fours" placeholder="" required />
+        <label> Sixes: </label> <input type="number" id="Sixes" name="Sixes" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Wickets Taken: </label> <input type="number" id="wicketsTaken" name="wicketsTaken" placeholder="" required />
+        <label> Overs Bowled: </label> <input type="number" id="oversBowled" name="oversBowled" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Runs Conceded: </label> <input type="number" id="runConceded" name="runConceded" placeholder="" required />
+        <label> Catches Taken: </label> <input type="number" id="Catches" name="Catches" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Run Outs: </label> <input type="number" id="runOuts" name="runOuts" placeholder="" required />
+        <label> Batting Strike Rate: </label> <input type="number" id="BattingStrikeRate" name="BattingStrikeRate" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Bowling Economy: </label> <input type="number" id="BowlingEconomy" name="BowlingEconomy" placeholder="" required />
+        <label> Batting Average: </label> <input type="number" id="BattingAverage" name="BattingAverage" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Bowling Average: </label> <input type="number" id="BowlingAverage" name="BowlingAverage" placeholder="" required />
+        <input type="number" value=2 id="MatchId" name="MatchId" hidden />
+        @*<input type="number" value=0 id="mPlayerId" name="mPlayerId" hidden/>*@
+    </div>
+    <button class="btn btn-primary" name="statsSubmit"> Submit </button>
+    <button class="btn btn-warning" name="statsClear"> Clear </button>
 </form>
 
 <h2>News Update</h2>
 
 <form>
     <div class="fields">
-        <label> Title: </label> <input type="text" id="name" placeholder="" required />
-        <label> Image: </label> <input type="text" id="name" placeholder="" required />
+        <label> Title: </label> <input type="text" id="Title" placeholder="" required />
+        <label> Image: </label> <input type="text" id="Image" placeholder="" required />
     </div>
     <div class="fields">
-        <label> Article: </label> <textarea id="bodyText" placeholder="Type aricle here..." required></textarea>
+        <label> Article: </label> <textarea id="Article" placeholder="Type aricle here..." required></textarea>
     </div>
-    <button class="submit-button" id="newsSubmit"> Submit </button>
-    <button class="submit-button" id="newsClear"> Clear </button>
+    <button class="btn btn-primary" id="newsSubmit"> Submit </button>
+    <button class="btn btn-warning" id="newsClear"> Clear </button>
 </form>
 
+<script>
+    $(document).ready(function () {
+       
+        $("#btnSavePlayer").on("click", function (e) {
+            
+            e.preventDefault();
+            SavePlayer();
 
-<h2>Result and Fixture Update</h2>
-<form>
-    <div class="fields">
-        <label> Date of the Match: </label> <input id="date" class="dateTime" />
-        <label> Opposition: </label> <input type="text" id="name" placeholder="" required />
-    </div>
-    <div class="fields">
-        <label> Toss Result:</label>
-        <div class="checkbox-fields">
-            <input type="checkbox" id="TResult" value="Won" required />Won
-            <input type="checkbox" id="TResult" value="Lost" required />Lost
-        </div>
-        <label> Home Score: </label> <input type="number" id="name" placeholder="" required />
-    </div>
-    <div class="fields">
-        <label> Home Wicket Fallen: </label> <input type="number" id="name" placeholder="" required />
-        <label> Opposition Score: </label> <input type="number" id="name" placeholder="" required />
-    </div>
-    <div class="fields">
-        <label> Opposition wickets: </label> <input type="number" id="name" placeholder="" required />
-        <label> Match Result: </label>
-        <div class="checkbox-fields">
-            <input type="checkbox" id="MResult" value="Won" required />Won
-            <input type="checkbox" id="MResult" value="Lost" required />Lost
-        </div>
-    </div>
+        });
 
-    <button class="submit-button" id="resultSubmit"> Submit </button>
-    <button class="submit-button" id="resultClear"> Clear </button>
+    });
 
 
-</form>
+
+
+    function SavePlayer() {
+        //var input = $('#player-performance').find("input,select,textarea").serialize();
+
+        $.ajax({
+            type: "post",
+            data: {
+                PlayerName: $('#playerName').val()
+            },
+            url: '@Url.Action("SavePlayer")',
+            success: function (data) {
+                if (data === "1") {
+                    alert("Player Name Saved");
+                    window.location = '@Url.Action("AdminMain","Admin")';
+                } else if (data === "2") {
+                     alert("Player Name Already Exist");
+                    window.location = '@Url.Action("AdminMain","Admin")';
+                }
+
+            },
+            error: function (data) {
+                if (data === "0")
+                alert("Player Name Save Failed");
+            }
+        })
+
+    }
+
+</script>
+
+

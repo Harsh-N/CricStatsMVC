@@ -1,0 +1,9 @@
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.DAL\bin\Debug\CricStats.DAL.dll
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.DAL\bin\Debug\CricStats.DAL.pdb
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.DAL\obj\Debug\CricStats.DAL.csproj.CoreCompileInputs.cache
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.DAL\obj\Debug\CricStats.DAL.dll
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.DAL\obj\Debug\CricStats.DAL.pdb
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.DAL\bin\Debug\CricStats.Models.dll
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.DAL\bin\Debug\CricStats.Models.pdb
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.DAL\obj\Debug\CricStats.DAL.csprojAssemblyReference.cache
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.DAL\obj\Debug\CricStats.DAL.csproj.CopyComplete

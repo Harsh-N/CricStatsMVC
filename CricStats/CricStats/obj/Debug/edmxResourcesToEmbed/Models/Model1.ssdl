@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CricStatsDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Matches">
+    <Key>
+      <PropertyRef Name="MatchId" />
+    </Key>
+    <Property Name="MatchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dateOfMatch" Type="datetime" Nullable="false" />
+    <Property Name="Opposition" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isTossWin" Type="bit" Nullable="false" />
+    <Property Name="homeScore" Type="int" Nullable="false" />
+    <Property Name="homeWicketsFallen" Type="int" Nullable="false" />
+    <Property Name="oppositionScore" Type="int" Nullable="false" />
+    <Property Name="oppositionWicketsFallen" Type="int" Nullable="false" />
+    <Property Name="isWin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MatchPlayers">
+    <Key>
+      <PropertyRef Name="MatchId" />
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="runsScored" Type="int" Nullable="false" />
+    <Property Name="ballsFaced" Type="int" Nullable="false" />
+    <Property Name="Fours" Type="int" Nullable="false" />
+    <Property Name="Sixes" Type="int" Nullable="false" />
+    <Property Name="wicketsTaken" Type="int" Nullable="false" />
+    <Property Name="oversBowled" Type="int" Nullable="false" />
+    <Property Name="runConceded" Type="int" Nullable="false" />
+    <Property Name="Catches" Type="int" Nullable="false" />
+    <Property Name="runOuts" Type="int" Nullable="false" />
+    <Property Name="BattingStrikeRate" Type="int" Nullable="false" />
+    <Property Name="BowlingEconomy" Type="int" Nullable="false" />
+    <Property Name="BattingAverage" Type="int" Nullable="false" />
+    <Property Name="BoiwlingAverage" Type="int" Nullable="false" />
+    <Property Name="MatchId" Type="int" Nullable="false" />
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsId" />
+    </Key>
+    <Property Name="NewsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Article" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="playerName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_MatchesMatchPlayer">
+    <End Role="Matches" Type="Self.Matches" Multiplicity="1" />
+    <End Role="MatchPlayers" Type="Self.MatchPlayers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Matches">
+        <PropertyRef Name="MatchId" />
+      </Principal>
+      <Dependent Role="MatchPlayers">
+        <PropertyRef Name="MatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayersMatchPlayer">
+    <End Role="Players" Type="Self.Players" Multiplicity="1" />
+    <End Role="MatchPlayers" Type="Self.MatchPlayers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="MatchPlayers">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CricStatsDatabaseModelStoreContainer">
+    <EntitySet Name="Matches" EntityType="Self.Matches" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MatchPlayers" EntityType="Self.MatchPlayers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MatchesMatchPlayer" Association="Self.FK_MatchesMatchPlayer">
+      <End Role="Matches" EntitySet="Matches" />
+      <End Role="MatchPlayers" EntitySet="MatchPlayers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayersMatchPlayer" Association="Self.FK_PlayersMatchPlayer">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="MatchPlayers" EntitySet="MatchPlayers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
