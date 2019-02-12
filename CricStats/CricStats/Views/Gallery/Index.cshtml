@@ -4,5 +4,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h1 class="pagetitlemargin">Images</h1>
 
+@*image view*@
+<div class="image-block">
+    @foreach (var image in (IEnumerable<string>)ViewBag.Images)
+    {
+
+        <img class="image" src="../content/images/@image" alt="cricket image" />
+    }
+</div>
+
+<h1 >Images</h1>
+
+<div class="video-block">
+    @foreach (var video in (IEnumerable<string>)ViewBag.Videos)
+    {
+        <video>
+            <source src="~/content/videos/@video" type="video/mp4">
+        </video>  
+    }
+</div>

@@ -14,14 +14,40 @@
         Player
     </h2>
     <div class="form-group">
-        <label> Player Name: </label> <input type="text" id="playerName" name="playerName" placeholder="Player Full Name" required />
-        <input type="number" id="PlayerId" name="PlayerId" value=0 hidden />
+        <label> Player Name: </label> <input type="text" id="playerName" name="playerName" placeholder="Player Full Name" />
+        <input type="number" id="PlayerId" name="PlayerId" value=0 hidden required />
     </div>
 
     <button type="submit" class="btn btn-primary" name="btnSavePlayer" id="btnSavePlayer"> Submit </button>
     <button class="btn btn-warning" name="statsClear"> Clear </button>
-    <button class="btn btn-info" id="managePlayer"> Manage </button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#managePlayers">
+        Manage Player
+    </button>
+
 </form>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="managePlayers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal Player</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <h2>Result and Fixture Update</h2>
 
@@ -31,10 +57,10 @@
         <label> OppositionTeam: </label> <input type="text" id="OppositionTeam" name="OppositionTeam" placeholder="" required />
     </div>
     <div class="fields">
-        <label> Date of the Match: </label> <input type="datetime-local" id="dateOfMatch" name="dateOfMatch" />
+        <label> Date of the Match: </label> <input type="datetime" id="dateOfMatch" name="dateOfMatch" />
         <label> Toss Result:</label>
         <div class="checkbox-fields">
-            <input type="checkbox" id="isTossWon" name="isTossWon" value=true required />Won
+            <input type="checkbox" id="isTossWon" name="isTossWon" value="" />Won
         </div>
     </div>
     <div class="fields">
@@ -42,22 +68,50 @@
         <label> Home Score: </label> <input type="number" id="homeScore" name="homeScore" placeholder="" required />
     </div>
     <div class="fields">
-        <label> Opposition wickets: </label> <input type="number" id="oppositionWicketsFallen" name="oppositionWicketsFallen" placeholder="" required />
+        <label> Home Team Overs: </label> <input type="number" id="HomeTeamOvers" name="HomeTeamOvers" placeholder="" required />
         <label> Opposition Score: </label> <input type="number" id="oppositionScore" name="oppositionScore" placeholder="" required />
+    </div>
+    <div class="fields">
+        <label> Opposition Wickets: </label> <input type="number" id="oppositionWicketsFallen" name="oppositionWicketsFallen" placeholder="" required />
+        <label> Opposition Team Overs: </label> <input type="number" id="OppositionTeamOvers" name="OppositionTeamOvers" placeholder="" required />
     </div>
 
     <div class="fields">
 
         <label> Match Result: </label>
         <div class="checkbox-fields">
-            <input type="checkbox" id="isWin" name="isWin" value=true required />Won
+            <input type="checkbox" id="isWin" name="isWin" value="" />Won
         </div>
     </div>
 
     <button type="submit" class="btn btn-primary" name="btnSaveMatches" id="btnSaveMatches"> Submit </button>
     <button class="btn btn-warning" id="resultClear"> Clear </button>
-    <button class="btn btn-info" id="managePlayer"> Manage </button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#manageMatches">
+        Manage Match
+    </button>
 </form>
+
+<!-- Modal -->
+<div class="modal fade" id="manageMatches" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal Match</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <h2>performance</h2>
 
@@ -98,8 +152,32 @@
     </div>
     <button class="btn btn-primary" name="statsSubmit"> Submit </button>
     <button class="btn btn-warning" name="statsClear"> Clear </button>
-    
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#managePerformance">
+        Manage Performance
+    </button>
+
 </form>
+
+<!-- Modal -->
+<div class="modal fade" id="managePerformance" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal Performance</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <h2>News Update</h2>
 
@@ -113,21 +191,18 @@
     </div>
     <button class="btn btn-primary" id="newsSubmit"> Submit </button>
     <button class="btn btn-warning" id="newsClear"> Clear </button>
+    <button class="btn btn-info" id="managePlayer"> Manage </button>
 </form>
 
 <script>
     $(document).ready(function () {
-       
+
         $("#btnSavePlayer").on("click", function (e) {
-            
+
             e.preventDefault();
             SavePlayer();
 
         });
-
-    });
-
-    $(document).ready(function () {
 
         $("#btnSaveMatches").on("click", function (e) {
 
@@ -136,7 +211,17 @@
 
         });
 
+
+
+
+
     });
+
+    //$(document).ready(function () {
+
+
+
+    //});
 
 
     function SavePlayer() {
@@ -146,7 +231,7 @@
             type: "post",
             data: {
                 PlayerName: $('#playerName').val()
-              
+
             },
             url: '@Url.Action("SavePlayer")',
             success: function (data) {
@@ -154,57 +239,98 @@
                     alert("Player Name Saved");
                     window.location = '@Url.Action("AdminMain","Admin")';
                 } else if (data === "2") {
-                     alert("Player Name Already Exist");
+                    alert("Player Name Already Exist");
                     window.location = '@Url.Action("AdminMain","Admin")';
                 }
 
             },
             error: function (data) {
                 if (data === "0")
-                alert("Player Name Save Failed");
+                    alert("Player Name Save Failed");
             }
         })
 
     }
 
 
-     function SaveMatches() {
+    function SaveMatches() {
         //var input = $('#player-performance').find("input,select,textarea").serialize();
-         
+        alert($('#dateOfMatch').val());
+
         $.ajax({
+
             type: "post",
             data: {
-               
+
+                dateOfMatch: $('#dateOfMatch').val(),
+                HomeTeam: $('#HomeTeam').val(),
+                OppositionTeam: $('#OppositionTeam').val(),
+                isTossWon: $('#isTossWon').prop("checked"),
+                    //$('#isTossWon').val(),
+                homeScore: $('#homeScore').val(),
+                homeWicketsFallen: $('#homeWicketsFallen').val(),
+                HomeTeamOvers: $('#HomeTeamOvers').val(),
+                oppositionScore: $('#oppositionScore').val(),
+                oppositionWicketsFallen: $('#oppositionWicketsFallen').val(),
+                OppositeTeamOvers: $('#OppositionTeamOvers').val(),
+                isWin: $('#isWin').prop("checked") 
+                //$('#isWin').val()
+
+            },
+            url: '@Url.Action("SaveMatch")',
+            success: function (data) {
+                if (data === "1") {
+                    alert("Match Saved");
+                    window.location = '@Url.Action("AdminMain","Admin")';
+                } else if (data === "2") {
+                    alert("Match Entry Already Exist");
+                    window.location = '@Url.Action("AdminMain","Admin")';
+                }
+
+            },
+            error: function (data) {
+                if (data === "0")
+                    alert("Match Save Failed");
+            }
+        });
+
+
+
+        @*$.ajax({
+            type: "post",
+            data: {
                 dateOfMatch: $('#dateOfMatch').val(),
                 HomeTeam: $('#HomeTeam').val(),
                 OppositionTeam: $('#OppositionTeam').val(),
                 isTossWin: $('#isTossWin').val(),
                 homeScore: $('#homeScore').val(),
                 homeWicketsFallen: $('#homeWicketsFallen').val(),
+                HomeTeamOvers: $('#HomeTeamOvers').val(),
                 oppositionScore: $('#oppositionScore').val(),
                 oppositionWicketsFallen: $('#oppositionWicketsFallen').val(),
+                OppositeTeamOvers: $('#OppositionTeamOvers').val(),
                 isWin: $('#isWin').val()
-            }, 
-            url: '@Url.Action("SaveMatches")',
+
+            },
+            url: '@Url.Action("SavePlayer")',
             success: function (data) {
                 if (data === "1") {
-                    alert("Match Saved");
+                    alert("Player Name Saved");
                     window.location = '@Url.Action("AdminMain","Admin")';
                 } else if (data === "2") {
-                     alert("Match Entry Already Exist");
+                    alert("Player Name Already Exist");
                     window.location = '@Url.Action("AdminMain","Admin")';
                 }
 
             },
             error: function (data) {
                 if (data === "0")
-                alert("Match Save Failed");
+                    alert("Player Name Save Failed");
             }
-        })
-
+        })*@
     }
 
-   
+
 
 </script>
 

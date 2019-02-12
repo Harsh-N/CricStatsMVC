@@ -40,15 +40,17 @@ namespace CricStats.DAL
             cmd.CommandText = "[dbo].[SaveMatches]";
 
 
-            cmd.Parameters.Add("@dateOfMatch", SqlDbType.NVarChar, 50).Value = item.DateOfMatch;
+            cmd.Parameters.Add("@dateOfMatch", SqlDbType.DateTime).Value = item.DateOfMatch;
             cmd.Parameters.Add("@HomeTeam", SqlDbType.NVarChar, 50).Value = item.HomeTeam;
             cmd.Parameters.Add("@OppositionTeam", SqlDbType.NVarChar, 50).Value = item.OppositionTeam;
-            cmd.Parameters.Add("@isTossWin", SqlDbType.NVarChar, 50).Value = item.isTossWin;
-            cmd.Parameters.Add("@homeScore", SqlDbType.NVarChar, 50).Value = item.HomeScore;
-            cmd.Parameters.Add("@homeWicketsFallen", SqlDbType.NVarChar, 50).Value = item.HomeWicketsFallen;
-            cmd.Parameters.Add("@oppositionScore", SqlDbType.NVarChar, 50).Value = item.OppositionScore;
-            cmd.Parameters.Add("@oppositionWicketsFallen", SqlDbType.NVarChar, 50).Value = item.OppositionWicketsFallen;
-            cmd.Parameters.Add("@iswin", SqlDbType.NVarChar, 50).Value = item.isWin;
+            cmd.Parameters.Add("@isTossWin", SqlDbType.Bit).Value = item.isTossWin;
+            cmd.Parameters.Add("@homeScore", SqlDbType.Int).Value = item.HomeScore;
+            cmd.Parameters.Add("@homeWicketsFallen", SqlDbType.Int).Value = item.HomeWicketsFallen;
+            cmd.Parameters.Add("@HomeTeamOvers", SqlDbType.Int).Value = item.HomeTeamOvers;
+            cmd.Parameters.Add("@oppositionScore", SqlDbType.Int).Value = item.OppositionScore;
+            cmd.Parameters.Add("@oppositionWicketsFallen", SqlDbType.Int).Value = item.OppositionWicketsFallen;
+            cmd.Parameters.Add("@OppositeTeamOvers", SqlDbType.Int).Value = item.OppositionTeamOvers;
+            cmd.Parameters.Add("@iswin", SqlDbType.Bit).Value = item.isWin;
            
 
             try
@@ -74,7 +76,7 @@ namespace CricStats.DAL
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "[dbo].[checkMatch]";
 
-            cmd.Parameters.Add("@dateOfMatch", SqlDbType.DateTime).Value = dateofMatch;
+            cmd.Parameters.Add("@dateOfMatches", SqlDbType.DateTime).Value = dateofMatch;
             cmd.Parameters.Add("@HomeTeam", SqlDbType.NVarChar, 50).Value = homeTeam;
             cmd.Parameters.Add("@OppositionTeam", SqlDbType.NVarChar, 50).Value = OppositionTeam;
             try

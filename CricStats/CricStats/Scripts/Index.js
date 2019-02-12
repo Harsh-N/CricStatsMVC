@@ -30,3 +30,4 @@ menuToggle.addEventListener("click", toggleMenu);
 
 //appending openNav function on load of a window
 window.onload = openNav();
+

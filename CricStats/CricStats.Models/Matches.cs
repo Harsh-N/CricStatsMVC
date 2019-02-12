@@ -17,8 +17,10 @@ namespace CricStats.Models
         private bool _isTossWin;
         private int _HomeScore;
         private int _HomeWicketsFallen;
+        private int _homeTeamOvers;
         private int _OppositionScore;
         private int _OppositionWicketsFallen;
+        private int _oppositeTeamOvers;
         private bool _isWin;
         #endregion
 
@@ -82,7 +84,7 @@ namespace CricStats.Models
             }
         }
 
-        public Boolean isTossWin
+        public bool isTossWin
         {
             get
             {
@@ -127,6 +129,21 @@ namespace CricStats.Models
             }
         }
 
+        public int HomeTeamOvers
+        {
+            get
+            {
+                return _homeTeamOvers;
+            }
+            set
+            {
+                if (_homeTeamOvers != value)
+                {
+                    _homeTeamOvers = value;
+                }
+            }
+        }
+
         public int OppositionScore
         {
             get
@@ -157,7 +174,22 @@ namespace CricStats.Models
             }
         }
 
-        public Boolean isWin
+        public int OppositionTeamOvers
+        {
+            get
+            {
+                return _oppositeTeamOvers;
+            }
+            set
+            {
+                if (_oppositeTeamOvers != value)
+                {
+                    _oppositeTeamOvers = value;
+                }
+            }
+        }
+
+        public bool isWin
         {
             get
             {
@@ -196,12 +228,14 @@ namespace CricStats.Models
             if ((dr["dateOfMatch"]) != DBNull.Value) { _dateOfMatch = (System.DateTime)(dr["dateOfMatch"]); }
             if ((dr["HomeTeam"]) != DBNull.Value) { _HomeTeam = (System.String)(dr["HomeTeam"]); }
             if ((dr["OppositionTeam"]) != DBNull.Value) { _OppositionTeam = (System.String)(dr["OppositionTeam"]); }
-            if ((dr["isTossWin"]) != DBNull.Value) { _isTossWin = (System.Boolean)(dr["isTossWin"]); }
+            if ((dr["isTossWin"]) != DBNull.Value) { _isTossWin = (bool)(dr["isTossWin"]); }
             if ((dr["homeScore"]) != DBNull.Value) { _HomeScore = (System.Int32)(dr["homeScore"]); }
             if ((dr["homeWicketsFallen"]) != DBNull.Value) { _HomeWicketsFallen = (System.Int32)(dr["homeWicketsFallen"]); }
+            if ((dr["HomeTeamOvers"]) != DBNull.Value) { _HomeWicketsFallen = (System.Int32)(dr["HomeTeamOvers"]); }
             if ((dr["oppositionScore"]) != DBNull.Value) { _OppositionScore = (System.Int32)(dr["oppositionScore"]); }
             if ((dr["oppositionWicketsFallen"]) != DBNull.Value) { _OppositionWicketsFallen = (System.Int32)(dr["oppositionWicketsFallen"]); }
-            if ((dr["isWin"]) != DBNull.Value) { _isWin = (System.Boolean)(dr["isWin"]); }
+            if ((dr["OppositeTeamOvers"]) != DBNull.Value) { _HomeWicketsFallen = (System.Int32)(dr["OppositeTeamOvers"]); }
+            if ((dr["isWin"]) != DBNull.Value) { _isWin = (bool)(dr["isWin"]); }
         }
     }
 }

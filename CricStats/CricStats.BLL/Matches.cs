@@ -18,6 +18,8 @@ namespace CricStats.BLL
         }
         #endregion
 
+
+        //save data row table in database
         public IEnumerable<Models.Matches> GetAllMatches()
         {
             var outList = new List<Models.Matches>();
@@ -40,6 +42,8 @@ namespace CricStats.BLL
             _db.Save(ref tmp);
         }
 
+
+        //check for duplicate entry of match
         public Models.Matches checkMatches(DateTime dateOfMatch, string homeTeam, string oppositionTeam)
         {
             Models.Matches temp = null;

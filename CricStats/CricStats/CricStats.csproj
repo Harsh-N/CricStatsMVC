@@ -152,6 +152,17 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\Site.css" />
+    <Content Include="Content\images\cricimg2.jpg" />
+    <Content Include="Content\images\cricimg3.jpg" />
+    <Content Include="Content\images\cricimg4.jpg" />
+    <Content Include="Content\images\cricimg5.jpg" />
+    <Content Include="Content\images\cricimg6.jpg" />
+    <Content Include="Content\images\cricketimg1.jpg" />
+    <Content Include="Content\videos\videoplayback.mp4" />
+    <Content Include="Content\videos\videoplayback1.mp4" />
+    <Content Include="Content\videos\videoplayback2.mp4" />
+    <Content Include="Content\videos\videoplayback3.mp4" />
+    <Content Include="Content\videos\videoplayback4.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -173,6 +184,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\model.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
