@@ -13,10 +13,7 @@ namespace CricStats.Controllers
         public ActionResult Index()
         {
 
-            List<Match> Matchlist = new List<Match>();
-            Match match = new Match();
 
-            Matchlist.Add(new Match());
 
             return View();
         }

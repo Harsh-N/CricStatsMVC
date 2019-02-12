@@ -4,12 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Stats Update</h1>
+<h1 class="pagetitlemargin">Stats Update</h1>
 
 
 
 
-<form >
+<form>
     <h2>
         Player
     </h2>
@@ -20,45 +20,51 @@
 
     <button type="submit" class="btn btn-primary" name="btnSavePlayer" id="btnSavePlayer"> Submit </button>
     <button class="btn btn-warning" name="statsClear"> Clear </button>
-
+    <button class="btn btn-info" id="managePlayer"> Manage </button>
 </form>
 
 <h2>Result and Fixture Update</h2>
 
 <form>
     <div class="fields">
-        <label> Date of the Match: </label> <input id="dateOfMatch" class="dateTime" />
-        <label> Opposition: </label> <input type="text" id="Opposition" placeholder="" required />
+        <label> HomeTeam: </label> <input type="text" id="HomeTeam" name="HomeTeam" placeholder="" required />
+        <label> OppositionTeam: </label> <input type="text" id="OppositionTeam" name="OppositionTeam" placeholder="" required />
     </div>
     <div class="fields">
+        <label> Date of the Match: </label> <input type="datetime-local" id="dateOfMatch" name="dateOfMatch" />
         <label> Toss Result:</label>
         <div class="checkbox-fields">
-            <input type="checkbox" id="isTossWon" value="Won" required />Won
+            <input type="checkbox" id="isTossWon" name="isTossWon" value=true required />Won
         </div>
-        <label> Home Score: </label> <input type="number" id="homeScore" placeholder="" required />
     </div>
     <div class="fields">
-        <label> Home Wicket Fallen: </label> <input type="number" id="homeWicketsFallen" placeholder="" required />
-        <label> Opposition Score: </label> <input type="number" id="oppositionScore" placeholder="" required />
+        <label> Home Wicket Fallen: </label> <input type="number" id="homeWicketsFallen" name="homeWicketsFallen" placeholder="" required />
+        <label> Home Score: </label> <input type="number" id="homeScore" name="homeScore" placeholder="" required />
     </div>
     <div class="fields">
-        <label> Opposition wickets: </label> <input type="number" id="oppositionWicketsFallen" placeholder="" required />
+        <label> Opposition wickets: </label> <input type="number" id="oppositionWicketsFallen" name="oppositionWicketsFallen" placeholder="" required />
+        <label> Opposition Score: </label> <input type="number" id="oppositionScore" name="oppositionScore" placeholder="" required />
+    </div>
+
+    <div class="fields">
+
         <label> Match Result: </label>
         <div class="checkbox-fields">
-            <input type="checkbox" id="isWin" value="Won" required />Won
+            <input type="checkbox" id="isWin" name="isWin" value=true required />Won
         </div>
     </div>
 
-    <button class="btn btn-primary" id="resultSubmit"> Submit </button>
+    <button type="submit" class="btn btn-primary" name="btnSaveMatches" id="btnSaveMatches"> Submit </button>
     <button class="btn btn-warning" id="resultClear"> Clear </button>
+    <button class="btn btn-info" id="managePlayer"> Manage </button>
 </form>
 
 <h2>performance</h2>
 
 <form>
     <div class="fields">
-        <label> Select Player: </label> @Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id="ddPlayerList" })
-        <label> BSelect Match: </label> <input type="number" id="ballFaced" name="ballFaced" placeholder="" required />
+        <label> Select Player: </label> @Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id = "ddPlayerList", @class = "ddfield" })
+        <label> Select Match: </label> @Html.DropDownList("mList", (IEnumerable<SelectListItem>)ViewBag.listOfMatches, new { id = "ddMatchList", @class = "ddfield" })
     </div>
 
     <div class="fields">
@@ -92,6 +98,7 @@
     </div>
     <button class="btn btn-primary" name="statsSubmit"> Submit </button>
     <button class="btn btn-warning" name="statsClear"> Clear </button>
+    
 </form>
 
 <h2>News Update</h2>
@@ -120,7 +127,16 @@
 
     });
 
+    $(document).ready(function () {
 
+        $("#btnSaveMatches").on("click", function (e) {
+
+            e.preventDefault();
+            SaveMatches();
+
+        });
+
+    });
 
 
     function SavePlayer() {
@@ -130,6 +146,7 @@
             type: "post",
             data: {
                 PlayerName: $('#playerName').val()
+              
             },
             url: '@Url.Action("SavePlayer")',
             success: function (data) {
@@ -149,6 +166,45 @@
         })
 
     }
+
+
+     function SaveMatches() {
+        //var input = $('#player-performance').find("input,select,textarea").serialize();
+         
+        $.ajax({
+            type: "post",
+            data: {
+               
+                dateOfMatch: $('#dateOfMatch').val(),
+                HomeTeam: $('#HomeTeam').val(),
+                OppositionTeam: $('#OppositionTeam').val(),
+                isTossWin: $('#isTossWin').val(),
+                homeScore: $('#homeScore').val(),
+                homeWicketsFallen: $('#homeWicketsFallen').val(),
+                oppositionScore: $('#oppositionScore').val(),
+                oppositionWicketsFallen: $('#oppositionWicketsFallen').val(),
+                isWin: $('#isWin').val()
+            }, 
+            url: '@Url.Action("SaveMatches")',
+            success: function (data) {
+                if (data === "1") {
+                    alert("Match Saved");
+                    window.location = '@Url.Action("AdminMain","Admin")';
+                } else if (data === "2") {
+                     alert("Match Entry Already Exist");
+                    window.location = '@Url.Action("AdminMain","Admin")';
+                }
+
+            },
+            error: function (data) {
+                if (data === "0")
+                alert("Match Save Failed");
+            }
+        })
+
+    }
+
+   
 
 </script>
 

@@ -4,6 +4,10 @@ body {
     background-color: white;
 }
 
+.pagetitlemargin {
+    margin-top: 70px;
+}
+
 .header {
     display: flex;
     text-decoration: overline;
@@ -155,6 +159,7 @@ footer {
     flex-wrap: wrap;
     opacity: 0.85;
     text-align: center;
+    
 }
 
 
@@ -240,6 +245,13 @@ label {
 }
 
 input {
+    height: 20px;
+    width: 250px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.ddfield {
     height: 20px;
     width: 250px;
     border-radius: 8px;
