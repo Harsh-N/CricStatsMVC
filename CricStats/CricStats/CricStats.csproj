@@ -135,10 +135,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\FixturesController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\GraphController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -158,6 +158,7 @@
     <Content Include="Content\images\cricimg5.jpg" />
     <Content Include="Content\images\cricimg6.jpg" />
     <Content Include="Content\images\cricketimg1.jpg" />
+    <Content Include="Content\NewsImage\kartik.jpeg" />
     <Content Include="Content\videos\videoplayback.mp4" />
     <Content Include="Content\videos\videoplayback1.mp4" />
     <Content Include="Content\videos\videoplayback2.mp4" />
@@ -201,10 +202,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\AdminMain.cshtml" />
-    <Content Include="Views\Fixtures\Index.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Stats\Index.cshtml" />
     <Content Include="Views\Graph\Index.cshtml" />
+    <Content Include="Views\Results\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

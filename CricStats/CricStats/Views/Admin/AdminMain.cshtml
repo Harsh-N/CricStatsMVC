@@ -6,11 +6,10 @@
 
 <h1 class="pagetitlemargin">Stats Update</h1>
 
+<h2> Player</h2>
 
 <form>
-    <h2>
-        Player
-    </h2>
+
     <div class="form-group">
         <label> Player Name: </label> <input type="text" id="playerName" name="playerName" placeholder="Player Full Name" />
         <input type="number" id="PlayerId" name="PlayerId" value=0 hidden required />
@@ -46,7 +45,7 @@
     </div>
 </div>
 
-<h2>Result and Fixture Update</h2>
+<h2>Result Update</h2>
 
 <form>
     <div class="fields">
@@ -109,7 +108,6 @@
     </div>
 </div>
 
-
 <h2>performance</h2>
 
 <form oninput="calculateEconomy(), bowlingAvg(), battingStr()">
@@ -136,17 +134,17 @@
     </div>
     <div class="fields">
         <label> Run Outs: </label> <input type="number" id="runOuts" name="runOuts" placeholder="" required />
-        <label> Batting Strike Rate: </label> <output type="number" id="BattingStrikeRate" name="BattingStrikeRate"  required></output>
+        <label> Batting Strike Rate: </label> <output type="number" id="BattingStrikeRate" name="BattingStrikeRate" required></output>
     </div>
     <div class="fields">
-        <label> Bowling Economy: </label> <output type="number" id="BowlingEconomy" name="BowlingEconomy"  required ></output>
+        <label> Bowling Economy: </label> <output type="number" id="BowlingEconomy" name="BowlingEconomy" required></output>
         <label> Out: </label>
         <div class="checkbox-fields">
             <input type="checkbox" id="Out" name="Out" value="" />Won
         </div>
     </div>
     <div class="fields">
-        <label> Bowling Average: </label> <output type="number" id="BowlingAverage" name="BowlingAverage"  required ></output>
+        <label> Bowling Average: </label> <output type="number" id="BowlingAverage" name="BowlingAverage" required></output>
     </div>
     <button type="submit" class="btn btn-primary" name="btnSavePerformance" id="btnSavePerformance"> Submit </button>
     <button class="btn btn-warning" name="statsClear"> Clear </button>
@@ -288,7 +286,7 @@
                 dateOfMatch: $('#dateOfMatch').val(),
                 HomeTeam: $('#HomeTeam').val(),
                 OppositionTeam: $('#OppositionTeam').val(),
-                isTossWon: $('#isTossWon').prop("checked"),        
+                isTossWon: $('#isTossWon').prop("checked"),
                 homeScore: $('#homeScore').val(),
                 homeWicketsFallen: $('#homeWicketsFallen').val(),
                 HomeTeamOvers: $('#HomeTeamOvers').val(),
@@ -314,7 +312,7 @@
                     alert("Match Save Failed");
             }
         })
-     
+
     }
 
 
@@ -357,7 +355,7 @@
                     window.location = '@Url.Action("AdminMain","Admin")';
                 }
             }})
-    
+
     }
 
 

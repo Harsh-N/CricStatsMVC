@@ -20,7 +20,7 @@
 <div class="video-block">
     @foreach (var video in (IEnumerable<string>)ViewBag.Videos)
     {
-        <video>
+        <video controls>
             <source src="~/content/videos/@video" type="video/mp4">
         </video>  
     }

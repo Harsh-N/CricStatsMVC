@@ -327,16 +327,18 @@ video {
 
 body {
     font-family: Verdana, sans-serif;
-    margin: 0
+    margin: 0;
 }
 
 .mySlides {
-    display: none
+    display: none;
+    
 }
 
 img {
     vertical-align: middle;
     height: 400px;
+    width: 100%
 }
 
 /* Slideshow container */
@@ -441,6 +443,25 @@ img {
 #BowlingEconomy, #BowlingAverage, #BattingStrikeRate{
     width: 250px;
 }
+
+/*news*/
+.news-title {
+    height: 50px;
+}
+
+.news-image {
+    align-content: center;
+    text-align: center;
+    height: 500px;
+    margin: auto;
+    width: 700px;
+}
+
+figcaption {
+   color: gray;
+}
+
+
 
 
 @media screen and (min-width: 500px) {

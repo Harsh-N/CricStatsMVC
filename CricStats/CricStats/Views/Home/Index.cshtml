@@ -6,27 +6,23 @@
 
 
 
-
-
-
-
     <div class="slideshow-container">
 
         <div class="mySlides ">
             <div class="numbertext">1 / 3</div>
-            <img src="~/Content/images/cricimg2.jpg" style="width:100%">
+            <img src="~/Content/images/cricimg2.jpg" >
             <div class="text">Caption Text</div>
         </div>
 
         <div class="mySlides ">
             <div class="numbertext">2 / 3</div>
-            <img src="~/Content/images/cricimg3.jpg" style="width:100%">
+            <img src="~/Content/images/cricimg3.jpg" >
             <div class="text">Caption Two</div>
         </div>
 
         <div class="mySlides ">
             <div class="numbertext">3 / 3</div>
-            <img src="~/Content/images/cricketimg1.jpg" style="width:100%">
+            <img src="~/Content/images/cricketimg1.jpg" >
             <div class="text">Caption Three</div>
         </div>
 
@@ -42,63 +38,38 @@
         <span class="dot" onclick="currentSlide(3)"></span>
     </div>
 
-    <script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
+<h1>News</h1>
 
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
+<article>
+    <h2 class="news-title">
+        Important to filter opinions and focus on preparations - Karthik
+    </h2>
+    <figure class="news-image">
+        <img src="~/Content/NewsImage/kartik.jpeg" alt="news image" />
+        <figcaption>
+            "We were the last recognised batsmen and we took it till the end and that required a lot of courage" - Karthik
+        </figcaption>
+    </figure>
+    <p class="news-feed">
+      
+        Dinesh Karthik, in the last one year, has shown the wherewithal and level-headedness needed to excel in the role of a finisher in limited overs cricket. Be it for India or for Kolkata Knight Riders (KKR) in the IPL, Karthik has come up with contributions at crucial junctures to help the team's cause.<br /><br />
 
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
+        If the recently-concluded trips to Australia and New Zealand saw many hits from Karthik's willow, the 'miss' arrived in the final T20I at Hamilton. Karthik's refusal to take a single with Krunal Pandya at the non-striker's end in the last over of the contest - which India lost by 4 runs - was criticised by fans and ex-players. Some labelled him overconfident while many questioned his finishing skills.<br /><br />
 
-    function showSlides(n) {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      var dots = document.getElementsByClassName("dot");
-      if (n > slides.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = slides.length}
-      for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-      }
-      for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-      }
-      slides[slideIndex-1].style.display = "block";
-      dots[slideIndex-1].className += " active";
-    }
-    </script>
+        On his part, Karthik felt he and Krunal did the best they could in a situation where 68 runs were required off the final 28 balls. "To get 68 from 28 was always going to be a daunting task. The fact that we lost the match by 4 runs shows that we believed in ourselves. We were the last recognised batsmen and we took it till the end and that required a lot of courage," Karthik told TOI.<br /><br />
+
+        Karthik cleared the air for those who questioned whether he didn't trust Krunal's batting skills and hence, chose not to take the single in the final over. "Krunal batted brilliantly in that game and it is credit to him that we could take the team right till the very end of the game. It's just that I couldn't finish things off," Karthik conceded.<br /><br />
+
+        The 33-year-old went on to praise Tim Southee for having kept the pressure up in the decisive last over. "You have to give credit to the way Southee bowled that over. He bowled some very good yorkers and we couldn't get under the ball," said Karthik.
+
+        
 
 
+    </p>
+</article>
 
 
 
-@*<div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>*@
+
+
