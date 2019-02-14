@@ -438,16 +438,12 @@ img {
     }
 }
 
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-    .prev, .next, .text {
-        font-size: 11px
-    }
+#BowlingEconomy, #BowlingAverage, #BattingStrikeRate{
+    width: 250px;
 }
 
 
 @media screen and (min-width: 500px) {
-
     body {
         background: white;
     }

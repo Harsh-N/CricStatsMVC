@@ -89,6 +89,65 @@ namespace CricStats.Controllers
             }
         }
 
+        [HttpPost]
+        public string SavePerformance(
+            string PlayerId,
+            string MatchId,
+            string runsScored,
+            string ballsFaced,
+            string Fours,
+            string Sixes,
+            string wicketsTaken,
+            string oversBowled,
+            string runConceded,
+            string Catches,
+            string runOuts,
+            string BattingStrikeRate,
+            string BowlingEconomy,
+            string Out,
+            string BowlingAverage)
+        {
+            CricStats.Models.Performance NewPerformance = new Performance();
+            CricStats.BLL.Performance PerformanceBLL = new BLL.Performance(_conStr);
+
+            NewPerformance.MatchId = Convert.ToInt32(MatchId);
+            NewPerformance.PlayerId = Convert.ToInt32(PlayerId);
+            NewPerformance.runsScored = Convert.ToInt32(runsScored);
+            NewPerformance.ballsFaced = Convert.ToInt32(ballsFaced);
+            NewPerformance.Fours = Convert.ToInt32(Fours);
+            NewPerformance.Sixes = Convert.ToInt32(Sixes);
+            NewPerformance.wicketsTaken = Convert.ToInt32(wicketsTaken);
+            NewPerformance.oversBowled = Convert.ToInt32(oversBowled);
+            NewPerformance.runConceded = Convert.ToInt32(runConceded);
+            NewPerformance.Catches = Convert.ToInt32(Catches);
+            NewPerformance.runOuts = Convert.ToInt32(runOuts);
+            NewPerformance.BattingStrikeRate = Convert.ToInt32(BattingStrikeRate);
+            NewPerformance.BowlingEconomy = Convert.ToInt32(BowlingEconomy);
+            NewPerformance.Out = Convert.ToBoolean(Out);
+            NewPerformance.BowlingAverage = Convert.ToInt32(BowlingAverage);
+
+
+
+            try
+            {
+                //    if (MatchesBLL.checkMatches(Convert.ToDateTime(dateOfMatch), HomeTeam, OppositionTeam) == null)
+                //    {
+                PerformanceBLL.Save(NewPerformance);
+                return "1";
+            }
+            //    else
+            //    {
+            //        return "2";
+            //    }
+
+            //}
+            catch (Exception ex)
+            {
+                var x = ex;
+                return "0";
+            }
+        }
+
 
         public void LoadDropDowns() {
             //LoadDropDowns for player
