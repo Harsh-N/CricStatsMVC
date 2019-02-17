@@ -445,9 +445,7 @@ img {
 }
 
 /*news*/
-.news-title {
-    height: 50px;
-}
+
 
 .news-image {
     align-content: center;
@@ -459,6 +457,23 @@ img {
 
 figcaption {
    color: gray;
+}
+
+/*stop and play button*/ 
+.play {
+    border-radius: 100%;
+    background-color: whitesmoke;
+    border-color: #29D7B1;
+    height: 36px;
+    width: 35px;
+}
+
+.stop {
+    border-radius: 100%;
+    background-color: whitesmoke;
+    border-color: #29D7B1;
+    height: 36px;
+    width: 35px;
 }
 
 
@@ -477,6 +492,10 @@ figcaption {
         margin: 10px;
         align-items: center;
         justify-content: flex-start;
+    }
+
+    .news-title{
+        font-size: 25px;
     }
 
 

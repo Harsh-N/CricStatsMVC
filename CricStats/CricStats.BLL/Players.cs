@@ -41,6 +41,11 @@ namespace CricStats.BLL
             _db.Save(ref tmp); 
         }
 
+        public void Update(int PlayerId, string PlayerName)
+        {
+            _db.Update(PlayerId, PlayerName);
+        }
+
         public Models.Players checkPlayers(string PlayerName) {
             Models.Players temp = null;
 

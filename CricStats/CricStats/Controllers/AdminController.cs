@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using CricStats.Models;
 using System.Configuration;
+using System.Web.Script.Serialization;
+
 namespace CricStats.Controllers
 
 {
@@ -21,7 +23,7 @@ namespace CricStats.Controllers
         }
 
         [HttpPost]
-        public string SavePlayer(string PlayerName)
+        public string SavePlayer(string PlayerId, string PlayerName)
         {
             CricStats.Models.Players NewPlayer = new Players();
             CricStats.BLL.Players PlayerBLL = new BLL.Players(_conStr);
@@ -31,16 +33,27 @@ namespace CricStats.Controllers
             {
                 if (PlayerBLL.checkPlayers(PlayerName) == null)
                 {
-                    PlayerBLL.Save(NewPlayer);
+                    if (Convert.ToInt32(PlayerId) == 0)
+                    {
+                        PlayerBLL.Save(NewPlayer);
+                        
+                    }
+                    else if (Convert.ToInt32(PlayerId) != 0)
+                    {
+                        PlayerBLL.Update(Convert.ToInt32(PlayerId), PlayerName);
+                        
+                    }
                     return "1";
                 }
-                else {
+                else
+                {
                     return "2";
                 }
-               
+
             }
-            catch {
-                return "0"; 
+            catch
+            {
+                return "0";
             }
         }
 
@@ -168,6 +181,17 @@ namespace CricStats.Controllers
             ViewBag.listOfMatches = mList;
         }
 
+
+        [HttpGet]
+        [ActionName("getPlayers")]
+        public string GetAllPlayers() {
+            CricStats.BLL.Players PlayersBll = new BLL.Players(_conStr);
+            var AllPlayers = PlayersBll.GetAllPlayers();
+            JavaScriptSerializer s = new JavaScriptSerializer();
+            string sResult = s.Serialize(AllPlayers);
+            return sResult;
+            //return Json(AllPlayers, JsonRequestBehavior.AllowGet);
+        }
 
 
        

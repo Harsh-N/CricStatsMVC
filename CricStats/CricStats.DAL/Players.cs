@@ -57,6 +57,32 @@ namespace CricStats.DAL
             }
         }
 
+        public void Update(int PlayerId, string PlayerName)
+        {
+            var cmd = new SqlCommand();
+
+            cmd.Connection = Connection;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "[dbo].[UpdatePlayer]";
+
+            cmd.Parameters.Add("@playerId", SqlDbType.Int).Value = PlayerId;
+            cmd.Parameters.Add("@playerName", SqlDbType.NVarChar, 50).Value = PlayerName;
+
+            try
+            {
+                SafeOpen();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                FinallyClose();
+            }
+        }
+
         public DataRow checkPlayer(string playerName) {
             var cmd = new SqlCommand();
 
