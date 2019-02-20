@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-
+    <link rel="stylesheet" type="text/css" href="~/Content/DataTable/datatables.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 
@@ -13,7 +13,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Content/DataTable/datatables.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="~/Content/DataTable/datatables.min.css" />
+    
 
 
 </head>
@@ -87,16 +87,16 @@
 
     <section>
         <ul class="sec1">
-            <li>@Html.ActionLink("HomePgae", "Index", "Home")</li>
-            <li>@Html.ActionLink("Gallery", "Index", "Gallery")</li>
-            <li>@Html.ActionLink("Results", "Index", "Results")</li>
+            <li>@Html.ActionLink("HomePgae", "Index", "Home", new { @class = "footer-Nav" })</li>
+            <li>@Html.ActionLink("Gallery", "Index", "Gallery", new { @class = "footer-Nav" })</li>
+            <li>@Html.ActionLink("Results", "Index", "Results", new { @class = "footer-Nav" })</li>
         </ul>
     </section>
     <section>
         <ul class="sec2">
-            <li>@Html.ActionLink("Stats", "Index", "Stats")</li>
-            <li>@Html.ActionLink("Graph", "Index", "Graph")</li>
-            <li>@Html.ActionLink("Adminwrfr4", "AdminMain", "Admin")</li>
+            <li>@Html.ActionLink("Stats", "Index", "Stats", new {@class = "footer-Nav" })</li>
+            <li>@Html.ActionLink("Graph", "Index", "Graph", new { @class = "footer-Nav" })</li>
+            <li>@Html.ActionLink("Adminwrfr4", "AdminMain", "Admin", new { @class = "footer-Nav" })</li>
         </ul>
     </section>
 </div>

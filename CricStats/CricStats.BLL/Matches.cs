@@ -42,6 +42,23 @@ namespace CricStats.BLL
             _db.Save(ref tmp);
         }
 
+        public void Update(
+            int MatchId,
+            string HomeTeam,
+            string OppositionTeam,
+            DateTime dateOfMatch,
+            Boolean isTossWon,
+            int homeScore,
+            int homeTeamOvers,
+            int homeWicketsFallen,
+            int oppositionScore,
+            int oppositionTeamOvers,
+            int oppositionWicketsFallen,
+            Boolean isWin)
+        {
+            _db.Update(MatchId, HomeTeam, OppositionTeam, dateOfMatch, isTossWon, homeScore, homeTeamOvers, homeWicketsFallen, oppositionScore, oppositionTeamOvers, oppositionWicketsFallen, isWin); 
+        }
+
 
         //check for duplicate entry of match
         public Models.Matches checkMatches(DateTime dateOfMatch, string homeTeam, string oppositionTeam)

@@ -68,6 +68,56 @@ namespace CricStats.DAL
             }
         }
 
+
+        public void Update(
+            int MatchId,
+            string HomeTeam,
+            string OppositionTeam,
+            DateTime dateOfMatch,
+            Boolean isTossWon,
+            int homeScore,
+            int homeTeamOvers,
+            int homeWicketsFallen,
+            int oppositionScore,
+            int oppositionTeamOvers,
+            int oppositionWicketsFallen,
+            Boolean isWin)
+        {
+            var cmd = new SqlCommand();
+
+            cmd.Connection = Connection;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "[dbo].[updateMatch]";
+
+            cmd.Parameters.Add("@MatchId", SqlDbType.Int).Value = MatchId;
+            cmd.Parameters.Add("@dateOfMatch", SqlDbType.DateTime).Value = dateOfMatch;
+            cmd.Parameters.Add("@HomeTeam", SqlDbType.NVarChar, 50).Value = HomeTeam;
+            cmd.Parameters.Add("@OppositionTeam", SqlDbType.NVarChar, 50).Value = OppositionTeam;
+            cmd.Parameters.Add("@isTossWin", SqlDbType.Bit).Value = isTossWon;
+            cmd.Parameters.Add("@homeScore", SqlDbType.Int).Value = homeScore;
+            cmd.Parameters.Add("@homeWicketsFallen", SqlDbType.Int).Value = homeWicketsFallen;
+            cmd.Parameters.Add("@HomeTeamOvers", SqlDbType.Int).Value = homeTeamOvers;
+            cmd.Parameters.Add("@oppositionScore", SqlDbType.Int).Value = oppositionScore;
+            cmd.Parameters.Add("@oppositionWicketsFallen", SqlDbType.Int).Value = oppositionWicketsFallen;
+            cmd.Parameters.Add("@OppositeTeamOvers", SqlDbType.Int).Value = oppositionTeamOvers;
+            cmd.Parameters.Add("@iswin", SqlDbType.Bit).Value = isWin;
+
+
+            try
+            {
+                SafeOpen();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                FinallyClose();
+            }
+        }
+
         public DataRow checkMatches(DateTime dateofMatch, string homeTeam, string OppositionTeam)
         {
             var cmd = new SqlCommand();

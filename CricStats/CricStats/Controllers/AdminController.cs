@@ -59,43 +59,64 @@ namespace CricStats.Controllers
 
         [HttpPost]
         public string SaveMatch(
-            string dateOfMatch, 
+            string MatchId,
             string HomeTeam,
             string OppositionTeam,
+            string dateOfMatch,
             string isTossWon,
             string homeScore,
+            string homeTeamOvers,
             string homeWicketsFallen,
             string oppositionScore,
+            string oppositionTeamOvers,
             string oppositionWicketsFallen,
             string isWin)
         {
             CricStats.Models.Matches NewMatch = new Matches();
             CricStats.BLL.Matches MatchesBLL = new BLL.Matches(_conStr);
 
-            NewMatch.DateOfMatch =Convert.ToDateTime(dateOfMatch);
+            NewMatch.DateOfMatch = Convert.ToDateTime(dateOfMatch);
             NewMatch.HomeTeam = HomeTeam;
             NewMatch.OppositionTeam = OppositionTeam;
             NewMatch.isTossWin = Convert.ToBoolean(isTossWon);
-            NewMatch.HomeScore =Convert.ToInt32( homeScore);
+            NewMatch.HomeScore = Convert.ToInt32(homeScore);
+            NewMatch.HomeTeamOvers = Convert.ToInt32(homeTeamOvers);
             NewMatch.HomeWicketsFallen = Convert.ToInt32(homeWicketsFallen);
             NewMatch.OppositionScore = Convert.ToInt32(oppositionScore);
+            NewMatch.OppositionTeamOvers = Convert.ToInt32(oppositionTeamOvers);
             NewMatch.OppositionWicketsFallen = Convert.ToInt32(oppositionWicketsFallen);
             NewMatch.isWin = Convert.ToBoolean(isWin);
 
             try
             {
-                if (MatchesBLL.checkMatches(Convert.ToDateTime(dateOfMatch), HomeTeam, OppositionTeam) == null)
+                if (Convert.ToInt32(MatchId) == 0)
                 {
-                    MatchesBLL.Save(NewMatch);
-                    return "1";
+                    if (MatchesBLL.checkMatches(Convert.ToDateTime(dateOfMatch), HomeTeam, OppositionTeam) == null)
+                    {
+                        MatchesBLL.Save(NewMatch);
+                    }
+                    else
+                    {
+                        return "2";
+                    }
                 }
-                else
+                else if (Convert.ToInt32(MatchId) != 0)
                 {
-                    return "2";
+                    MatchesBLL.Update(Convert.ToInt32(MatchId),
+                        HomeTeam, OppositionTeam,
+                       Convert.ToDateTime(dateOfMatch),
+                       Convert.ToBoolean(isTossWon),
+                       Convert.ToInt32(homeScore),
+                       Convert.ToInt32(homeTeamOvers),
+                       Convert.ToInt32(homeWicketsFallen),
+                       Convert.ToInt32(oppositionScore),
+                       Convert.ToInt32(oppositionTeamOvers),
+                       Convert.ToInt32(oppositionWicketsFallen),
+                       Convert.ToBoolean(isWin));
                 }
-
+                return "1";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 var x = ex;
                 return "0";
@@ -193,8 +214,32 @@ namespace CricStats.Controllers
             //return Json(AllPlayers, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        [ActionName("getMatches")]
+        public string GetAllMatches()
+        {
+            CricStats.BLL.Matches MatchesBll = new BLL.Matches(_conStr);
+            var AllMatches = MatchesBll.GetAllMatches();
+            JavaScriptSerializer s = new JavaScriptSerializer();
+            string sResult = s.Serialize(AllMatches);
+            return sResult;
+            //return Json(AllPlayers, JsonRequestBehavior.AllowGet);
+        }
 
-       
+        [HttpGet]
+        [ActionName("getPerformance")]
+        public string GetAllPerformance()
+        {
+            CricStats.BLL.Performance PerformanceBll = new BLL.Performance(_conStr);
+            var AllPerformance = PerformanceBll.GetAllPerformance();
+            JavaScriptSerializer s = new JavaScriptSerializer();
+            string sResult = s.Serialize(AllPerformance);
+            return sResult;
+            //return Json(AllPlayers, JsonRequestBehavior.AllowGet);
+        }
+
+
+
 
 
 

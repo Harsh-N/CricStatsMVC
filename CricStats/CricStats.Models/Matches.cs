@@ -231,10 +231,10 @@ namespace CricStats.Models
             if ((dr["isTossWin"]) != DBNull.Value) { _isTossWin = (bool)(dr["isTossWin"]); }
             if ((dr["homeScore"]) != DBNull.Value) { _HomeScore = (System.Int32)(dr["homeScore"]); }
             if ((dr["homeWicketsFallen"]) != DBNull.Value) { _HomeWicketsFallen = (System.Int32)(dr["homeWicketsFallen"]); }
-            if ((dr["HomeTeamOvers"]) != DBNull.Value) { _HomeWicketsFallen = (System.Int32)(dr["HomeTeamOvers"]); }
+            if ((dr["HomeTeamOvers"]) != DBNull.Value) { _homeTeamOvers = (System.Int32)(dr["HomeTeamOvers"]); }
             if ((dr["oppositionScore"]) != DBNull.Value) { _OppositionScore = (System.Int32)(dr["oppositionScore"]); }
             if ((dr["oppositionWicketsFallen"]) != DBNull.Value) { _OppositionWicketsFallen = (System.Int32)(dr["oppositionWicketsFallen"]); }
-            if ((dr["OppositeTeamOvers"]) != DBNull.Value) { _HomeWicketsFallen = (System.Int32)(dr["OppositeTeamOvers"]); }
+            if ((dr["OppositeTeamOvers"]) != DBNull.Value) { _oppositeTeamOvers = (System.Int32)(dr["OppositeTeamOvers"]); }
             if ((dr["isWin"]) != DBNull.Value) { _isWin = (bool)(dr["isWin"]); }
         }
     }

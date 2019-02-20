@@ -25,6 +25,11 @@ body {
     flex-direction: column;
 }
 
+.wrapper {
+    box-shadow: 0px 7px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+
 
 
 /* Menu Button */
@@ -129,7 +134,8 @@ nav {
     list-style: none;
     display: grid;
     grid-template-columns: auto auto;
-    background-color: #ffeacf;
+    background-color: #0d2a5d;
+    opacity: 0.80
 }
 
 .sec1 {
@@ -160,6 +166,11 @@ footer {
     opacity: 0.85;
     text-align: center;
     
+}
+
+.footer-Nav {
+    font-family: sans-serif; 
+    color: white;
 }
 
 
@@ -476,6 +487,33 @@ figcaption {
     width: 35px;
 }
 
+
+/*modal*/
+#modal-dialog-match, #modal-dialog-performance {
+    width: 100%;
+}
+
+#dataTableManageMatches  {
+    font-size: 12px;
+    padding-right: 80px;
+    padding-left: 40px;
+}
+
+#dataTableManagePerformance {
+    font-size: 10px;
+    padding-right: 60px;
+    padding-left: 1px;
+}
+
+.edit-player, .edit-match, .delete-player, .delete-match {
+    text-decoration: underline;
+    color: dodgerblue;
+    cursor: pointer;
+}
+
+    .edit-player:hover, .edit-match:hover, .delete-player:hover, .delete-match:hover {
+        color: black;
+    }
 
 
 
