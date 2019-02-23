@@ -60,6 +60,11 @@ namespace CricStats.BLL
         }
 
 
+        public void DeleteMatch(int MatchId)
+        {
+            _db.DeleteMatch(MatchId);
+        }
+
         //check for duplicate entry of match
         public Models.Matches checkMatches(DateTime dateOfMatch, string homeTeam, string oppositionTeam)
         {

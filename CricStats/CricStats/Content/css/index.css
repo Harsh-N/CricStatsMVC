@@ -132,10 +132,13 @@ nav {
 .navigation {
     text-decoration: none;
     list-style: none;
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
     background-color: #0d2a5d;
-    opacity: 0.80
+    opacity: 0.80;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
 }
 
 .sec1 {
@@ -505,13 +508,15 @@ figcaption {
     padding-left: 1px;
 }
 
-.edit-player, .edit-match, .delete-player, .delete-match {
+.edit-player, .edit-match, .delete-player, .delete-match, 
+.edit-performance, .delete-performance {
     text-decoration: underline;
     color: dodgerblue;
     cursor: pointer;
 }
 
-    .edit-player:hover, .edit-match:hover, .delete-player:hover, .delete-match:hover {
+    .edit-player:hover, .edit-match:hover, .delete-player:hover, .delete-match:hover,
+    edit-performance:hover, .delete-performance:hover {
         color: black;
     }
 

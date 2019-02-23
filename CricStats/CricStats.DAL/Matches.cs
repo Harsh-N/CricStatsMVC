@@ -118,6 +118,30 @@ namespace CricStats.DAL
             }
         }
 
+        public void DeleteMatch(int MatchId) {
+            var cmd = new SqlCommand();
+
+            cmd.Connection = Connection;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "[dbo].[deleteMatch]";
+
+            cmd.Parameters.Add("@MatchId", SqlDbType.Int).Value = MatchId;
+
+            try
+            {
+                SafeOpen();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                FinallyClose();
+            }
+        }
+
         public DataRow checkMatches(DateTime dateofMatch, string homeTeam, string OppositionTeam)
         {
             var cmd = new SqlCommand();

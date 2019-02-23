@@ -18,7 +18,7 @@
 
     <button type="submit" class="btn btn-primary" name="btnSavePlayer" id="btnSavePlayer"> Submit </button>
     <button class="btn btn-warning" name="statsClear"> Clear </button>
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#managePlayers" id="mngPlayer">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-backdrop="static"  data-target="#managePlayers" id="mngPlayer">
         Manage Player
     </button>
 
@@ -64,11 +64,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
 
-
+        @*edit modal*@
         <div class="modal-content" id="modalPlayerEdit" hidden>
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Player</h5>
@@ -83,6 +82,7 @@
             <div class="modal-footer">
 
                 <button type="submit" class="btn btn-primary" name="btnEditSavePlayer" id="btnEditSavePlayer"> Save </button>
+                <button type="button" class="btn btn-secondary" name="btnEditCancelPlayer" id="btnEditCancelPlayer">cancel</button>
             </div>
         </div>
 
@@ -128,7 +128,7 @@
 
     <button type="submit" class="btn btn-primary" name="btnSaveMatches" id="btnSaveMatches"> Submit </button>
     <button class="btn btn-warning" id="resultClear"> Clear </button>
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#manageMatches" id="mngMatches">
+    <button type="button" class="btn btn-info" data-toggle="modal"  data-backdrop="static" data-target="#manageMatches" id="mngMatches">
         Manage Match
     </button>
 </form>
@@ -212,7 +212,6 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
 
@@ -250,9 +249,10 @@
                     <label>Match Result: </label><input id="editMatchResult" type="checkbox" />
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" name="btnEditSaveMatch" id="btnEditSaveMatch"> Save </button>
-                </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" name="btnEditSaveMatch" id="btnEditSaveMatch"> Save </button>
+                <button type="button" class="btn btn-secondary"name="btnEditCancelMatch" id="btnEditCancelMatch">Cancel</button>
+            </div>
             </div>
 
     </div>
@@ -265,6 +265,7 @@
 
 <form oninput="calculateEconomy(), bowlingAvg(), battingStr()">
     <div class="fields">
+        <input type="hidden" value="0" id="pCounter" />
         <label> Select Player: </label> @Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id = "ddPlayerList", @class = "ddfield" })
         <label> Select Match: </label> @Html.DropDownList("mList", (IEnumerable<SelectListItem>)ViewBag.listOfMatches, new { id = "ddMatchList", @class = "ddfield" })
     </div>
@@ -301,7 +302,7 @@
     </div>
     <button type="submit" class="btn btn-primary" name="btnSavePerformance" id="btnSavePerformance"> Submit </button>
     <button class="btn btn-warning" name="statsClear"> Clear </button>
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#managePerformance">
+    <button type="button" class="btn btn-info" data-toggle="modal"  data-backdrop="static" data-target="#managePerformance">
         Manage Performance
     </button>
 
@@ -352,10 +353,10 @@
                                 Catches Taken:
                             </td>
                             <td>
-                                Run Outs:
+                                Batting Strike Rate:
                             </td>
                             <td>
-                                Batting Strike Rate:
+                                Run Outs:
                             </td>
                             <td>
                                 Bowling Economy:
@@ -397,7 +398,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
         
@@ -409,40 +409,48 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"  oninput="calculateEconomyEdit(), bowlingAvgEdit(), battingStrEdit()">
+              
                 <div class="fields">
-                    <label> Runs Scored: </label> <input type="number" id="editrunsScored" name="editrunsScored" min="0" max="300" required />
-                    <label> Balls Faced: </label> <input type="number" id="editballFaced" name="editballFaced" min="0" max="300" required />
+                    <input type="hidden" value="1" id="pEditCounter" />
+                    <label> Select Player: </label> @Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id = "ddEditPlayerList", @class = "ddfield" })
+                    <label> Select Match: </label> @Html.DropDownList("mList", (IEnumerable<SelectListItem>)ViewBag.listOfMatches, new { id = "ddEditMatchList", @class = "ddfield" })
                 </div>
-                <div class="fields">
-                    <label> Fours: </label> <input type="number" id="editFours" name="editFours" min="0" max="75" required />
-                    <label> Sixes: </label> <input type="number" id="editSixes" name="editSixes" min="0" max="50" required />
-                </div>
-                <div class="fields">
-                    <label> Wickets Taken: </label> <input type="number" id="editwicketsTaken" name="editwicketsTaken" min="0" max="10" required />
-                    <label> Overs Bowled: </label> <input type="number" id="editoversBowled" name="editoversBowled" min="0" max="15" required />
-                </div>
-                <div class="fields">
-                    <label> Runs Conceded: </label> <input type="number" id="editrunConceded" name="editrunConceded" min="0" max="540" required />
-                    <label> Catches Taken: </label> <input type="number" id="editCatches" name="editCatches" min="0" max="10" required />
-                </div>
-                <div class="fields">
-                    <label> Run Outs: </label> <input type="number" id="editrunOuts" name="editrunOuts" min="0" max="10" required />
-                    <label> Batting Strike Rate: </label> <output type="number" id="editBattingStrikeRate" name="editBattingStrikeRate" required></output>
-                </div>
-                <div class="fields">
-                    <label> Bowling Economy: </label> <output type="number" id="editBowlingEconomy" name="editBowlingEconomy" required></output>
-                    <label> Out: </label>
-                    <div class="checkbox-fields">
-                        <input type="checkbox" id="editOut" name="editOut" value="" />Won
+                    <div class="fields">
+                        <label> Runs Scored: </label> <input type="number" id="editrunsScored" name="editrunsScored" min="0" max="300" required />
+                        <label> Balls Faced: </label> <input type="number" id="editballFaced" name="editballFaced" min="0" max="300" required />
                     </div>
-                </div>
-                <div class="fields">
-                    <label> Bowling Average: </label> <output type="number" id="editBowlingAverage" name="editBowlingAverage" required></output>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" name="btnEditSavePerformance" id="btnEditSavePerformance"> Save </button>
-                </div>
+                    <div class="fields">
+                        <label> Fours: </label> <input type="number" id="editFours" name="editFours" min="0" max="75" required />
+                        <label> Sixes: </label> <input type="number" id="editSixes" name="editSixes" min="0" max="50" required />
+                    </div>
+                    <div class="fields">
+                        <label> Wickets Taken: </label> <input type="number" id="editwicketsTaken" name="editwicketsTaken" min="0" max="10" required />
+                        <label> Overs Bowled: </label> <input type="number" id="editoversBowled" name="editoversBowled" min="0" max="15" required />
+                    </div>
+                    <div class="fields">
+                        <label> Runs Conceded: </label> <input type="number" id="editrunConceded" name="editrunConceded" min="0" max="540" required />
+                        <label> Catches Taken: </label> <input type="number" id="editCatches" name="editCatches" min="0" max="10" required />
+                    </div>
+                    <div class="fields">
+                        <label> Run Outs: </label> <input type="number" id="editrunOuts" name="editrunOuts" min="0" max="10" required />
+                        <label> Batting Strike Rate: </label> <output type="number" id="editBattingStrikeRate" name="editBattingStrikeRate" required></output>
+                    </div>
+                    <div class="fields">
+                        <label> Bowling Economy: </label> <output type="number" id="editBowlingEconomy" name="editBowlingEconomy" required></output>
+                        <label> Out: </label>
+                        <div class="checkbox-fields">
+                            <input type="checkbox" id="editOut" name="editOut" value="" />Won
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <label> Bowling Average: </label> <output type="number" id="editBowlingAverage" name="editBowlingAverage" required></output>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="btnEditSavePerformance" id="btnEditSavePerformance"> Save </button>
+                        <button type="button" class="btn btn-secondary" name="btnEditCancelPerformance" id="btnEditCancelPerformance">Cancel</button>
+                    </div>
+                    
             </div>
         </div>
     </div>
@@ -516,9 +524,24 @@
         });
 
         $("#btnSavePerformance").on("click", function (e) {
-
+            var pCounter = $("pCounter").val();
+            var PId = $("#ddPlayerList").val();
+            var MId = $("#ddMatchList").val();
+            var runsScored = $("#runsScored").val();
+            var ballsFaced = $("#ballFaced").val();
+            var Fours = $("#Fours").val();
+            var Sixes = $("#Sixes").val();
+            var wicketsTaken = $("#wicketsTaken").val();
+            var oversBowled = $("#oversBowled").val();
+            var runConceded = $("#runConceded").val();
+            var Catches = $("#Catches").val();
+            var runOuts = $("#runOuts").val();
+            var BattingStrikeRate = $("#BattingStrikeRate").val();
+            var BowlingEconomy = $("#BowlingEconomy").val();
+            var Out = $("#Out").prop("checked");
+            var BowlingAverage = $("#BowlingAverage").val();
             e.preventDefault();
-            SavePerformance();
+            SavePerformance(pCounter, PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage);
 
         });
 
@@ -559,6 +582,38 @@
 
         });
 
+        $("#dataTableManagePlayer").on("click", 'td.delete-player', function (e) {
+            //alert("test");
+            e.preventDefault();
+            deleteplayer($(this).closest('tr'));
+           
+
+        });
+
+        function deleteplayer(tablerow) {
+
+            var rowData = $("#dataTableManagePlayer").DataTable().row(tablerow).data();
+    
+            $.ajax({
+                type: "post",
+                data: {
+                    PlayerId: rowData.PlayerId
+                },
+                url: '@Url.Action("DeletePlayer")',
+                success: function (data) {
+                    if (data === "1") {
+                        LoadPlayers(table);
+                        LoadPerformance(table2);
+                    } 
+
+                },
+                error: function (data) {
+                    if (data === "0")
+                        alert("delete failed");
+                }
+            });
+        }
+
         function editplayer(tablerow) {
 
             var rowData = $("#dataTableManagePlayer").DataTable().row(tablerow).data();
@@ -577,11 +632,12 @@
         $("#mngPlayer").on("click", function (e) {
             $("#modalPlayerEdit").hide();
             $("#modalPlayerList").show();
+        }); 
 
-
-        });
-
-
+        $("#btnEditCancelPlayer").on("click", function (e) {
+            $("#modalPlayerEdit").hide();
+            $("#modalPlayerList").show();
+        }); 
 
         LoadPlayers(table);
 
@@ -685,6 +741,38 @@
 
         });
 
+        $("#dataTableManageMatches").on("click", 'td.delete-match', function (e) {
+            //alert("test");
+            e.preventDefault();
+            deleteMatch($(this).closest('tr'));
+        });
+
+
+          function deleteMatch(tablerow) {
+            var rowData = $("#dataTableManageMatches").DataTable().row(tablerow).data();
+          
+            $.ajax({
+                type: "post",
+                data: {
+                    MatchId: rowData.MatchId
+                },
+                url: '@Url.Action("DeleteMatch")',
+                success: function (data) {
+                    if (data === "1") {
+                        LoadMatches(table1);
+                        LoadPerformance(table2);
+                    } 
+
+                },
+                error: function (data) {
+                    if (data === "0")
+                        alert("delete failed");
+                }
+            });
+
+        }
+
+
         function editMatch(tablerow) {
             var rowData = $("#dataTableManageMatches").DataTable().row(tablerow).data();
            
@@ -728,8 +816,12 @@
         $("#mngMatches").on("click", function (e) {
             $("#modalMatchEdit").hide();
             $("#modalMatchList").show();
-        });
+        }); 
 
+        $("#btnEditCancelMatch").on("click", function (e) {
+            $("#modalMatchEdit").hide();
+            $("#modalMatchList").show();
+        }); 
 
 
         LoadMatches(table1);
@@ -770,32 +862,53 @@
             data: dataArrayPerformance,
             searching: false,
 
-            columns: [{ data: 'PlayerId' }, { data: 'MatchId' }, { data: 'runsScored' },
-                { data: 'ballsFaced' }, { data: 'Fours' }, { data: 'Sixes' }, { data: 'wicketsTaken' }, 
-                { data: 'oversBowled' }, { data: 'runConceded' }, { data: 'Catches' }, { data: 'BattingStrikeRate' }, 
-                { data: 'runOuts' }, { data: 'BowlingEconomy' }, { data: 'Out' }, { data: 'BowlingAverage' },
-            {
-                data: function (data) {
-                    var html = '';
-                    html += 'Edit';
-                    return html;
+            columns: [{ data: 'PlayerId' },
+                { data: 'MatchId' },
+                { data: 'runsScored' },
+                { data: 'ballsFaced' },
+                { data: 'Fours' },
+                { data: 'Sixes' },
+                { data: 'wicketsTaken' }, 
+                { data: 'oversBowled' },
+                { data: 'runConceded' },
+                { data: 'Catches' },
+                { data: 'BattingStrikeRate' }, 
+                { data: 'runOuts' },
+                { data: 'BowlingEconomy' },
+                {
+                    data: function (data) {
+                        var html = '';
+                        if (data.Out == true)
+                            html += 'Out';
+                        else
+                            html += 'Not Out';
+                        return html;
+                    }
                 },
-                'className': 'edit-performance'
-
-            },
-            {
-                data: function (data) {
-                    var html = '';
-                    html += 'Delete';
-                    return html;
+                { data: 'BowlingAverage' },
+                {
+                    data: function (data) {
+                        var html = '';
+                        html += 'Edit';
+                        return html;
+                    },
+                    'className': 'edit-performance'
+    
                 },
-                'className': 'delete-performance'
-            }]
+                {
+                    data: function (data) {
+                        var html = '';
+                        html += 'Delete';
+                        return html;
+                    },
+                    'className': 'delete-performance'
+                }]
 
         });
 
+
+
         $("#dataTableManagePerformance").on("click", 'td.edit-performance', function (e) {
-            alert("test");
             e.preventDefault();
             editPerformance($(this).closest('tr'));
             $("#modalPerformanceList").hide();
@@ -803,29 +916,95 @@
 
         });
 
+        $("#dataTableManagePerformance").on("click", 'td.delete-performance', function (e) {
+            e.preventDefault();
+           deletePerformance($(this).closest('tr'));
+           
+
+        });
+
+        function deletePerformance(tablerow) {
+            var rowData = $("#dataTableManagePerformance").DataTable().row(tablerow).data();
+          
+            $.ajax({
+                type: "post",
+                data: {
+                    PlayerId: rowData.PlayerId,
+                    MatchId: rowData.MatchId
+
+                },
+                url: '@Url.Action("DeletePerformance")',
+                success: function (data) {
+                    if (data === "1") {
+                        LoadPerformance(table2);
+                    } 
+
+                },
+                error: function (data) {
+                    if (data === "0")
+                        alert("delete failed");
+                }
+            });
+
+        }
+
         function editPerformance(tablerow) {
 
             var rowData = $("#dataTableManagePerformance").DataTable().row(tablerow).data();
-
-            $("#editPlayerId").val(rowData.PlayerId);
-            $("#editPlayerName").val(rowData.PlayerName);
-            alert(playerId);
+            $("#pCounter").val(rowData.pCounter);
+            $('#ddEditPlayerList').val(rowData.PlayerId);
+            $('#ddEditMatchList').val(rowData.MatchId);
+            $('#editrunsScored').val(rowData.runsScored);
+            $('#editballFaced').val(rowData.ballsFaced);
+            $('#editFours').val(rowData.Fours);
+            $('#editSixes').val(rowData.Sixes);
+            $('#editwicketsTaken').val(rowData.wicketsTaken);
+            $('#editoversBowled').val(rowData.oversBowled);
+            $('#editrunConceded').val(rowData.runsScored);
+            $('#editCatches').val(rowData.Catches);
+            $('#editrunOuts').val(rowData.runOuts);
+            $('#editBattingStrikeRate').val(rowData.BattingStrikeRate);
+            $('#editBowlingEconomy').val(rowData.BowlingEconomy);
+                if (rowData.Out)
+                    $("#editOut").prop("checked", true);
+                else
+                    $("#editOut").prop("checked", false);
+            $('#editBowlingAverage').val(rowData.BowlingAverage);
+           
         }
 
-        //$("#btnEditSavePerformance").on("click", function (e) {
-        //    var id = $("#editPlayerId").val();
-        //    var name = $("#editPlayerName").val();
-        //    e.preventDefault();
-        //    SavePlayer(id, name);
+        $("#btnEditSavePerformance").on("click", function (e) {
+            var pCounter = $("#pEditCounter").val();
+            var PId = $("#ddEditPlayerList").val();
+            var MId = $("#ddEditMatchList").val();
+            var runsScored = $("#editrunsScored").val();
+            var ballsFaced = $("#editballFaced").val(); 
+            var Fours = $("#editFours").val();
+            var Sixes = $("#editSixes").val();
+            var wicketsTaken = $("#editwicketsTaken").val();
+            var oversBowled = $("#editoversBowled").val();
+            var runConceded = $("#editrunConceded").val();
+            var Catches = $("#editCatches").val();
+            var runOuts = $("#editrunOuts").val();
+            var BattingStrikeRate = $("#editBattingStrikeRate").val();
+            var BowlingEconomy = $("#editBowlingEconomy").val();
+            var Out = $("#editOut").prop("checked");
+            var BowlingAverage = $("#editBowlingAverage").val();
+            e.preventDefault();
+            SavePerformance(pCounter, PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage)
 
-        //});
+        });
 
         $("#mngPerformance").on("click", function (e) {
             $("#modalPerformanceEdit").hide(); 
             $("#modalPerformanceList").show();
 
-        });
+        }); 
+        $("#btnEditCancelPerformance").on("click", function (e) {
+            $("#modalPerformanceEdit").hide();
+            $("#modalPerformanceList").show();
 
+        }); 
 
 
         LoadPerformance(table2);
@@ -951,29 +1130,30 @@
         }
 
 
-        function SavePerformance() {
+        function SavePerformance(pCounter, PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage) {
             //var input = $('#player-performance').find("input,select,textarea").serialize();
-            alert($('#dateOfMatch').val());
+            
 
             $.ajax({
 
                 type: "post",
                 data: {
-                    PlayerId: $('#ddPlayerList').val(),
-                    MatchId: $('#ddMatchList').val(),
-                    runsScored: $('#runsScored').val(),
-                    ballsFaced: $('#ballFaced').val(),
-                    Fours: $('#Fours').val(),
-                    Sixes: $('#Sixes').val(),
-                    wicketsTaken: $('#wicketsTaken').val(),
-                    oversBowled: $('#oversBowled').val(),
-                    runConceded: $('#runConceded').val(),
-                    Catches: $('#Catches').val(),
-                    runOuts: $('#runOuts').val(),
-                    BattingStrikeRate: $('#BattingStrikeRate').val(),
-                    BowlingEconomy: $('#BowlingEconomy').val(),
-                    Out: $('#Out').prop('checked'),
-                    BowlingAverage: $('#BowlingAverage').val()
+                    pCounter: pCounter,
+                    PlayerId: PId ,
+                    MatchId: MId ,
+                    runsScored: runsScored,
+                    ballsFaced: ballsFaced,
+                    Fours: Fours,
+                    Sixes: Sixes,
+                    wicketsTaken: wicketsTaken,
+                    oversBowled: oversBowled,
+                    runConceded: runConceded,
+                    Catches: Catches,
+                    runOuts: runOuts,
+                    BattingStrikeRate: BattingStrikeRate,
+                    BowlingEconomy: BowlingEconomy,
+                    Out: Out,
+                    BowlingAverage: BowlingAverage
 
                 },
                 url: '@Url.Action("SavePerformance")',
@@ -1006,6 +1186,15 @@
 
     }
 
+    function calculateEconomyEdit() {
+        var runConceded = document.getElementById('editrunConceded').value;
+        var oversBowled = document.getElementById('editoversBowled').value;
+
+        var Economy = runConceded / oversBowled;
+        document.getElementById('editBowlingEconomy').value = Economy.toFixed(0);
+
+    }
+
     function bowlingAvg() {
         var runConceded = document.getElementById('runConceded').value;
         var wicketsTaken = document.getElementById('wicketsTaken').value;
@@ -1015,12 +1204,31 @@
 
     }
 
+    function bowlingAvgEdit() {
+        var runConceded = document.getElementById('editrunConceded').value;
+        var wicketsTaken = document.getElementById('editwicketsTaken').value;
+
+        var bowlingavg = runConceded / wicketsTaken;
+        document.getElementById('editBowlingAverage').value = bowlingavg.toFixed(0);
+
+    }
+
+
     function battingStr() {
         var runsScored = document.getElementById('runsScored').value;
         var ballFaced = document.getElementById('ballFaced').value;
 
         var battingStrikeRate = (runsScored / ballFaced) * 100;
         document.getElementById('BattingStrikeRate').value = battingStrikeRate.toFixed(0);
+
+    }
+
+    function battingStrEdit() {
+        var runsScored = document.getElementById('editrunsScored').value;
+        var ballFaced = document.getElementById('editballFaced').value;
+
+        var battingStrikeRate = (runsScored / ballFaced) * 100;
+        document.getElementById('editBattingStrikeRate').value = battingStrikeRate.toFixed(0);
 
     }
 

@@ -36,12 +36,12 @@ namespace CricStats.Controllers
                     if (Convert.ToInt32(PlayerId) == 0)
                     {
                         PlayerBLL.Save(NewPlayer);
-                        
+
                     }
                     else if (Convert.ToInt32(PlayerId) != 0)
                     {
                         PlayerBLL.Update(Convert.ToInt32(PlayerId), PlayerName);
-                        
+
                     }
                     return "1";
                 }
@@ -125,6 +125,7 @@ namespace CricStats.Controllers
 
         [HttpPost]
         public string SavePerformance(
+            string pCounter,
             string PlayerId,
             string MatchId,
             string runsScored,
@@ -164,17 +165,33 @@ namespace CricStats.Controllers
 
             try
             {
-                //    if (MatchesBLL.checkMatches(Convert.ToDateTime(dateOfMatch), HomeTeam, OppositionTeam) == null)
-                //    {
-                PerformanceBLL.Save(NewPerformance);
+
+                if (Convert.ToInt32(pCounter) == 0)
+                {
+                    PerformanceBLL.Save(NewPerformance);
+
+                }
+                else if (Convert.ToInt32(pCounter) != 0)
+                {
+                    PerformanceBLL.Update(Convert.ToInt32(PlayerId),
+                        Convert.ToInt32(MatchId),
+                        Convert.ToInt32(runsScored),
+                        Convert.ToInt32(ballsFaced),
+                        Convert.ToInt32(Fours),
+                        Convert.ToInt32(Sixes),
+                        Convert.ToInt32(wicketsTaken),
+                        Convert.ToInt32(oversBowled),
+                        Convert.ToInt32(runConceded),
+                        Convert.ToInt32(Catches),
+                        Convert.ToInt32(runOuts),
+                        Convert.ToInt32(BattingStrikeRate),
+                        Convert.ToInt32(BowlingEconomy),
+                        Convert.ToBoolean(Out),
+                        Convert.ToInt32(BowlingAverage));
+                }
                 return "1";
             }
-            //    else
-            //    {
-            //        return "2";
-            //    }
 
-            //}
             catch (Exception ex)
             {
                 var x = ex;
@@ -197,7 +214,7 @@ namespace CricStats.Controllers
             CricStats.BLL.Matches MatchesBLL = new BLL.Matches(_conStr);
             var MatchList = MatchesBLL.GetAllMatches();
 
-            var mList = MatchList.Select(x => new SelectListItem { Text = x.DateOfMatch.ToString()+ " " + x.HomeTeam + " vs " + x.OppositionTeam, Value = x.MatchId.ToString() }).ToList();
+            var mList = MatchList.Select(x => new SelectListItem { Text = x.DateOfMatch.ToString("dd/MM/yyyy") + " " + x.HomeTeam + " vs " + x.OppositionTeam, Value = x.MatchId.ToString() }).ToList();
             mList.Insert(0, new SelectListItem() { Value = "0", Text = "Select...", Selected = true });
             ViewBag.listOfMatches = mList;
         }
@@ -238,9 +255,53 @@ namespace CricStats.Controllers
             //return Json(AllPlayers, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public string DeletePerformance(string PlayerId, string MatchId)
+        {
+            CricStats.BLL.Performance performanceBll = new BLL.Performance(_conStr);
+            try
+            {
+                performanceBll.DeletePerformance(Convert.ToInt32(PlayerId), Convert.ToInt32(MatchId));
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                var x = ex;
+                return "0";
+            }
+        }
 
+        [HttpPost]
+        public string DeleteMatch( string MatchId)
+        {
+            CricStats.BLL.Matches MatchBll = new BLL.Matches(_conStr);
+            try
+            {
+                MatchBll.DeleteMatch( Convert.ToInt32(MatchId));
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                var x = ex;
+                return "0";
+            }
+        }
 
-
+        [HttpPost]
+        public string DeletePlayer(string PlayerId)
+        {
+            CricStats.BLL.Players PlayerBLL = new BLL.Players(_conStr);
+            try
+            {
+                PlayerBLL.deletePlayer(Convert.ToInt32(PlayerId));
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                var x = ex;
+                return "0";
+            }
+        }
 
 
     }

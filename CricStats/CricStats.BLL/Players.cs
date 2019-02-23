@@ -46,6 +46,10 @@ namespace CricStats.BLL
             _db.Update(PlayerId, PlayerName);
         }
 
+        public void deletePlayer(int PlayerId) {
+            _db.DeletePlayer(PlayerId);
+        }
+
         public Models.Players checkPlayers(string PlayerName) {
             Models.Players temp = null;
 

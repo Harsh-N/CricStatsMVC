@@ -3,3 +3,4 @@ C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.Models\bin\Debug\Cr
 C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.Models\obj\Debug\CricStats.Models.csproj.CoreCompileInputs.cache
 C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.Models\obj\Debug\CricStats.Models.dll
 C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.Models\obj\Debug\CricStats.Models.pdb
+C:\development\CricStatsMVC\CricStatsMVC\CricStats\CricStats.Models\obj\Debug\CricStats.Models.csprojAssemblyReference.cache

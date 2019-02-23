@@ -52,9 +52,89 @@ namespace CricStats.DAL
             cmd.Parameters.Add("@runOuts", SqlDbType.Int).Value = item.runOuts;
             cmd.Parameters.Add("@BattingStrikeRate", SqlDbType.Int).Value = item.BattingStrikeRate;
             cmd.Parameters.Add("@BowlingEconomy", SqlDbType.Int).Value = item.BowlingEconomy;
-            cmd.Parameters.Add("@Out", SqlDbType.Int).Value = item.Out;
+            cmd.Parameters.Add("@Out", SqlDbType.Bit).Value = item.Out;
             cmd.Parameters.Add("@BowlingAverage", SqlDbType.Int).Value = item.BowlingAverage;
 
+
+            try
+            {
+                SafeOpen();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                FinallyClose();
+            }
+        }
+
+        public void Update(
+             int PId,
+             int MId,
+             int runsScored,
+             int ballsFaced,
+             int Fours,
+             int Sixes,
+             int wicketsTaken,
+             int oversBowled,
+             int runConceded,
+             int Catches,
+             int runOuts,
+             int BattingStrikeRate,
+             int BowlingEconomy, 
+             Boolean Out,
+             int BowlingAverage)
+        {
+            var cmd = new SqlCommand();
+
+            cmd.Connection = Connection;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "[dbo].[updatePerformance]";
+
+            cmd.Parameters.Add("@PlayerId", SqlDbType.Int).Value = PId;
+            cmd.Parameters.Add("@MatchId", SqlDbType.Int).Value = MId;
+            cmd.Parameters.Add("@runsScored", SqlDbType.Int).Value = runsScored;
+            cmd.Parameters.Add("@ballsFaced", SqlDbType.Int).Value = ballsFaced;
+            cmd.Parameters.Add("@Fours", SqlDbType.Int).Value = Fours;
+            cmd.Parameters.Add("@Sixes", SqlDbType.Int).Value = Sixes;
+            cmd.Parameters.Add("@wicketsTaken", SqlDbType.Int).Value = wicketsTaken;
+            cmd.Parameters.Add("@oversBowled", SqlDbType.Int).Value = oversBowled;
+            cmd.Parameters.Add("@runConceded", SqlDbType.Int).Value = runConceded;
+            cmd.Parameters.Add("@Catches", SqlDbType.Int).Value = Catches;
+            cmd.Parameters.Add("@runOuts", SqlDbType.Int).Value = runOuts;
+            cmd.Parameters.Add("@BattingStrikeRate", SqlDbType.Int).Value = BattingStrikeRate;
+            cmd.Parameters.Add("@BowlingEconomy", SqlDbType.Int).Value = BowlingEconomy;
+            cmd.Parameters.Add("@Out", SqlDbType.Bit).Value = Out;
+            cmd.Parameters.Add("@BowlingAverage", SqlDbType.Int).Value = BowlingAverage;
+
+
+            try
+            {
+                SafeOpen();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                FinallyClose();
+            }
+        }
+
+        public void DeletePerformance(int PlayerId, int MatchId) {
+            var cmd = new SqlCommand();
+
+            cmd.Connection = Connection;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "[dbo].[deletePerformance]";
+
+            cmd.Parameters.Add("@PlayerId", SqlDbType.Int).Value = PlayerId;
+            cmd.Parameters.Add("@MatchId", SqlDbType.Int).Value = MatchId;
 
             try
             {

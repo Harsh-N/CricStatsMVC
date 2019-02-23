@@ -85,7 +85,17 @@
 
 <div class="navigation">
 
-    <section>
+    <p>
+        @Html.ActionLink("HomePgae", "Index", "Home", null, new { @class = "footer-Nav" }) |
+        @Html.ActionLink("Gallery", "Index", "Gallery", null, new { @class = "footer-Nav" }) |
+        @Html.ActionLink("Results", "Index", "Results", null, new { @class = "footer-Nav" }) |
+        @Html.ActionLink("Stats", "Index", "Stats", null, new { @class = "footer-Nav" }) |
+        @Html.ActionLink("Graph", "Index", "Graph", null, new { @class = "footer-Nav" }) |
+        @Html.ActionLink("Adminwrfr4", "AdminMain", "Admin", null, new { @class = "footer-Nav" })
+    </p>
+   
+
+    @*<section>
         <ul class="sec1">
             <li>@Html.ActionLink("HomePgae", "Index", "Home", new { @class = "footer-Nav" })</li>
             <li>@Html.ActionLink("Gallery", "Index", "Gallery", new { @class = "footer-Nav" })</li>
@@ -98,7 +108,7 @@
             <li>@Html.ActionLink("Graph", "Index", "Graph", new { @class = "footer-Nav" })</li>
             <li>@Html.ActionLink("Adminwrfr4", "AdminMain", "Admin", new { @class = "footer-Nav" })</li>
         </ul>
-    </section>
+    </section>*@
 </div>
 
 <footer class="footer">

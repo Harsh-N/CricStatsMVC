@@ -83,7 +83,34 @@ namespace CricStats.DAL
             }
         }
 
-        public DataRow checkPlayer(string playerName) {
+        public void DeletePlayer(int PlayerId)
+        {
+            var cmd = new SqlCommand();
+
+            cmd.Connection = Connection;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "[dbo].[deletePlayer]";
+
+            cmd.Parameters.Add("@playerId", SqlDbType.Int).Value = PlayerId;
+          
+
+            try
+            {
+                SafeOpen();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                FinallyClose();
+            }
+        }
+
+        public DataRow checkPlayer(string playerName)
+        {
             var cmd = new SqlCommand();
 
             cmd.Connection = Connection;
@@ -93,9 +120,10 @@ namespace CricStats.DAL
             cmd.Parameters.Add("@playerName", SqlDbType.NVarChar, 50).Value = playerName;
             try
             {
-               return DRReturn(cmd);
+                return DRReturn(cmd);
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 throw new Exception(ex.Message);
             }
         }
