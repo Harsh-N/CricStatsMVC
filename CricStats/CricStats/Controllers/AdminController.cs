@@ -28,7 +28,15 @@ namespace CricStats.Controllers
             CricStats.Models.Players NewPlayer = new Players();
             CricStats.BLL.Players PlayerBLL = new BLL.Players(_conStr);
 
-            NewPlayer.PlayerName = PlayerName;
+            if (PlayerName != "")
+            {
+                NewPlayer.PlayerName = PlayerName;
+            }
+            else
+            {
+                return "3";
+            }
+
             try
             {
                 if (PlayerBLL.checkPlayers(PlayerName) == null)
@@ -36,7 +44,6 @@ namespace CricStats.Controllers
                     if (Convert.ToInt32(PlayerId) == 0)
                     {
                         PlayerBLL.Save(NewPlayer);
-
                     }
                     else if (Convert.ToInt32(PlayerId) != 0)
                     {
@@ -75,25 +82,32 @@ namespace CricStats.Controllers
             CricStats.Models.Matches NewMatch = new Matches();
             CricStats.BLL.Matches MatchesBLL = new BLL.Matches(_conStr);
 
-            NewMatch.DateOfMatch = Convert.ToDateTime(dateOfMatch);
-            NewMatch.HomeTeam = HomeTeam;
-            NewMatch.OppositionTeam = OppositionTeam;
-            NewMatch.isTossWin = Convert.ToBoolean(isTossWon);
-            NewMatch.HomeScore = Convert.ToInt32(homeScore);
-            NewMatch.HomeTeamOvers = Convert.ToInt32(homeTeamOvers);
-            NewMatch.HomeWicketsFallen = Convert.ToInt32(homeWicketsFallen);
-            NewMatch.OppositionScore = Convert.ToInt32(oppositionScore);
-            NewMatch.OppositionTeamOvers = Convert.ToInt32(oppositionTeamOvers);
-            NewMatch.OppositionWicketsFallen = Convert.ToInt32(oppositionWicketsFallen);
-            NewMatch.isWin = Convert.ToBoolean(isWin);
 
+            if (HomeTeam != "" || OppositionTeam != "" || dateOfMatch != "" || homeScore != "" || homeTeamOvers != "" || homeWicketsFallen != "" || oppositionScore != "" || oppositionTeamOvers != "" || oppositionWicketsFallen != "")
+            {
+                NewMatch.DateOfMatch = Convert.ToDateTime(dateOfMatch);
+                NewMatch.HomeTeam = HomeTeam;
+                NewMatch.OppositionTeam = OppositionTeam;
+                NewMatch.isTossWin = Convert.ToBoolean(isTossWon);
+                NewMatch.HomeScore = Convert.ToInt32(homeScore);
+                NewMatch.HomeTeamOvers = Convert.ToInt32(homeTeamOvers);
+                NewMatch.HomeWicketsFallen = Convert.ToInt32(homeWicketsFallen);
+                NewMatch.OppositionScore = Convert.ToInt32(oppositionScore);
+                NewMatch.OppositionTeamOvers = Convert.ToInt32(oppositionTeamOvers);
+                NewMatch.OppositionWicketsFallen = Convert.ToInt32(oppositionWicketsFallen);
+                NewMatch.isWin = Convert.ToBoolean(isWin);
+            }
+            else
+            {
+                return "3";
+            }
             try
             {
                 if (Convert.ToInt32(MatchId) == 0)
                 {
                     if (MatchesBLL.checkMatches(Convert.ToDateTime(dateOfMatch), HomeTeam, OppositionTeam) == null)
-                    {
-                        MatchesBLL.Save(NewMatch);
+                    { 
+                            MatchesBLL.Save(NewMatch);
                     }
                     else
                     {
@@ -145,22 +159,29 @@ namespace CricStats.Controllers
             CricStats.Models.Performance NewPerformance = new Performance();
             CricStats.BLL.Performance PerformanceBLL = new BLL.Performance(_conStr);
 
-            NewPerformance.MatchId = Convert.ToInt32(MatchId);
-            NewPerformance.PlayerId = Convert.ToInt32(PlayerId);
-            NewPerformance.runsScored = Convert.ToInt32(runsScored);
-            NewPerformance.ballsFaced = Convert.ToInt32(ballsFaced);
-            NewPerformance.Fours = Convert.ToInt32(Fours);
-            NewPerformance.Sixes = Convert.ToInt32(Sixes);
-            NewPerformance.wicketsTaken = Convert.ToInt32(wicketsTaken);
-            NewPerformance.oversBowled = Convert.ToInt32(oversBowled);
-            NewPerformance.runConceded = Convert.ToInt32(runConceded);
-            NewPerformance.Catches = Convert.ToInt32(Catches);
-            NewPerformance.runOuts = Convert.ToInt32(runOuts);
-            NewPerformance.BattingStrikeRate = Convert.ToInt32(BattingStrikeRate);
-            NewPerformance.BowlingEconomy = Convert.ToInt32(BowlingEconomy);
-            NewPerformance.Out = Convert.ToBoolean(Out);
-            NewPerformance.BowlingAverage = Convert.ToInt32(BowlingAverage);
+            if (PlayerId != "0" || MatchId != "0" || runsScored != "" || ballsFaced != "" || Fours != "" || Sixes != "" || wicketsTaken != "" || oversBowled != "" || runConceded != "" || Catches != "" || runOuts != "" || BattingStrikeRate != "" || BowlingEconomy != "" || BowlingAverage != "")
+            {
 
+                NewPerformance.MatchId = Convert.ToInt32(MatchId);
+                NewPerformance.PlayerId = Convert.ToInt32(PlayerId);
+                NewPerformance.runsScored = Convert.ToInt32(runsScored);
+                NewPerformance.ballsFaced = Convert.ToInt32(ballsFaced);
+                NewPerformance.Fours = Convert.ToInt32(Fours);
+                NewPerformance.Sixes = Convert.ToInt32(Sixes);
+                NewPerformance.wicketsTaken = Convert.ToInt32(wicketsTaken);
+                NewPerformance.oversBowled = Convert.ToInt32(oversBowled);
+                NewPerformance.runConceded = Convert.ToInt32(runConceded);
+                NewPerformance.Catches = Convert.ToInt32(Catches);
+                NewPerformance.runOuts = Convert.ToInt32(runOuts);
+                NewPerformance.BattingStrikeRate = Convert.ToInt32(BattingStrikeRate);
+                NewPerformance.BowlingEconomy = Convert.ToInt32(BowlingEconomy);
+                NewPerformance.Out = Convert.ToBoolean(Out);
+                NewPerformance.BowlingAverage = Convert.ToInt32(BowlingAverage);
+            }
+            else
+            {
+                return "2";
+            }
 
 
             try
@@ -169,7 +190,6 @@ namespace CricStats.Controllers
                 if (Convert.ToInt32(pCounter) == 0)
                 {
                     PerformanceBLL.Save(NewPerformance);
-
                 }
                 else if (Convert.ToInt32(pCounter) != 0)
                 {
@@ -254,6 +274,7 @@ namespace CricStats.Controllers
             return sResult;
             //return Json(AllPlayers, JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpPost]
         public string DeletePerformance(string PlayerId, string MatchId)

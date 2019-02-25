@@ -26,7 +26,8 @@ namespace CricStats
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.css",
-                      "~/Content/css/index.css"));
+                      "~/Content/css/index.css"
+                      ));
         }
     }
 }

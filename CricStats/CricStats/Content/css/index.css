@@ -520,7 +520,9 @@ figcaption {
         color: black;
     }
 
-
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    position: relative;
+}
 
 @media screen and (min-width: 500px) {
     body {

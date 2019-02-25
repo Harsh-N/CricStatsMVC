@@ -36,7 +36,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table id="dataTableManagePlayer" data-url="@Url.Action("getPlayers", controllerName)">
+                <table id="dataTableManagePlayer" class="display" data-url="@Url.Action("getPlayers", controllerName)">
                     <thead class="datatable-Header">
                         <tr>
                             <td>
@@ -144,7 +144,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table id="dataTableManageMatches" data-url="@Url.Action("getMatches", controllerName)">
+                <table id="dataTableManageMatches" class="display" data-url="@Url.Action("getMatches", controllerName)">
                     <thead class="datatable-Header">
                         <tr>
                             <td>
@@ -319,7 +319,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table id="dataTableManagePerformance" data-url="@Url.Action("getPerformance", controllerName)">
+                <table id="dataTableManagePerformance" class="display compact" data-url="@Url.Action("getPerformance", controllerName)">
                     <thead class="datatable-Header">
                         <tr>
                             <td>
@@ -413,8 +413,8 @@
               
                 <div class="fields">
                     <input type="hidden" value="1" id="pEditCounter" />
-                    <label> Select Player: </label> @Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id = "ddEditPlayerList", @class = "ddfield" })
-                    <label> Select Match: </label> @Html.DropDownList("mList", (IEnumerable<SelectListItem>)ViewBag.listOfMatches, new { id = "ddEditMatchList", @class = "ddfield" })
+                    <label> Select Player: </label> <output type="text" id="ddEditPlayerList" name="ddEditPlayerList" class="ddfield" required></output>@*@Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id = "ddEditPlayerList", @class = "ddfield" })*@
+                    <label> Select Match: </label> <output type="text" id="ddEditMatchList" name="ddEditMatchList" class="ddfield" required></output>@*@Html.DropDownList("mList", (IEnumerable<SelectListItem>)ViewBag.listOfMatches, new { id = "ddEditMatchList", @class = "ddfield" })*@
                 </div>
                     <div class="fields">
                         <label> Runs Scored: </label> <input type="number" id="editrunsScored" name="editrunsScored" min="0" max="300" required />
@@ -473,6 +473,8 @@
 
 <script>
 
+    
+
     $(document).ready(function () {
 
         function jsonDateConvert(jsonDate) {
@@ -484,14 +486,14 @@
             var date = day + "/" + month + "/" + year;
             return date;
         }
-        function toTypeDate(rawDate) { 
+        function toTypeDate(rawDate) {
             var rawDate = new Date();
 
             var day = ("0" + rawDate.getDate()).slice(-2);
             var month = ("0" + (rawDate.getMonth() + 1)).slice(-2);
 
            return rawDate.getFullYear() + "-" + (month) + "-" + (day);
-            
+
         }
 
         $("#btnSavePlayer").on("click", function (e) {
@@ -519,7 +521,7 @@
             var mr = $("#isWin").prop("checked");
             e.preventDefault();
             SaveMatches(id, ht, ot, dom, tr, hwt, hts, hto, os, otw, oto, mr);
-        
+
 
         });
 
@@ -586,14 +588,14 @@
             //alert("test");
             e.preventDefault();
             deleteplayer($(this).closest('tr'));
-           
+
 
         });
 
         function deleteplayer(tablerow) {
 
             var rowData = $("#dataTableManagePlayer").DataTable().row(tablerow).data();
-    
+
             $.ajax({
                 type: "post",
                 data: {
@@ -604,7 +606,7 @@
                     if (data === "1") {
                         LoadPlayers(table);
                         LoadPerformance(table2);
-                    } 
+                    }
 
                 },
                 error: function (data) {
@@ -632,12 +634,12 @@
         $("#mngPlayer").on("click", function (e) {
             $("#modalPlayerEdit").hide();
             $("#modalPlayerList").show();
-        }); 
+        });
 
         $("#btnEditCancelPlayer").on("click", function (e) {
             $("#modalPlayerEdit").hide();
             $("#modalPlayerList").show();
-        }); 
+        });
 
         LoadPlayers(table);
 
@@ -679,13 +681,12 @@
 
             columns: [{ data: 'MatchId' },
                 { data: 'HomeTeam' },
-                { data: 'OppositionTeam' },                
+                { data: 'OppositionTeam' },
                 {
                     data: function (data) {
                         return jsonDateConvert(data.DateOfMatch);
                     }
                 },
-                //{ data: 'isTossWin' },
                 {
                     data: function (data) {
                         var html = '';
@@ -750,7 +751,7 @@
 
           function deleteMatch(tablerow) {
             var rowData = $("#dataTableManageMatches").DataTable().row(tablerow).data();
-          
+
             $.ajax({
                 type: "post",
                 data: {
@@ -761,7 +762,7 @@
                     if (data === "1") {
                         LoadMatches(table1);
                         LoadPerformance(table2);
-                    } 
+                    }
 
                 },
                 error: function (data) {
@@ -775,7 +776,7 @@
 
         function editMatch(tablerow) {
             var rowData = $("#dataTableManageMatches").DataTable().row(tablerow).data();
-           
+
             $("#editMatchId").val(rowData.MatchId);
             $("#editHomeTeam").val(rowData.HomeTeam);
             $("#editOppositionTeam").val(rowData.OppositionTeam);
@@ -794,7 +795,7 @@
                 $("#editMatchResult").prop("checked", true);
             else
                 $("#editMatchResult").prop("checked", false);
-          
+
         }
         $("#btnEditSaveMatch").on("click", function (e) {
             var id = $("#editMatchId").val();
@@ -816,12 +817,12 @@
         $("#mngMatches").on("click", function (e) {
             $("#modalMatchEdit").hide();
             $("#modalMatchList").show();
-        }); 
+        });
 
         $("#btnEditCancelMatch").on("click", function (e) {
             $("#modalMatchEdit").hide();
             $("#modalMatchList").show();
-        }); 
+        });
 
 
         LoadMatches(table1);
@@ -868,11 +869,11 @@
                 { data: 'ballsFaced' },
                 { data: 'Fours' },
                 { data: 'Sixes' },
-                { data: 'wicketsTaken' }, 
+                { data: 'wicketsTaken' },
                 { data: 'oversBowled' },
                 { data: 'runConceded' },
                 { data: 'Catches' },
-                { data: 'BattingStrikeRate' }, 
+                { data: 'BattingStrikeRate' },
                 { data: 'runOuts' },
                 { data: 'BowlingEconomy' },
                 {
@@ -893,7 +894,7 @@
                         return html;
                     },
                     'className': 'edit-performance'
-    
+
                 },
                 {
                     data: function (data) {
@@ -919,13 +920,13 @@
         $("#dataTableManagePerformance").on("click", 'td.delete-performance', function (e) {
             e.preventDefault();
            deletePerformance($(this).closest('tr'));
-           
+
 
         });
 
         function deletePerformance(tablerow) {
             var rowData = $("#dataTableManagePerformance").DataTable().row(tablerow).data();
-          
+
             $.ajax({
                 type: "post",
                 data: {
@@ -937,7 +938,7 @@
                 success: function (data) {
                     if (data === "1") {
                         LoadPerformance(table2);
-                    } 
+                    }
 
                 },
                 error: function (data) {
@@ -970,7 +971,7 @@
                 else
                     $("#editOut").prop("checked", false);
             $('#editBowlingAverage').val(rowData.BowlingAverage);
-           
+
         }
 
         $("#btnEditSavePerformance").on("click", function (e) {
@@ -978,7 +979,7 @@
             var PId = $("#ddEditPlayerList").val();
             var MId = $("#ddEditMatchList").val();
             var runsScored = $("#editrunsScored").val();
-            var ballsFaced = $("#editballFaced").val(); 
+            var ballsFaced = $("#editballFaced").val();
             var Fours = $("#editFours").val();
             var Sixes = $("#editSixes").val();
             var wicketsTaken = $("#editwicketsTaken").val();
@@ -996,15 +997,15 @@
         });
 
         $("#mngPerformance").on("click", function (e) {
-            $("#modalPerformanceEdit").hide(); 
+            $("#modalPerformanceEdit").hide();
             $("#modalPerformanceList").show();
 
-        }); 
+        });
         $("#btnEditCancelPerformance").on("click", function (e) {
             $("#modalPerformanceEdit").hide();
             $("#modalPerformanceList").show();
 
-        }); 
+        });
 
 
         LoadPerformance(table2);
@@ -1040,13 +1041,13 @@
 
 
 
-      
+
 
 
 
 
         function SavePlayer(id, name) {
-          
+
 
             $.ajax({
                 type: "post",
@@ -1063,6 +1064,9 @@
                     } else if (data === "2") {
                         alert("Player Name Already Exist");
                         window.location = '@Url.Action("AdminMain","Admin")';
+                    } else if (data === "3") {
+                        alert("field is empty");
+                        window.location = '@Url.Action("AdminMain","Admin")';
                     }
 
                 },
@@ -1077,9 +1081,9 @@
 
         function SaveMatches(id, Hometeam, OppositeTeam, dateOfMatch, isTossWon, homeWicketsFallen, homeScore, homeTeamOvers, oppositeScore, oppositionWicketsFallen, OppositeTeamOvers, isWin ) {
             //var input = $('#player-performance').find("input,select,textarea").serialize();
-           
+
             $.ajax({
-               
+
                 type: "post",
                 data: {
 
@@ -1118,6 +1122,10 @@
                     } else if (data === "2") {
                         alert("Match Entry Already Exist");
                         window.location = '@Url.Action("AdminMain","Admin")';
+                    } else if (data === "3")
+                    {
+                        alert("one or more fields empty");
+                        window.location = '@Url.Action("AdminMain","Admin")';
                     }
 
                 },
@@ -1132,7 +1140,7 @@
 
         function SavePerformance(pCounter, PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage) {
             //var input = $('#player-performance').find("input,select,textarea").serialize();
-            
+
 
             $.ajax({
 
@@ -1160,6 +1168,10 @@
                 success: function (data) {
                     if (data === "1") {
                         alert("Performance Saved");
+                        window.location = '@Url.Action("AdminMain","Admin")';
+                    }else if (data === "2")
+                    {
+                        alert("one or more fields empty");
                         window.location = '@Url.Action("AdminMain","Admin")';
                     }
 

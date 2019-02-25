@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,8 @@ namespace CricStats.Models
                 }
             }
         }
+        [StringLength(1)]
+        [Required(ErrorMessage = "Player Name required")]
         public String PlayerName
         {
             get

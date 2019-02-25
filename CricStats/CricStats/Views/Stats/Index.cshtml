@@ -2,10 +2,12 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
 <h2>Stats</h2>
-<table id="stats" @*data-url="@Url.Action("getPerformance", controllerName)"*@>
+
+<table id="statsTable" class="display compact" data-url="@Url.Action("getstats", controllerName)">
     <thead class="datatable-Header">
         <tr>
             <td>
@@ -75,4 +77,69 @@
     </tbody>
 
 </table>
+<script>
+    $(document).ready(function () {
+
+        var dataArray = [];
+        var table = $('#statsTable').DataTable({
+            data: dataArray,
+            searching:true,
+
+            columns: [
+                { data: 'PlayerName' },
+                { data: 'runsScored' },
+                { data: 'ballsFaced' },
+                { data: 'Fours' },
+                { data: 'Sixes' },
+                { data: 'wicketsTaken' },
+                { data: 'oversBowled' },
+                { data: 'runConceded' },
+                { data: 'Catches' },
+                { data: 'BattingStrikeRate' },
+                { data: 'runOuts' },
+                { data: 'BowlingEconomy' },
+                {
+                    data: function (data) {
+                        var html = '';
+                        if (data.Out == true)
+                            html += 'Out';
+                        else
+                            html += 'Not Out';
+                        return html;
+                    }
+                },
+                { data: 'BowlingAverage' },
+            ]
+
+        });
+
+        LoadStats(table);
+        function LoadStats(table) {
+           
+            var urlstr = $('#statsTable').attr('data-url');
+            $.ajax({
+                type: "Get",
+                async: true,
+                url: urlstr,
+                data: JSON.stringify({}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                deferRender: true,
+                success: function (data) {
+
+                    dataArray = eval('(' + JSON.stringify(data) + ')');
+
+                },
+                error: function (request, error) {
+                    alert("stats not found");
+                },
+                complete: function () {
+                    table.clear();
+                    table.rows.add(dataArray).draw();
+                }
+            });
+        }
+    });
+
+</script>
 
