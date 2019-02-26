@@ -12,7 +12,7 @@
 <form>
 
     <div class="form-group">
-        <label> Player Name: </label> <input type="text" id="playerName" name="playerName" placeholder="Player Full Name" />
+        <label> Player Name: </label> <input type="text" id="playerName" name="playerName" maxlength="50" placeholder="Player Full Name" />
         <input type="number" id="PlayerId" name="PlayerId" value=0 hidden required />
     </div>
 
@@ -77,7 +77,7 @@
             </div>
             <div class="modal-body">
                 <input id="editPlayerId" type="hidden" />
-                <label>Player Name: </label><input id="editPlayerName" type="text" />
+                <label>Player Name: </label><input id="editPlayerName" maxlength="50" type="text" />
             </div>
             <div class="modal-footer">
 
@@ -95,8 +95,8 @@
 <form>
     <div class="fields">
         <input type="number" id="MatchId" name="MatchId" value=0 hidden required />
-        <label> Home Team: </label> <input type="text" id="HomeTeam" name="HomeTeam" required />
-        <label> Opposition Team: </label> <input type="text" id="OppositionTeam" name="OppositionTeam" required />
+        <label> Home Team: </label> <input type="text" id="HomeTeam" maxlength="50" name="HomeTeam" required />
+        <label> Opposition Team: </label> <input type="text" id="OppositionTeam" maxlength="50" name="OppositionTeam" required />
     </div>
     <div class="fields">
         <label> Date of the Match: </label> <input type="date" id="dateOfMatch" name="dateOfMatch" />
@@ -106,16 +106,16 @@
         </div>
     </div>
     <div class="fields">
-        <label> Home Wicket Fallen: </label> <input type="number" id="homeWicketsFallen" name="homeWicketsFallen" min="0" max="10" required />
-        <label> Home Score: </label> <input type="number" id="HomeTeamScore" name="HomeTeamScore" min="0" max="999" required />
+        <label> Home Wicket Fallen: </label> <input type="number" class="number-fields"  id="homeWicketsFallen" name="homeWicketsFallen" min="0" max="10" required />
+        <label> Home Score: </label> <input type="number" id="HomeTeamScore" class="number-fields" name="HomeTeamScore" min="0" max="999" required />
     </div>
     <div class="fields">
-        <label> Home Team Overs: </label> <input type="number" id="HomeTeamOvers" name="HomeTeamOvers" min="0" max="50" required />
-        <label> Opposition Score: </label> <input type="number" id="oppositionScore" name="oppositionScore" min="0" max="999" required />
+        <label> Home Team Overs: </label> <input type="number" id="HomeTeamOvers" class="number-fields" name="HomeTeamOvers" min="0" max="50" required />
+        <label> Opposition Score: </label> <input type="number" id="oppositionScore" class="number-fields" name="oppositionScore" min="0" max="999" required />
     </div>
     <div class="fields">
-        <label> Opposition Wickets: </label> <input type="number" id="oppositionWicketsFallen" name="oppositionWicketsFallen" min="0" max="10" required />
-        <label> Opposition Team Overs: </label> <input type="number" id="OppositionTeamOvers" name="OppositionTeamOvers" min="0" max="50" required />
+        <label> Opposition Wickets: </label> <input type="number" class="number-fields" id="oppositionWicketsFallen" name="oppositionWicketsFallen" min="0" max="10" required />
+        <label> Opposition Team Overs: </label> <input type="number" id="OppositionTeamOvers" class="number-fields" name="OppositionTeamOvers" min="0" max="50" required />
     </div>
 
     <div class="fields">
@@ -226,24 +226,24 @@
             <div class="modal-body">
                 <div class="fields">
                     <input id="editMatchId" type="hidden" />
-                    <label>Home Team: </label><input id="editHomeTeam" type="text" />
-                    <label>Opposition Team: </label><input id="editOppositionTeam" type="text" />
+                    <label>Home Team: </label><input id="editHomeTeam" maxlength="50" type="text" />
+                    <label>Opposition Team: </label><input id="editOppositionTeam" maxlength="50" type="text" />
                 </div>
                 <div class="fields">
                     <label>Date of Match: </label><input id="editDateofMatch" type="date" />
                     <label>Toss Result: </label><input id="editTossResult" type="checkbox" />
                 </div>
                 <div class="fields">
-                    <label>Home Wicket Fallen: </label><input id="editHomeWicketFallen" type="number" />
-                    <label>Home Score: </label><input id="editHomeScore" type="number" />
+                    <label>Home Wicket Fallen: </label><input id="editHomeWicketFallen" class="number-fields" type="number" />
+                    <label>Home Score: </label><input id="editHomeScore" class="number-fields" type="number" />
                 </div>
                 <div class="fields">
-                    <label>Home Team Overs: </label><input id="editHomeTeamOvers" type="number" />
-                    <label>Opposition Score: </label><input id="editOppositionScore" type="number" />
+                    <label>Home Team Overs: </label><input id="editHomeTeamOvers" class="number-fields" type="number" />
+                    <label>Opposition Score: </label><input id="editOppositionScore" class="number-fields" type="number" />
                 </div>
                 <div class="fields">
-                    <label>Opposition Wickets: </label><input id="editOppositionWickets" type="number" />
-                    <label>Opposition Team Overs: </label><input id="editOppositionTeamOvers" type="number" />
+                    <label>Opposition Wickets: </label><input id="editOppositionWickets" class="number-fields" type="number" />
+                    <label>Opposition Team Overs: </label><input id="editOppositionTeamOvers" class="number-fields" type="number" />
                 </div>
                 <div class="fields">
                     <label>Match Result: </label><input id="editMatchResult" type="checkbox" />
@@ -275,19 +275,19 @@
         <label> Balls Faced: </label> <input type="number" id="ballFaced" name="ballFaced" min="0" max="300" required />
     </div>
     <div class="fields">
-        <label> Fours: </label> <input type="number" id="Fours" name="Fours" min="0" max="75" required />
-        <label> Sixes: </label> <input type="number" id="Sixes" name="Sixes" min="0" max="50" required />
+        <label> Fours: </label> <input type="number" class="number-fields" id="Fours" name="Fours" min="0" max="75" required />
+        <label> Sixes: </label> <input type="number" class="number-fields" id="Sixes" name="Sixes" min="0" max="50" required />
     </div>
     <div class="fields">
-        <label> Wickets Taken: </label> <input type="number" id="wicketsTaken" name="wicketsTaken" min="0" max="10" required />
-        <label> Overs Bowled: </label> <input type="number" id="oversBowled" name="oversBowled" min="0" max="15" required />
+        <label> Wickets Taken: </label> <input type="number" id="wicketsTaken" class="number-fields"  name="wicketsTaken" min="0" max="10" required />
+        <label> Overs Bowled: </label> <input type="number" class="number-fields" id="oversBowled" name="oversBowled" min="0" max="15" required />
     </div>
     <div class="fields">
-        <label> Runs Conceded: </label> <input type="number" id="runConceded" name="runConceded" min="0" max="540" required />
-        <label> Catches Taken: </label> <input type="number" id="Catches" name="Catches" min="0" max="10" required />
+        <label> Runs Conceded: </label> <input type="number" class="number-fields" id="runConceded" name="runConceded" min="0" max="540" required />
+        <label> Catches Taken: </label> <input type="number" id="Catches" class="number-fields" name="Catches" min="0" max="10" required />
     </div>
     <div class="fields">
-        <label> Run Outs: </label> <input type="number" id="runOuts" name="runOuts" min="0" max="10" required />
+        <label> Run Outs: </label> <input type="number" id="runOuts" class="number-fields" name="runOuts" min="0" max="10" required />
         <label> Batting Strike Rate: </label> <output type="number" id="BattingStrikeRate" name="BattingStrikeRate" required></output>
     </div>
     <div class="fields">
@@ -417,23 +417,23 @@
                     <label> Select Match: </label> <output type="text" id="ddEditMatchList" name="ddEditMatchList" class="ddfield" required></output>@*@Html.DropDownList("mList", (IEnumerable<SelectListItem>)ViewBag.listOfMatches, new { id = "ddEditMatchList", @class = "ddfield" })*@
                 </div>
                     <div class="fields">
-                        <label> Runs Scored: </label> <input type="number" id="editrunsScored" name="editrunsScored" min="0" max="300" required />
-                        <label> Balls Faced: </label> <input type="number" id="editballFaced" name="editballFaced" min="0" max="300" required />
+                        <label> Runs Scored: </label> <input type="number" class="number-fields" id="editrunsScored" name="editrunsScored" min="0" max="300" required />
+                        <label> Balls Faced: </label> <input type="number" class="number-fields" id="editballFaced" name="editballFaced" min="0" max="300" required />
                     </div>
                     <div class="fields">
-                        <label> Fours: </label> <input type="number" id="editFours" name="editFours" min="0" max="75" required />
-                        <label> Sixes: </label> <input type="number" id="editSixes" name="editSixes" min="0" max="50" required />
+                        <label> Fours: </label> <input type="number" class="number-fields" id="editFours" name="editFours" min="0" max="75" required />
+                        <label> Sixes: </label> <input type="number" class="number-fields" id="editSixes" name="editSixes" min="0" max="50" required />
                     </div>
                     <div class="fields">
-                        <label> Wickets Taken: </label> <input type="number" id="editwicketsTaken" name="editwicketsTaken" min="0" max="10" required />
-                        <label> Overs Bowled: </label> <input type="number" id="editoversBowled" name="editoversBowled" min="0" max="15" required />
+                        <label> Wickets Taken: </label> <input type="number" id="editwicketsTaken" class="number-fields" name="editwicketsTaken" min="0" max="10" required />
+                        <label> Overs Bowled: </label> <input type="number" class="number-fields" id="editoversBowled" name="editoversBowled" min="0" max="15" required />
                     </div>
                     <div class="fields">
-                        <label> Runs Conceded: </label> <input type="number" id="editrunConceded" name="editrunConceded" min="0" max="540" required />
-                        <label> Catches Taken: </label> <input type="number" id="editCatches" name="editCatches" min="0" max="10" required />
+                        <label> Runs Conceded: </label> <input type="number" class="number-fields" id="editrunConceded" name="editrunConceded" min="0" max="540" required />
+                        <label> Catches Taken: </label> <input type="number" id="editCatches" class="number-fields" name="editCatches" min="0" max="10" required />
                     </div>
                     <div class="fields">
-                        <label> Run Outs: </label> <input type="number" id="editrunOuts" name="editrunOuts" min="0" max="10" required />
+                        <label> Run Outs: </label> <input type="number" id="editrunOuts" class="number-fields" name="editrunOuts" min="0" max="10" required />
                         <label> Batting Strike Rate: </label> <output type="number" id="editBattingStrikeRate" name="editBattingStrikeRate" required></output>
                     </div>
                     <div class="fields">
@@ -1039,12 +1039,7 @@
             });
         }
 
-
-
-
-
-
-
+        //save functions for all forms
 
         function SavePlayer(id, name) {
 
@@ -1100,19 +1095,7 @@
                     OppositionTeamOvers: OppositeTeamOvers,
                     isWin: isWin
 
-                    //MatchId: $('#MatchId').val(),
-                    //HomeTeam: $('#HomeTeam').val(),
-                    //OppositionTeam: $('#OppositionTeam').val(),
-                    //dateOfMatch: $('#dateOfMatch').val(),
-                    //isTossWon: $('#isTossWon').prop("checked"),
-                    //homeWicketsFallen: $('#homeWicketsFallen').val(),
-                    //homeScore: $('#homeScore').val(),
-                    //HomeTeamOvers: $('#HomeTeamOvers').val(),
-                    //oppositionScore: $('#oppositionScore').val(),
-                    //oppositionWicketsFallen: $('#oppositionWicketsFallen').val(),
-                    //OppositeTeamOvers: $('#OppositionTeamOvers').val(),
-                    //isWin: $('#isWin').prop("checked")
-
+                   
                 },
                 url: '@Url.Action("SaveMatch")',
                 success: function (data) {
@@ -1186,9 +1169,118 @@
 
         }
 
+        //validation for wickets fields
+        $(".number-fields").on("keyup", function () {
+
+            //wickets
+            if (parseInt($("#homeWicketsFallen").val()) > 10) {
+                $("#homeWicketsFallen").val('');
+            }
+            if (parseInt($("#oppositionWicketsFallen").val()) > 10) {
+                $("#oppositionWicketsFallen").val('');
+            }
+            if (parseInt($("#editHomeWicketFallen").val()) > 10) {
+                $("#editHomeWicketFallen").val('');
+            }
+            if (parseInt($("#editOppositionWickets").val()) > 10) {
+                $("#editOppositionWickets").val('');
+            }
+            if (parseInt($("#wicketsTaken").val()) > 10) {
+                $("#wicketsTaken").val('');
+            }
+            if (parseInt($("#Catches").val()) > 10) {
+                $("#Catches").val('');
+            }
+            if (parseInt($("#runOuts").val()) > 10) {
+                $("#runOuts").val('');
+            }
+            if (parseInt($("#editwicketsTaken").val()) > 10) {
+                $("#editwicketsTaken").val('');
+            }
+            if (parseInt($("#editCatches").val()) > 10) {
+                $("#editCatches").val('');
+            }
+            if (parseInt($("#editrunOuts").val()) > 10) {
+                $("#editrunOuts").val('');
+            }
+
+            //scores
+            if (parseInt($("#HomeTeamScore").val()) > 999) {
+                $("#HomeTeamScore").val('');
+            }
+            if (parseInt($("#oppositionScore").val()) > 999) {
+                $("#oppositionScore").val('');
+            }
+            if (parseInt($("#runsScored").val()) > 1000) {
+                $("#runsScored").val('');
+            }
+            if (parseInt($("#runConceded").val()) > 200) {
+                $("#runConceded").val('');
+            }
+            if (parseInt($("#editHomeScore").val()) > 999) {
+                $("#editHomeScore").val('');
+            }
+            if (parseInt($("#editOppositionScore").val()) > 999) {
+                $("#editOppositionScore").val('');
+            }
+            if (parseInt($("#editrunsScored").val()) > 1000) {
+                $("#editrunsScored").val('');
+            }
+            if (parseInt($("#editrunConceded").val()) > 200) {
+                $("#editrunConceded").val('');
+            }
+            
+           
+            
+            //boundries
+            if (parseInt($("#Fours").val()) > 50) {
+                $("#Fours").val('');
+            }
+            if (parseInt($("#Sixes").val()) > 50) {
+                $("#Sixes").val('');
+            }
+            if (parseInt($("#editFours").val()) > 50) {
+                $("#editFours").val('');
+            }
+            if (parseInt($("#editSixes").val()) > 50) {
+                $("#editSixes").val('');
+            }
+            
+            //balls faced
+            if (parseInt($("#ballFaced").val()) > 300) {
+                $("#ballFaced").val('');
+            }
+            if (parseInt($("#editballFaced").val()) > 300) {
+                $("#editballFaced").val('');
+            }
+          
+            
+            //overs
+            if (parseInt($("#HomeTeamOvers").val()) > 50) {
+                $("#HomeTeamOvers").val('');
+            }
+            if (parseInt($("#OppositionTeamOvers").val()) > 50) {
+                $("#OppositionTeamOvers").val('');
+            }
+            if (parseInt($("#oversBowled").val()) > 15) {
+                $("#oversBowled").val('');
+            }
+            if (parseInt($("#editHomeTeamOvers").val()) > 50) {
+                $("#editHomeTeamOvers").val('');
+            }
+            if (parseInt($("#editOppositionTeamOvers").val()) > 50) {
+                $("#editOppositionTeamOvers").val('');
+            }
+            if (parseInt($("#editoversBowled").val()) > 15) {
+                $("#editoversBowled").val('');
+            }
+         
+            
+        });
+
     });
 
-    //arithmetic operation
+    //arithmetic operation for fields 
     function calculateEconomy() {
         var runConceded = document.getElementById('runConceded').value;
         var oversBowled = document.getElementById('oversBowled').value;

@@ -98,7 +98,7 @@ function redirect() {
             let Awindow = 'http://localhost:53870/Admin/AdminMain#';
             let AwindowS = Awindow.toString();
             if (AwindowS == window.location.href) {
-                alert("You are on Admin Page")
+                alert("You are already on Admin Page")
                 break;
             } else {
                 window.location.replace('http://localhost:53870/Admin/AdminMain');
@@ -113,3 +113,4 @@ function redirect() {
     }
 
 }
+
