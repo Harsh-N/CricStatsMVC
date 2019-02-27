@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CricStats.Models
 {
-    public class stats
+    public class Stats
     {
         private String _PlayerName;
         private int _runsScored;
@@ -23,6 +23,7 @@ namespace CricStats.Models
         private int _BowlingEconomy;
         private int _Out;
         private int _BowlingAverage;
+        private int _BattingAverage;
 
 
         public String PlayerName
@@ -235,16 +236,31 @@ namespace CricStats.Models
             }
         }
 
+        public int BattingAverage
+        {
+            get
+            {
+                return _BattingAverage;
+            }
+            set
+            {
+                if (_BattingAverage != value)
+                {
+                    _BattingAverage = value;
+                }
+            }
+        }
+
 
         #region "Constructors"
 
-        public stats(DataRow dr)
+        public Stats(DataRow dr)
             : base()
         {
             InitFromDB(dr);
         }
 
-        public stats()
+        public Stats()
         {
         }
         #endregion
@@ -268,10 +284,9 @@ namespace CricStats.Models
             if ((dr["runOuts"]) != DBNull.Value) { _runOuts = (int)(dr["runOuts"]); }
             if ((dr["Out"]) != DBNull.Value) { _Out = (int)(dr["Out"]); }
             if ((dr["BattingStrikeRate"]) != DBNull.Value) { _BattingStrikeRate = (int)(dr["BattingStrikeRate"]); }
-            if ((dr["BowlingEconomy"]) != DBNull.Value) { _BowlingEconomy = (int)(dr["BowlingEconomy"]); }
-           
+            if ((dr["BowlingEconomy"]) != DBNull.Value) { _BowlingEconomy = (int)(dr["BowlingEconomy"]); }          
             if ((dr["BowlingAverage"]) != DBNull.Value) { _BowlingAverage = (int)(dr["BowlingAverage"]); }
-
+            if ((dr["BattingAverage"]) != DBNull.Value) { _BattingAverage = (int)(dr["BattingAverage"]); }
 
         }
 

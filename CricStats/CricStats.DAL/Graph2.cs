@@ -6,19 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CricStats.DAL
+namespace CricStats.DAL 
 {
-    public class Stats: DAL.BaseClass.DALBase
+    public class Graph2 : DAL.BaseClass.DALBase
     {
-        public Stats(string strConnString) : base(strConnString) { }
+        public Graph2(string strConnString) : base(strConnString) { }
 
-        public DataTable GetAllStats()
+        public DataTable highestRunScorersForMatch()
         {
             var cmd = new SqlCommand();
 
             cmd.Connection = Connection;
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "[dbo].[RetrivePlayersPerformance]";
+            cmd.CommandText = "[dbo].[Top5RunScorers]";
 
             try
             {

@@ -23,7 +23,7 @@ namespace CricStats.Controllers
         [ActionName("getstats")]
         public string GetAllStats()
         {
-            CricStats.BLL.stats statsBll = new BLL.stats(_conStr);
+            CricStats.BLL.Stats statsBll = new BLL.Stats(_conStr);
             var Allstats = statsBll.GetAllStats();
             JavaScriptSerializer s = new JavaScriptSerializer();
             string sResult = s.Serialize(Allstats);

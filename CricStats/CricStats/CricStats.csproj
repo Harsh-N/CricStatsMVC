@@ -165,6 +165,7 @@
     <Content Include="Content\images\cricimg5.jpg" />
     <Content Include="Content\images\cricimg6.jpg" />
     <Content Include="Content\images\cricketimg1.jpg" />
+    <Content Include="Content\NewsImage\avatar.png" />
     <Content Include="Content\NewsImage\kartik.jpeg" />
     <Content Include="Content\videos\videoplayback.mp4" />
     <Content Include="Content\videos\videoplayback1.mp4" />

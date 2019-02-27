@@ -5,7 +5,7 @@
     var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
-<h2>Stats</h2>
+<h1 class="pagetitlemargin">Player's Overall Statistics</h1>
 
 <table id="statsTable" class="display compact" data-url="@Url.Action("getstats", controllerName)">
     <thead class="datatable-Header">
@@ -26,7 +26,7 @@
                 Total Sixes
             </td>
             <td>
-                Total Wickets Taken 
+                Total Wickets Taken
             </td>
             <td>
                 Total Overs Bowled:
@@ -38,21 +38,25 @@
                 Total Catches Taken
             </td>
             <td>
-                Total Batting Strike Rate:
+                Batting Strike Rate:
             </td>
             <td>
                 Total Run Outs:
             </td>
             <td>
-                Total Bowling Economy:
+                Bowling Economy:
             </td>
             <td>
                 Total Outs
             </td>
             <td>
-                Total Bowling Average:
+                Bowling Average:
             </td>
-           
+            <td>
+                Batting Average:
+            </td>
+
+
         </tr>
     </thead>
     <tbody>
@@ -71,7 +75,7 @@
             <td></td>
             <td></td>
             <td></td>
-            
+            <td></td>
         </tr>
 
     </tbody>
@@ -98,17 +102,9 @@
                 { data: 'BattingStrikeRate' },
                 { data: 'runOuts' },
                 { data: 'BowlingEconomy' },
-                {
-                    data: function (data) {
-                        var html = '';
-                        if (data.Out == true)
-                            html += 'Out';
-                        else
-                            html += 'Not Out';
-                        return html;
-                    }
-                },
+                { data: 'Out'},
                 { data: 'BowlingAverage' },
+                { data: 'BattingAverage' },
             ]
 
         });

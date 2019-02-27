@@ -7,30 +7,28 @@ using System.Threading.Tasks;
 
 namespace CricStats.BLL
 {
-    public class Stats
+    public class Graph2
     {
-        private readonly DAL.Stats _db;
+        private readonly DAL.Graph2 _db;
 
         #region "Constructors"
-        public Stats(string strConnection)
+        public Graph2(string strConnection)
         {
-            _db = new DAL.Stats(strConnection);
+            _db = new DAL.Graph2(strConnection);
         }
         #endregion
 
-
-        //save data row table in database
-        public IEnumerable<Models.Stats> GetAllStats()
+        public IEnumerable<Models.Graph2> GetGraphData()
         {
-            var outList = new List<Models.Stats>();
+            var outList = new List<Models.Graph2>();
 
-            DataTable dt = _db.GetAllStats();
+            DataTable dt = _db.highestRunScorersForMatch();
 
             if (dt != null && dt.Rows.Count > 0)
             {
                 foreach (DataRow dr in dt.Rows)
                 {
-                    outList.Add(new Models.Stats(dr));
+                    outList.Add(new Models.Graph2(dr));
                 }
             }
 

@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace CricStats.DAL
 {
-    public class Stats: DAL.BaseClass.DALBase
+    public class Graph1 : DAL.BaseClass.DALBase
     {
-        public Stats(string strConnString) : base(strConnString) { }
+        public Graph1(string strConnString) : base(strConnString) { }
 
-        public DataTable GetAllStats()
+        public DataTable highestRunScorersForMatch()
         {
             var cmd = new SqlCommand();
 
             cmd.Connection = Connection;
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "[dbo].[RetrivePlayersPerformance]";
+            cmd.CommandText = "[dbo].[highestRunScorersForMatch]";
 
             try
             {

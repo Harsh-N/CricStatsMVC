@@ -30,7 +30,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content" id="modalPlayerList">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal Player</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Players' Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -138,7 +138,7 @@
     <div class="modal-dialog" id="modal-dialog-match"role="document">
         <div class="modal-content" id="modalMatchList">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal Match</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Matches' Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -261,7 +261,7 @@
 
 
 
-<h2>performance</h2>
+<h2>Performance</h2>
 
 <form oninput="calculateEconomy(), bowlingAvg(), battingStr()">
     <div class="fields">
@@ -313,7 +313,7 @@
     <div class="modal-dialog" id="modal-dialog-performance" role="document">
         <div class="modal-content" id="modalPerformanceList">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal Performance</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Performance Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -413,8 +413,8 @@
               
                 <div class="fields">
                     <input type="hidden" value="1" id="pEditCounter" />
-                    <label> Select Player: </label> <output type="text" id="ddEditPlayerList" name="ddEditPlayerList" class="ddfield" required></output>@*@Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id = "ddEditPlayerList", @class = "ddfield" })*@
-                    <label> Select Match: </label> <output type="text" id="ddEditMatchList" name="ddEditMatchList" class="ddfield" required></output>@*@Html.DropDownList("mList", (IEnumerable<SelectListItem>)ViewBag.listOfMatches, new { id = "ddEditMatchList", @class = "ddfield" })*@
+                    <label> Select Player: </label> <output type="text" id="ddEditPlayerList" name="ddEditPlayerList" class="ddfield" required></output>
+                    <label> Select Match: </label> <output type="text" id="ddEditMatchList" name="ddEditMatchList" class="ddfield" required></output>
                 </div>
                     <div class="fields">
                         <label> Runs Scored: </label> <input type="number" class="number-fields" id="editrunsScored" name="editrunsScored" min="0" max="300" required />
@@ -1194,6 +1194,10 @@
             if (parseInt($("#runOuts").val()) > 10) {
                 $("#runOuts").val('');
             }
+            if ((parseInt($("#runOuts").val()) + parseInt($("#Catches").val())) >=10) {
+                $("#Catches").val('');
+                $("#runOuts").val('');
+            }
             if (parseInt($("#editwicketsTaken").val()) > 10) {
                 $("#editwicketsTaken").val('');
             }
@@ -1201,6 +1205,10 @@
                 $("#editCatches").val('');
             }
             if (parseInt($("#editrunOuts").val()) > 10) {
+                $("#editrunOuts").val('');
+            }
+            if ((parseInt($("#editrunOuts").val()) + parseInt($("#editCatches").val())) >= 10) {
+                $("#editCatches").val('');
                 $("#editrunOuts").val('');
             }
 
@@ -1214,7 +1222,18 @@
             if (parseInt($("#runsScored").val()) > 1000) {
                 $("#runsScored").val('');
             }
-            if (parseInt($("#runConceded").val()) > 200) {
+            if (parseInt($("#runsScored").val()) <4 ) {
+                $("#Fours").val('');
+                $("#Sixes").val('');
+            }
+            if (parseInt($("#runsScored").val()) <= 6 && parseInt($("#Fours").val()) == 1) {
+                $("#Sixes").val('');
+            }
+            if (parseInt($("#runsScored").val()) <= 6 && parseInt($("#Sixes").val()) == 1) {
+                $("#Fours").val('');
+            }
+
+            if (parseInt($("#runConceded").val()) > 200 || parseInt($("#runConceded").val()) > parseInt($("#runsScored").val())) {
                 $("#runConceded").val('');
             }
             if (parseInt($("#editHomeScore").val()) > 999) {
@@ -1229,7 +1248,20 @@
             if (parseInt($("#editrunConceded").val()) > 200) {
                 $("#editrunConceded").val('');
             }
-            
+            if (parseInt($("#editrunsScored").val()) < 4) {
+                $("#editFours").val('');
+                $("#editSixes").val('');
+            }
+            if (parseInt($("#editrunsScored").val()) <= 6 && parseInt($("#editFours").val()) == 1) {
+                $("#editSixes").val('');
+            }
+            if (parseInt($("#editrunsScored").val()) <= 6 && parseInt($("#editSixes").val()) == 1) {
+                $("#editFours").val('');
+            }
+
+            if (parseInt($("#editrunConceded").val()) > 200 || parseInt($("#editrunConceded").val()) > parseInt($("#editrunsScored").val())) {
+                $("#editrunConceded").val('');
+            }
            
             
             //boundries

@@ -1,7 +1,7 @@
 function render(data) {
     let html = '<div class="comment-box"> \
   <div class="left-paneling">\
-  <img src="image/avatar.png" alt="avatar" />\
+  <img src="Content/NewsImage/avatar.png" alt="avatar" />\
   </div>\
   <div class="right-paneling">\
   <span>' + data.name + '</span>\
@@ -104,10 +104,10 @@ function addComments() {
     });
 }
 dateAndTime();
-
+addComments();
 //function to append on load of a window
 window.onload = function() {
-    addComments();
+
     dateAndTime();
 }
 

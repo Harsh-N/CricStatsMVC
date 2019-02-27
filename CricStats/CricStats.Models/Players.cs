@@ -30,8 +30,7 @@ namespace CricStats.Models
                 }
             }
         }
-        [StringLength(1)]
-        [Required(ErrorMessage = "Player Name required")]
+        
         public String PlayerName
         {
             get
