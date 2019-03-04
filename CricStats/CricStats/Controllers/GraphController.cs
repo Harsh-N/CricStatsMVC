@@ -11,6 +11,7 @@ namespace CricStats.Controllers
 {
     public class GraphController : Controller
     {
+        private static readonly string _conStr = ConfigurationManager.ConnectionStrings["CricSatsConnection"].ConnectionString;
         // GET: Graph
         public ActionResult Index()
         {
@@ -25,10 +26,16 @@ namespace CricStats.Controllers
 
             ViewBag.DataPoints2 = JsonConvert.SerializeObject(Graph2);
 
+
+            CricStats.BLL.Graph3 Graph3Bll = new BLL.Graph3(_conStr);
+            var Graph3 = Graph3Bll.GetGraphData();
+
+            ViewBag.DataPoints3 = JsonConvert.SerializeObject(Graph3);
+
             return View();
         }
 
-        private static readonly string _conStr = ConfigurationManager.ConnectionStrings["CricSatsConnection"].ConnectionString;
+       
 
 
       

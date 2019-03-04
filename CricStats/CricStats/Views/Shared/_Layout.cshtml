@@ -32,92 +32,83 @@
             <nav id="menu-items" class="menubar">
                 <ul>
                     <li class="close"><a href="#" id="close" class="fas fa-times"></a></li>
-                    <li id="home" class="menu-item">@Html.ActionLink("HomePgae", "Index", "Home")</li>
+                    <li id="home" class="menu-item">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="menu-item">@Html.ActionLink("Gallery", "Index", "Gallery")</li>
                     <li class="menu-item">@Html.ActionLink("Results", "Index", "Results")</li>
                     <li id="stats" class="menu-item">
                         @Html.ActionLink("Stats", "Index", "Stats")
-                    <i class="fas fa-caret-down"></i>
-                    <ul>
-                        <li class="sub-menu">@Html.ActionLink("Graph", "Index", "Graph")</li>
-                    </ul>
-                </li>
-                <li id="last-li" data-toggle="modal" data-target="#password"><a href="#">Admin</a>@*@Html.ActionLink("Adminwrfr4", "AdminMain", "Admin")*@</li>
+                        <i class="fas fa-caret-down"></i>
+                        <ul>
+                            <li class="sub-menu">@Html.ActionLink("Graph", "Index", "Graph")</li>
+                        </ul>
+                    </li>
+                    <li id="last-li" data-toggle="modal" data-target="#password"><a href="#">Admin</a></li>
 
-            </ul>
-        </nav>
+                </ul>
+            </nav>
+        </div>
     </div>
-</div>
 
-@*model*@
+    @*model*@
 
-<div class="modal fade" id="password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Login </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-               <lablel> Password: </lablel><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/> 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="redirect()">login</button>
-               
+    <div class="modal fade" id="password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <lablel> Password: </lablel><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="redirect()">login</button>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<div class="container body-content">
-    @RenderBody()
-    <hr />
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
 
 
-</div>
-
-
-<div class="navigation">
-
-    <p>
-        @Html.ActionLink("HomePgae", "Index", "Home", null, new { @class = "footer-Nav" }) |
-        @Html.ActionLink("Gallery", "Index", "Gallery", null, new { @class = "footer-Nav" }) |
-        @Html.ActionLink("Results", "Index", "Results", null, new { @class = "footer-Nav" }) |
-        @Html.ActionLink("Stats", "Index", "Stats", null, new { @class = "footer-Nav" }) |
-        @Html.ActionLink("Graph", "Index", "Graph", null, new { @class = "footer-Nav" }) |
-        @Html.ActionLink("Adminwrfr4", "AdminMain", "Admin", null, new { @class = "footer-Nav" })
-    </p>
-   
-
-    @*<section>
-        <ul class="sec1">
-            <li>@Html.ActionLink("HomePgae", "Index", "Home", new { @class = "footer-Nav" })</li>
-            <li>@Html.ActionLink("Gallery", "Index", "Gallery", new { @class = "footer-Nav" })</li>
-            <li>@Html.ActionLink("Results", "Index", "Results", new { @class = "footer-Nav" })</li>
-        </ul>
-    </section>
-    <section>
-        <ul class="sec2">
-            <li>@Html.ActionLink("Stats", "Index", "Stats", new {@class = "footer-Nav" })</li>
-            <li>@Html.ActionLink("Graph", "Index", "Graph", new { @class = "footer-Nav" })</li>
-            <li>@Html.ActionLink("Adminwrfr4", "AdminMain", "Admin", new { @class = "footer-Nav" })</li>
-        </ul>
-    </section>*@
-</div>
-
-<footer class="footer">
-    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-</footer>
+    </div>
 
 
 
 
-@*@Scripts.Render("~/bundles/jquery")*@
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+    <div class="navigation">
+
+        <p class="footer-Nav">
+            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "footer-Nav" }) &ensp;| &ensp;
+            @Html.ActionLink("Gallery", "Index", "Gallery", null, new { @class = "footer-Nav" }) &ensp;|&ensp;
+            @Html.ActionLink("Results", "Index", "Results", null, new { @class = "footer-Nav" }) &ensp;|&ensp;
+            @Html.ActionLink("Stats", "Index", "Stats", null, new { @class = "footer-Nav" }) &ensp;|&ensp;
+            @Html.ActionLink("Graph", "Index", "Graph", null, new { @class = "footer-Nav" }) &ensp;|&ensp;
+            @Html.ActionLink("Admin", "AdminMain", "Admin", null, new { @class = "footer-Nav" })
+        </p>
+
+
+    </div>
+    
+    @*scroll top button*@
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+    <footer class="footer">
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+
+
+
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,13 +1,20 @@
 ﻿
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Index";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  
 }
 
-<h1  class="pagetitlemargin">Results</h1>
+<h1 class="pagetitlemargin">Results</h1>
 
+@*redering scorecards in this space*@
+<div id="Cards">
+
+</div>
+
+<h1 class="pagetitlemargin">Comments</h1>
 
 <div class="comment-container" id="container">
 </div>
@@ -23,3 +30,48 @@
     </div>
     <button class="comment-button" id="addComment"> Add Comment </button>
 </form>
+
+
+<script>
+    $(document).ready(function () {
+
+        var result = @Html.Raw(ViewBag.scoreCards);
+
+        for (var i = 0; i < 4; i++) {
+            var html = '';
+            html +=
+            '<div class="card" > \
+                <div class="card-body" > \
+                    <h5 class="card-title"><b>Match Results</b></h5>\
+                         <p class="card-text">'
+                               + '<i class="far fa-calendar-alt"></i> ' + toTypeDate(result[i].DateOfMatch)
+                               + '<br/> <i class=" fas fa-users"></i>  ' + '<b>'+result[i].HomeTeam + ': </b>'     + result[i].HomeScore + '/' + result[i].HomeWicketsFallen +'&ensp;'    
+                               + ' Overs: ' + result[i].HomeTeamOvers +
+                               '<br/> <i class=" fas fa-users"></i> ' + '<b>' + result[i].OppositionTeam +
+                               ': </b>' + result[i].OppositionScore
+                               + '/' + result[i].OppositionWicketsFallen + ' &ensp;' + ' Overs: ' + result         [i].OppositionTeamOvers +
+                               '<br/>' + result[i].HomeTeam + ' ' + whoWon(result[i].isWin) + ' the match' +
+                        '</p> \
+                </div > \
+            </div >';
+
+            $("#Cards").append(html);
+        }
+    });
+
+
+    function toTypeDate(rawDate) {
+        var date = new Date(rawDate).toJSON().slice(0, 10).split("-").reverse().join("/");
+        return date;
+    }
+
+    function whoWon(data) {
+        var html = '';
+        if (data == true)
+            html += 'Won';
+        else
+            html += 'Lost';
+        return html;
+    }
+
+</script>

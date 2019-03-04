@@ -7,44 +7,44 @@ using System.Threading.Tasks;
 
 namespace CricStats.Models
 {
-    public class Graph2
+   public class Graph3
     {
-        private string _playerName;
-        private int _BattingAverage;
+        private DateTime _Date;
+        private int _TeamScore;
 
-        public String PlayerName
+        public DateTime Date
         {
             get
             {
-                return _playerName;
+                return _Date;
             }
             set
             {
-                if (_playerName != value)
+                if (_Date != value)
                 {
-                    _playerName = value;
+                    _Date = value;
                 }
             }
         }
 
-        public int BattingAverage
+        public int TeamScore
         {
             get
             {
-                return _BattingAverage;
+                return _TeamScore;
             }
             set
             {
-                if (_BattingAverage != value)
+                if (_TeamScore != value)
                 {
-                    _BattingAverage = value;
+                    _TeamScore = value;
                 }
             }
         }
 
-        public Graph2() { }
+        public Graph3() { }
 
-        public Graph2(DataRow dr)
+        public Graph3(DataRow dr)
             : base()
         {
             InitFromDB(dr);
@@ -58,8 +58,8 @@ namespace CricStats.Models
                 throw new ArgumentNullException("dr");
             }
 
-            if ((dr["playerName"]) != DBNull.Value) { _playerName = (System.String)(dr["playerName"]); }
-            if ((dr["BattingAverage"]) != DBNull.Value) { _BattingAverage = (System.Int32)(dr["BattingAverage"]); }
+            if ((dr["Date"]) != DBNull.Value) { _Date = (System.DateTime)(dr["Date"]); }
+            if ((dr["TeamScore"]) != DBNull.Value) { _TeamScore = (System.Int32)(dr["TeamScore"]); }
         }
     }
 }

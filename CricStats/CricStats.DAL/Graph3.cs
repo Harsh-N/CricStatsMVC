@@ -6,19 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CricStats.DAL 
+namespace CricStats.DAL
 {
-    public class Graph2 : DAL.BaseClass.DALBase
+    public class Graph3 : DAL.BaseClass.DALBase
     {
-        public Graph2(string strConnString) : base(strConnString) { }
+        public Graph3(string strConnString) : base(strConnString) { }
 
-        public DataTable highestRunScorersForMatch()
+        public DataTable gatewayTeamScores()
         {
             var cmd = new SqlCommand();
 
             cmd.Connection = Connection;
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "[dbo].[Top5RunScorersAvg]";
+            cmd.CommandText = "[dbo].[gatewayRunsGraph]";
 
             try
             {
@@ -28,7 +28,6 @@ namespace CricStats.DAL
             {
                 throw new Exception(ex.Message);
             }
-
         }
     }
 }

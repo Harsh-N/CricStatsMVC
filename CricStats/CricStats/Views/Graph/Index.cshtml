@@ -8,15 +8,18 @@
 
 
 
-<div id="Graph1" @*data-url="@Url.Action("getGraphData", controllerName)*@  ></div>
+<div id="Graph1"></div>
 
-<div id="Graph2" @*data-url="@Url.Action("getGraphData", controllerName)"*@ ></div>
+<div id="Graph2" ></div>
+
+<div id="Graph3" ></div>
 
 
 
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
 <script>
     $(document).ready(function () {
 
@@ -29,7 +32,7 @@
         var chart = new CanvasJS.Chart("Graph1", {
             animationEnabled: true,
             title: {
-                text: "5 Highest Run Getter For Each Match"
+                text: "Highest Run for a player with Match Name"
             },
             data: [
                 {
@@ -47,12 +50,12 @@
         var results = @Html.Raw(ViewBag.DataPoints2);
         var dataPoints2 =[];
         for(var i = 0; i < results.length; i++){
-            dataPoints2.push({ y: results[i].runsScored, label: results[i].PlayerName});
+            dataPoints2.push({ y: results[i].BattingAverage, label: results[i].PlayerName});
         }
 
         var options = {
             title: {
-                text: "Toatl Highest Run Scoreres of All Time"
+                text: "5 Players with Highest Averages "
             },
             animationEnabled: true,
             data: [{
@@ -67,6 +70,48 @@
             }]
         };
         $("#Graph2").CanvasJSChart(options);
+
+        function toTypeDate(rawDate) {
+            var rawDate = new Date();
+
+            var day = ("0" + rawDate.getDate()).slice(-2);
+            var month = ("0" + (rawDate.getMonth() + 1)).slice(-2);
+
+            return rawDate.getFullYear() + "-" + (month) + "-" + (day);
+
+        }
+
+
+
+        //graph3
+         var results1 = @Html.Raw(ViewBag.DataPoints3);
+        var dataPoints3 =[];
+        for(var i = 0; i < results1.length; i++){
+            dataPoints3.push({ y: results1[i].TeamScore, label: toTypeDate(results1[i].Date)});
+        }
+
+        var options2 = {
+            animationEnabled: true,
+            title: {
+                text: "Team Gateway scores on timeLine"
+            },
+            axisX: {
+                title: "Date"
+            },
+            axisY: {
+                title: "Runs"
+                
+            },
+            data: [{
+               
+                type: "spline",
+                dataPoints:
+                    dataPoints3,
+            }]
+        };
+        $("#Graph3").CanvasJSChart(options2);
+
+
 
 
     });

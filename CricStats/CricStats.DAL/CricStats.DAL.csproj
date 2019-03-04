@@ -44,6 +44,7 @@
     <Compile Include="BaseClass\DALBase.cs" />
     <Compile Include="Graph1.cs" />
     <Compile Include="Graph2.cs" />
+    <Compile Include="Graph3.cs" />
     <Compile Include="Matches.cs" />
     <Compile Include="News.cs" />
     <Compile Include="Performance.cs" />
