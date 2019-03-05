@@ -30,5 +30,28 @@ namespace CricStats.DAL
             }
 
         }
+
+        public DataTable GetAllStatsComparisons(int player1, int player2)
+        {
+            var cmd = new SqlCommand();
+
+            cmd.Connection = Connection;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "[dbo].[getComparison]";
+
+
+            cmd.Parameters.Add("@player1", SqlDbType.Int).Value = player1;
+            cmd.Parameters.Add("@player2", SqlDbType.Int).Value = player2;
+            try
+            {
+                return DTReturn(cmd);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
     }
+
 }

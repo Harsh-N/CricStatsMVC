@@ -36,5 +36,22 @@ namespace CricStats.BLL
 
             return outList;
         }
+
+        public IEnumerable<Models.Stats> GetAllStatsComparison(int player1, int player2)
+        {
+            var outList = new List<Models.Stats>();
+
+            DataTable dt = _db.GetAllStatsComparisons(player1, player2);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    outList.Add(new Models.Stats(dr));
+                }
+            }
+
+            return outList;
+        }
     }
 }

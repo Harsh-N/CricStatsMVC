@@ -32,7 +32,7 @@
         var chart = new CanvasJS.Chart("Graph1", {
             animationEnabled: true,
             title: {
-                text: "Highest Run for a player with Match Name"
+                text: "Total runs for a player against a team"
             },
             data: [
                 {
@@ -72,12 +72,8 @@
         $("#Graph2").CanvasJSChart(options);
 
         function toTypeDate(rawDate) {
-            var rawDate = new Date();
-
-            var day = ("0" + rawDate.getDate()).slice(-2);
-            var month = ("0" + (rawDate.getMonth() + 1)).slice(-2);
-
-            return rawDate.getFullYear() + "-" + (month) + "-" + (day);
+            var date = new Date(rawDate).toJSON().slice(0, 10).split("-").reverse().join("/");
+            return date;
 
         }
 

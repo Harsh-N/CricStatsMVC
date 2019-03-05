@@ -81,13 +81,101 @@
     </tbody>
 
 </table>
+
+<h1 class="pagetitlemargin">Compare two players' performance</h1>
+<form>
+    <div class="fields">
+        <label> Select Player 1: </label> @Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id = "ddPlayerList1", @class = "ddfield" })
+        <label> Select Player 2: </label>  @Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id = "ddPlayerList2", @class = "ddfield" })
+    </div>
+    <button type="submit" class="btn btn-primary" name="btnComparePerformance" id="btnComparePerformance"> Compare </button>
+</form>
+
+<br/>
+
+
+<table id="compareTable" class="display compact" data-url="@Url.Action("getCompariosn", controllerName)">
+    <thead class="datatable-Header">
+        <tr>
+            <td>
+                Player Name
+            </td>
+            <td>
+                Total Runs Scored
+            </td>
+            <td>
+                Total Balls Faced:
+            </td>
+            <td>
+                Total Fours
+            </td>
+            <td>
+                Total Sixes
+            </td>
+            <td>
+                Total Wickets Taken
+            </td>
+            <td>
+                Total Overs Bowled:
+            </td>
+            <td>
+                Total Runs Conceded:
+            </td>
+            <td>
+                Total Catches Taken
+            </td>
+            <td>
+                Batting Strike Rate:
+            </td>
+            <td>
+                Total Run Outs:
+            </td>
+            <td>
+                Bowling Economy:
+            </td>
+            <td>
+                Total Outs
+            </td>
+            <td>
+                Bowling Average:
+            </td>
+            <td>
+                Batting Average:
+            </td>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+    </tbody>
+
+</table>
+
 <script>
     $(document).ready(function () {
 
         var dataArray = [];
         var table = $('#statsTable').DataTable({
             data: dataArray,
-            searching:true,
+            searching: true,
 
             columns: [
                 { data: 'PlayerName' },
@@ -102,7 +190,7 @@
                 { data: 'BattingStrikeRate' },
                 { data: 'runOuts' },
                 { data: 'BowlingEconomy' },
-                { data: 'Out'},
+                { data: 'Out' },
                 { data: 'BowlingAverage' },
                 { data: 'BattingAverage' },
             ]
@@ -111,7 +199,7 @@
 
         LoadStats(table);
         function LoadStats(table) {
-           
+
             var urlstr = $('#statsTable').attr('data-url');
             $.ajax({
                 type: "Get",
@@ -135,7 +223,114 @@
                 }
             });
         }
+
+        var dataArray2 = [];
+        var CompareTable = $('#compareTable').DataTable({
+            data: dataArray2,
+            searching: false,
+            bPaginate: false,
+            bLengthChange: false,
+            bFilter: true,
+            bInfo: false,
+            AutoWidth: false, 
+
+            columns: [
+                { data: 'PlayerName' },
+                { data: 'runsScored' },
+                { data: 'ballsFaced' },
+                { data: 'Fours' },
+                { data: 'Sixes' },
+                { data: 'wicketsTaken' },
+                { data: 'oversBowled' },
+                { data: 'runConceded' },
+                { data: 'Catches' },
+                { data: 'BattingStrikeRate' },
+                { data: 'runOuts' },
+                { data: 'BowlingEconomy' },
+                { data: 'Out' },
+                { data: 'BowlingAverage' },
+                { data: 'BattingAverage' },
+            ]
+
+        });
+
+
+        $("#btnComparePerformance").on("click", function (e) {
+            e.preventDefault();
+           
+            var PId1 = $("#ddPlayerList1").val();
+            var PId2 = $("#ddPlayerList2").val();
+            var urlstr = $('#compareTable').attr('data-url');
+           
+            getComparison(PId1, PId2, urlstr);
+        });
+
+        function getComparison(PId1, PId2, urlstr) {
+            
+              $.ajax({
+                  type: "Get",
+                  async: true,
+                data: {
+                    player1: PId1,
+                    player2: PId2
+
+                },
+                  url: urlstr,
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json",
+                  deferRender: true,
+                success: function (data) {
+                   
+                    dataArray2 = eval('(' + JSON.stringify(data) + ')');
+                   
+                },
+                error: function (data) {
+                    if (data === "0")
+                        alert("Compare data not found");
+                  },
+                complete: function () {
+                    CompareTable.clear();
+                    CompareTable.rows.add(dataArray2).draw();
+                  }
+            })
+
+        }
+
+        
+       
+        //function LoadCompareStats(table, data) {
+
+        //    //var urlstr = $('#compareTable').attr('data-url');
+        //    //dataArray2 = eval('(' + JSON.stringify(data) + ')');
+        //    table.clear();
+        //    table.rows.add(dataArray2).draw();
+
+        //    //$.ajax({
+        //    //    type: "Get",
+        //    //    async: true,
+        //    //    url: urlstr,
+        //    //    data: JSON.stringify({}),
+        //    //    contentType: "application/json; charset=utf-8",
+        //    //    dataType: "json",
+        //    //    deferRender: true,
+        //    //    success: function (data) {
+
+        //    //        dataArray2 = eval('(' + JSON.stringify(data) + ')');
+
+        //    //    },
+        //    //    error: function (request, error) {
+        //    //        alert("stats not found");
+        //    //    },
+        //    //    complete: function () {
+        //    //        table.clear();
+        //    //        table.rows.add(dataArray2).draw();
+        //    //    }
+        //    //});
+        //}
+
     });
+
+
 
 </script>
 
