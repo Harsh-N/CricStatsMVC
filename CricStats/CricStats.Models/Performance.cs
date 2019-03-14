@@ -25,6 +25,7 @@ namespace CricStats.Models
         private int _BowlingEconomy;
         private bool _Out;
         private int _BowlingAverage;
+        private string _HowOut;
         #endregion
 
         public int MatchId
@@ -252,6 +253,21 @@ namespace CricStats.Models
             }
         }
 
+        public string HowOut
+        {
+            get
+            {
+                return _HowOut;
+            }
+            set
+            {
+                if (_HowOut != value)
+                {
+                    _HowOut = value;
+                }
+            }
+        }
+
 
         #region "Constructors"
 
@@ -288,6 +304,7 @@ namespace CricStats.Models
             if ((dr["BowlingEconomy"]) != DBNull.Value) { _BowlingEconomy = (int)(dr["BowlingEconomy"]); }
             if ((dr["Out"]) != DBNull.Value) { _Out = (bool)(dr["Out"]); }
             if ((dr["BowlingAverage"]) != DBNull.Value) { _BowlingAverage = (int)(dr["BowlingAverage"]); }
+            if ((dr["HowOut"]) != DBNull.Value) { _HowOut = (System.String)(dr["HowOut"]); }
 
 
         }

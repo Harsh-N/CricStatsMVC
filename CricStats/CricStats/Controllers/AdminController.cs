@@ -14,12 +14,25 @@ namespace CricStats.Controllers
     {
         private static readonly string _conStr = ConfigurationManager.ConnectionStrings["CricSatsConnection"].ConnectionString;
 
-        // GET: Admin
-        public ActionResult AdminMain()
-        {
-            LoadDropDowns();
+        public JsonResult Login(string password = "") {
 
-            return View();
+            var status = password == "pass";
+
+            return Json(new { status = status }, JsonRequestBehavior.AllowGet);
+        }
+
+
+              // GET: Admin
+        public ActionResult AdminMain(string password = "")
+        {
+            if (password == "pass")
+            {
+                LoadDropDowns();
+
+                return View();
+            }
+
+            return Redirect("/Home/Index");
         }
 
         [HttpPost]
@@ -154,7 +167,8 @@ namespace CricStats.Controllers
             string BattingStrikeRate,
             string BowlingEconomy,
             string Out,
-            string BowlingAverage)
+            string BowlingAverage,
+            string HowOut)
         {
             CricStats.Models.Performance NewPerformance = new Performance();
             CricStats.BLL.Performance PerformanceBLL = new BLL.Performance(_conStr);
@@ -177,6 +191,7 @@ namespace CricStats.Controllers
                 NewPerformance.BowlingEconomy = Convert.ToInt32(BowlingEconomy);
                 NewPerformance.Out = Convert.ToBoolean(Out);
                 NewPerformance.BowlingAverage = Convert.ToInt32(BowlingAverage);
+                NewPerformance.HowOut = HowOut;
             }
             else
             {
@@ -207,7 +222,8 @@ namespace CricStats.Controllers
                         Convert.ToInt32(BattingStrikeRate),
                         Convert.ToInt32(BowlingEconomy),
                         Convert.ToBoolean(Out),
-                        Convert.ToInt32(BowlingAverage));
+                        Convert.ToInt32(BowlingAverage),
+                        HowOut);
                 }
                 return "1";
             }
@@ -237,6 +253,29 @@ namespace CricStats.Controllers
             var mList = MatchList.Select(x => new SelectListItem { Text = x.DateOfMatch.ToString("dd/MM/yyyy") + " " + x.HomeTeam + " vs " + x.OppositionTeam, Value = x.MatchId.ToString() }).ToList();
             mList.Insert(0, new SelectListItem() { Value = "0", Text = "Select...", Selected = true });
             ViewBag.listOfMatches = mList;
+
+            //dropdown for who took wicket
+            List<SelectListItem> wList = new List<SelectListItem>();
+            wList.Add(new SelectListItem
+            {
+                Text = "Spin Bowler",
+                Value = "spin"
+            });
+            wList.Add(new SelectListItem
+            {
+                Text = "Pace Bowler",
+                Value = "pace",
+                
+            });
+            wList.Add(new SelectListItem
+            {
+                Text = "select...",
+                Value = "NotOut",
+                Selected = true
+            });
+
+            ViewBag.listOfBowlersType = wList;
+
         }
 
 
@@ -323,6 +362,8 @@ namespace CricStats.Controllers
                 return "0";
             }
         }
+
+       
 
 
     }

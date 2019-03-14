@@ -14,28 +14,28 @@
                 PlayerName
             </td>
             <td>
-                Total Runs Scored
+                T Runs Scored
             </td>
             <td>
-                Total Balls Faced:
+                T Balls Faced:
             </td>
             <td>
-                Total Fours
+                T Fours
             </td>
             <td>
-                Total Sixes
+                T Sixes
             </td>
             <td>
-                Total Wickets Taken
+                T Wickets Taken
             </td>
             <td>
-                Total Overs Bowled:
+                T Overs Bowled:
             </td>
             <td>
-                Total Runs Conceded:
+                T Runs Con:
             </td>
             <td>
-                Total Catches Taken
+                T Catches Taken
             </td>
             <td>
                 Batting Strike Rate:
@@ -44,16 +44,22 @@
                 Total Run Outs:
             </td>
             <td>
-                Bowling Economy:
+                Bowling Eco.
             </td>
             <td>
                 Total Outs
             </td>
             <td>
-                Bowling Average:
+                Bowling Avg
             </td>
             <td>
-                Batting Average:
+                Batting Avg
+            </td>
+            <td >
+                Wicketer type
+            </td>
+            <td>
+               total Wicketer type 
             </td>
 
 
@@ -76,13 +82,15 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
         </tr>
 
     </tbody>
 
 </table>
 
-<h1 class="pagetitlemargin">Compare two players' performance</h1>
+<h1 class="pagetitlemargin">Compare two players' batting performance</h1>
 <form>
     <div class="fields">
         <label> Select Player 1: </label> @Html.DropDownList("pList", (IEnumerable<SelectListItem>)ViewBag.listOfPlayers, new { id = "ddPlayerList1", @class = "ddfield" })
@@ -142,6 +150,12 @@
             <td>
                 Batting Average:
             </td>
+            <td>
+                Wicketer type
+            </td>
+            <td>
+               Total wicketer type
+            </td>
 
 
         </tr>
@@ -163,6 +177,9 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
+
         </tr>
 
     </tbody>
@@ -193,6 +210,15 @@
                 { data: 'Out' },
                 { data: 'BowlingAverage' },
                 { data: 'BattingAverage' },
+                {
+                    data: 'HowOut',
+                    visible: false
+                },
+                {
+                    data: 'TotalWicketerType',
+                     visible: false
+                },
+
             ]
 
         });
@@ -240,16 +266,41 @@
                 { data: 'ballsFaced' },
                 { data: 'Fours' },
                 { data: 'Sixes' },
-                { data: 'wicketsTaken' },
-                { data: 'oversBowled' },
-                { data: 'runConceded' },
-                { data: 'Catches' },
+                {
+                    data: 'wicketsTaken',
+                     visible: false
+                },
+                {
+                    data: 'oversBowled',
+                    visible: false
+                },
+                {
+                    data: 'runConceded',
+                     visible: false
+                },
+                {
+                    data: 'Catches',
+                    visible: false
+                },
                 { data: 'BattingStrikeRate' },
-                { data: 'runOuts' },
-                { data: 'BowlingEconomy' },
+                {
+                    data: 'runOuts',
+                    visible: false
+                },
+                {
+                    data: 'BowlingEconomy',
+                    visible: false
+                },
                 { data: 'Out' },
-                { data: 'BowlingAverage' },
+                {
+                    data: 'BowlingAverage',
+                    visible: false
+                },
                 { data: 'BattingAverage' },
+                {
+                    data: 'HowOut'
+                },
+                { data: 'TotalWicketerType' },
             ]
 
         });
@@ -295,38 +346,6 @@
             })
 
         }
-
-        
-       
-        //function LoadCompareStats(table, data) {
-
-        //    //var urlstr = $('#compareTable').attr('data-url');
-        //    //dataArray2 = eval('(' + JSON.stringify(data) + ')');
-        //    table.clear();
-        //    table.rows.add(dataArray2).draw();
-
-        //    //$.ajax({
-        //    //    type: "Get",
-        //    //    async: true,
-        //    //    url: urlstr,
-        //    //    data: JSON.stringify({}),
-        //    //    contentType: "application/json; charset=utf-8",
-        //    //    dataType: "json",
-        //    //    deferRender: true,
-        //    //    success: function (data) {
-
-        //    //        dataArray2 = eval('(' + JSON.stringify(data) + ')');
-
-        //    //    },
-        //    //    error: function (request, error) {
-        //    //        alert("stats not found");
-        //    //    },
-        //    //    complete: function () {
-        //    //        table.clear();
-        //    //        table.rows.add(dataArray2).draw();
-        //    //    }
-        //    //});
-        //}
 
     });
 

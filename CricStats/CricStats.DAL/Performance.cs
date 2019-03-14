@@ -54,6 +54,7 @@ namespace CricStats.DAL
             cmd.Parameters.Add("@BowlingEconomy", SqlDbType.Int).Value = item.BowlingEconomy;
             cmd.Parameters.Add("@Out", SqlDbType.Bit).Value = item.Out;
             cmd.Parameters.Add("@BowlingAverage", SqlDbType.Int).Value = item.BowlingAverage;
+            cmd.Parameters.Add("@HowOut", SqlDbType.NVarChar, 50).Value = item.HowOut;
 
 
             try
@@ -86,7 +87,8 @@ namespace CricStats.DAL
              int BattingStrikeRate,
              int BowlingEconomy, 
              Boolean Out,
-             int BowlingAverage)
+             int BowlingAverage,
+             string HowOut)
         {
             var cmd = new SqlCommand();
 
@@ -109,6 +111,7 @@ namespace CricStats.DAL
             cmd.Parameters.Add("@BowlingEconomy", SqlDbType.Int).Value = BowlingEconomy;
             cmd.Parameters.Add("@Out", SqlDbType.Bit).Value = Out;
             cmd.Parameters.Add("@BowlingAverage", SqlDbType.Int).Value = BowlingAverage;
+            cmd.Parameters.Add("@HowOut", SqlDbType.NVarChar, 50).Value = HowOut;
 
 
             try
@@ -150,26 +153,5 @@ namespace CricStats.DAL
                 FinallyClose();
             }
         }
-
-        //public DataRow checkMatches(DateTime dateofMatch, string homeTeam, string OppositionTeam)
-        //{
-        //    var cmd = new SqlCommand();
-
-        //    cmd.Connection = Connection;
-        //    cmd.CommandType = CommandType.StoredProcedure;
-        //    cmd.CommandText = "[dbo].[checkMatch]";
-
-        //    cmd.Parameters.Add("@dateOfMatches", SqlDbType.DateTime).Value = dateofMatch;
-        //    cmd.Parameters.Add("@HomeTeam", SqlDbType.NVarChar, 50).Value = homeTeam;
-        //    cmd.Parameters.Add("@OppositionTeam", SqlDbType.NVarChar, 50).Value = OppositionTeam;
-        //    try
-        //    {
-        //        return DRReturn(cmd);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
     }
 }

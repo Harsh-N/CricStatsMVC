@@ -113,28 +113,26 @@ function speaker() {
 speaker();//appending the function speaker.
 
 
-function redirect() {
-    var input = document.getElementById('exampleInputPassword1').value;
-    switch (input) {
-        case 'h':
-            let Awindow = 'http://localhost:53870/Admin/AdminMain#';
-            let AwindowS = Awindow.toString();
-            if (AwindowS == window.location.href) {
-                alert("You are already on Admin Page")
-                break;
-            } else {
-                window.location.replace('http://localhost:53870/Admin/AdminMain');
-                break;
-            }
-        //case '':
-        //    window.location.redirect.;
-        //    break;
-        default:
-            alert("Wrong Password");
-            break;
-    }
+//function redirect() {
+//    var input = document.getElementById('exampleInputPassword1').value;
+//    switch (input) {
+//        case 'h':
+//            let Awindow = 'http://localhost:53870/Admin/AdminMain#';
+//            let AwindowS = Awindow.toString();
+//            if (AwindowS == window.location.href) {
+//                alert("You are already on Admin Page")
+//                break;
+//            } else {
+//                window.location.replace('http://localhost:53870/Admin/AdminMain');
+//                break;
+//            }
+   
+//        default:
+//            alert("Wrong Password");
+//            break;
+//    }
 
-}
+//}
 
 
 

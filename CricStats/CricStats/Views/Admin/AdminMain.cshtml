@@ -12,12 +12,12 @@
 <form>
 
     <div class="form-group">
-        <label> Player Name: </label> <input type="text" id="playerName" name="playerName" maxlength="50" placeholder="Player Full Name" />
+        <label> Player Name: </label> <input type="text" id="playerName" name="playerName" pattern="[A-Za-z]{50}"@*maxlength="50"*@ placeholder="Player Full Name" />
         <input type="number" id="PlayerId" name="PlayerId" value=0 hidden required />
     </div>
 
     <button type="submit" class="btn btn-primary" name="btnSavePlayer" id="btnSavePlayer"> Submit </button>
-    <button class="btn btn-warning" name="statsClear"> Clear </button>
+    <button type="button"  id="playerClear" class="btn btn-warning" > Clear </button>
     <button type="button" class="btn btn-info" data-toggle="modal" data-backdrop="static"  data-target="#managePlayers" id="mngPlayer">
         Manage Player
     </button>
@@ -127,7 +127,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary" name="btnSaveMatches" id="btnSaveMatches"> Submit </button>
-    <button class="btn btn-warning" id="resultClear"> Clear </button>
+    <button class="btn btn-warning" id="matchesClear"> Clear </button>
     <button type="button" class="btn btn-info" data-toggle="modal"  data-backdrop="static" data-target="#manageMatches" id="mngMatches">
         Manage Match
     </button>
@@ -292,16 +292,17 @@
     </div>
     <div class="fields">
         <label> Bowling Economy: </label> <output type="number" id="BowlingEconomy" name="BowlingEconomy" required></output>
+        <label> Bowling Average: </label> <output type="number" id="BowlingAverage" name="BowlingAverage" required></output>
+    </div>
+    <div class="fields">
         <label> Out: </label>
         <div class="checkbox-fields">
             <input type="checkbox" id="Out" name="Out" value="" />Out
         </div>
-    </div>
-    <div class="fields">
-        <label> Bowling Average: </label> <output type="number" id="BowlingAverage" name="BowlingAverage" required></output>
+        <label> Who took wicket </label> @Html.DropDownList("wList", (List<SelectListItem>)ViewBag.listOfBowlersType, new { id = "ddWicketerList", @class = "ddfield" })
     </div>
     <button type="submit" class="btn btn-primary" name="btnSavePerformance" id="btnSavePerformance"> Submit </button>
-    <button class="btn btn-warning" name="statsClear"> Clear </button>
+    <button class="btn btn-warning" id="performanceClear"> Clear </button>
     <button type="button" class="btn btn-info" data-toggle="modal"  data-backdrop="static" data-target="#managePerformance">
         Manage Performance
     </button>
@@ -367,12 +368,16 @@
                             <td>
                                 Bowling Average:
                             </td>
+                            <td>
+                                How Out
+                            </td>
                             <td></td>
                             <td></td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -445,6 +450,7 @@
                     </div>
                     <div class="fields">
                         <label> Bowling Average: </label> <output type="number" id="editBowlingAverage" name="editBowlingAverage" required></output>
+                        <label> Who took wicket </label> @Html.DropDownList("wList", (List<SelectListItem>)ViewBag.listOfBowlersType, new { id = "ddEditWicketerList", @class = "ddfield" })
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" name="btnEditSavePerformance" id="btnEditSavePerformance"> Save </button>
@@ -542,8 +548,9 @@
             var BowlingEconomy = $("#BowlingEconomy").val();
             var Out = $("#Out").prop("checked");
             var BowlingAverage = $("#BowlingAverage").val();
+            var HowOut = $("#ddWicketerList").val();
             e.preventDefault();
-            SavePerformance(pCounter, PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage);
+            SavePerformance(pCounter, PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage, HowOut);
 
         });
 
@@ -646,8 +653,7 @@
 
         function LoadPlayers(table) {
 
-
-            var temp = [];
+            
             var urlstr = $('#dataTableManagePlayer').attr('data-url');
             $.ajax({
                 type: "Get",
@@ -887,6 +893,7 @@
                     }
                 },
                 { data: 'BowlingAverage' },
+                { data: 'HowOut' },
                 {
                     data: function (data) {
                         var html = '';
@@ -951,7 +958,8 @@
 
         function editPerformance(tablerow) {
 
-            var rowData = $("#dataTableManagePerformance").DataTable().row(tablerow).data();
+            var rowData =
+            $("#dataTableManagePerformance").DataTable().row(tablerow).data();
             $("#pCounter").val(rowData.pCounter);
             $('#ddEditPlayerList').val(rowData.PlayerId);
             $('#ddEditMatchList').val(rowData.MatchId);
@@ -971,6 +979,7 @@
                 else
                     $("#editOut").prop("checked", false);
             $('#editBowlingAverage').val(rowData.BowlingAverage);
+            $('#ddEditWicketerList').val(rowData.HowOut);
 
         }
 
@@ -991,8 +1000,9 @@
             var BowlingEconomy = $("#editBowlingEconomy").val();
             var Out = $("#editOut").prop("checked");
             var BowlingAverage = $("#editBowlingAverage").val();
+            var HowOut = $("#ddEditWicketerList").val();
             e.preventDefault();
-            SavePerformance(pCounter, PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage)
+            SavePerformance(pCounter, PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage, HowOut)
 
         });
 
@@ -1055,13 +1065,15 @@
                 success: function (data) {
                     if (data === "1") {
                         alert("Player Name Saved");
-                        window.location = '@Url.Action("AdminMain","Admin")';
+                        $("#playerName").val("");
+                        LoadPlayers(table);
                     } else if (data === "2") {
                         alert("Player Name Already Exist");
-                        window.location = '@Url.Action("AdminMain","Admin")';
+                         $("#playerName").val("");
                     } else if (data === "3") {
                         alert("field is empty");
-                        window.location = '@Url.Action("AdminMain","Admin")';
+                        @*//window.location = '@Url.Action("AdminMain","Admin")';*@
+                        $("#playerName").val("");
                     }
 
                 },
@@ -1101,14 +1113,48 @@
                 success: function (data) {
                     if (data === "1") {
                         alert("Match Saved");
-                        window.location = '@Url.Action("AdminMain","Admin")';
+                        @*window.location = '@Url.Action("AdminMain","Admin")';*@
+                        $("#HomeTeam").val("");
+                        $("#OppositionTeam").val("");
+                        $("#dateOfMatch").val("");
+                        $("#isTossWon").prop("checked", false);
+                        $("#homeWicketsFallen").val("");
+                        $("#HomeTeamScore").val("");
+                        $("#HomeTeamOvers").val("");
+                        $("#oppositionScore").val("");
+                        $("#oppositionWicketsFallen").val("");
+                        $("#OppositionTeamOvers").val("");
+                        $("#isWin").prop("checked", false);
+                        LoadMatches(table1);
                     } else if (data === "2") {
                         alert("Match Entry Already Exist");
-                        window.location = '@Url.Action("AdminMain","Admin")';
+                        @*window.location = '@Url.Action("AdminMain","Admin")';*@
+                        $("#HomeTeam").val("");
+                        $("#OppositionTeam").val("");
+                        $("#dateOfMatch").val("");
+                        $("#isTossWon").prop("checked", false);
+                        $("#homeWicketsFallen").val("");
+                        $("#HomeTeamScore").val("");
+                        $("#HomeTeamOvers").val("");
+                        $("#oppositionScore").val("");
+                        $("#oppositionWicketsFallen").val("");
+                        $("#OppositionTeamOvers").val("");
+                        $("#isWin").prop("checked", false);
                     } else if (data === "3")
                     {
                         alert("one or more fields empty");
-                        window.location = '@Url.Action("AdminMain","Admin")';
+                        @*window.location = '@Url.Action("AdminMain","Admin")';*@
+                        $("#HomeTeam").val("");
+                        $("#OppositionTeam").val("");
+                        $("#dateOfMatch").val("");
+                        $("#isTossWon").prop("checked", false);
+                        $("#homeWicketsFallen").val("");
+                        $("#HomeTeamScore").val("");
+                        $("#HomeTeamOvers").val("");
+                        $("#oppositionScore").val("");
+                        $("#oppositionWicketsFallen").val("");
+                        $("#OppositionTeamOvers").val("");
+                        $("#isWin").prop("checked", false);
                     }
 
                 },
@@ -1121,10 +1167,10 @@
         }
 
 
-        function SavePerformance(pCounter, PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage) {
+        function SavePerformance(pCounter, PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage, HowOut) {
             //var input = $('#player-performance').find("input,select,textarea").serialize();
 
-
+            alert("test")
             $.ajax({
 
                 type: "post",
@@ -1144,25 +1190,66 @@
                     BattingStrikeRate: BattingStrikeRate,
                     BowlingEconomy: BowlingEconomy,
                     Out: Out,
-                    BowlingAverage: BowlingAverage
+                    BowlingAverage: BowlingAverage,
+                    HowOut: HowOut
 
                 },
                 url: '@Url.Action("SavePerformance")',
                 success: function (data) {
                     if (data === "1") {
                         alert("Performance Saved");
-                        window.location = '@Url.Action("AdminMain","Admin")';
+                        @*window.location = '@Url.Action("AdminMain","Admin")';*@
+                        $("#ddPlayerList").val(0);
+                        $("#ddMatchList").val(0);
+                        $("#runsScored").val("");
+                        $("#ballFaced").val("");
+                        $("#Fours").val("");
+                        $("#Sixes").val("");
+                        $("#wicketsTaken").val("");
+                        $("#oversBowled").val("");
+                        $("#runConceded").val("");
+                        $("#Catches").val("");
+                        $("#runOuts").val("");
+                        $("#Out").prop("checked", false);
+                        $("#ddWicketerList").val(0);
+                        LoadPerformance(table2);
                     }else if (data === "2")
                     {
                         alert("one or more fields empty");
-                        window.location = '@Url.Action("AdminMain","Admin")';
+                        @*window.location = '@Url.Action("AdminMain","Admin")';*@
+                        $("#ddPlayerList").val(0);
+                        $("#ddMatchList").val(0);
+                        $("#runsScored").val("");
+                        $("#ballFaced").val("");
+                        $("#Fours").val("");
+                        $("#Sixes").val("");
+                        $("#wicketsTaken").val("");
+                        $("#oversBowled").val("");
+                        $("#runConceded").val("");
+                        $("#Catches").val("");
+                        $("#runOuts").val("");
+                        $("#Out").prop("checked", false);
+                        $("#ddWicketerList").val(0);
                     }
 
                 },
                 error: function (data) {
                     if (data === "0") {
                         alert("Save Failed");
-                        window.location = '@Url.Action("AdminMain","Admin")';
+                        @*window.location = '@Url.Action("AdminMain","Admin")';*@
+                        $("#ddPlayerList").val(0);
+                        $("#ddMatchList").val(0);
+                        $("#runsScored").val("");
+                        $("#ballFaced").val("");
+                        $("#Fours").val("");
+                        $("#Sixes").val("");
+                        $("#wicketsTaken").val("");
+                        $("#oversBowled").val("");
+                        $("#runConceded").val("");
+                        $("#Catches").val("");
+                        $("#runOuts").val("");
+                        $("#Out").prop("checked", false);
+                        $("#ddWicketerList").val(0);
                     }
                 }
             })
@@ -1170,6 +1257,19 @@
         }
 
         //validation for wickets fields
+
+        function stringInput(event) {
+            var value = String.fromCharCode(event.which);
+            var pattern = new RegExp(/[a-zåäö ]/i);
+            return pattern.test(value);
+        }
+
+        $('#HomeTeam').bind('keypress', stringInput);
+        $('#OppositionTeam').bind('keypress', stringInput);
+        $('#playerName').bind('keypress', stringInput);
+
+
+
         $(".number-fields").on("keyup", function () {
 
             //wickets
@@ -1310,6 +1410,45 @@
             
         });
 
+
+        //clear function 
+        $("#playerClear").on("click", function () {
+            $("#playerName").val("");
+        });
+
+        $("#matchesClear").on("click", function () {
+            $("#HomeTeam").val("");
+            $("#OppositionTeam").val("");
+            $("#dateOfMatch").val("");
+            $("#isTossWon").prop("checked", false);
+            $("#homeWicketsFallen").val("");
+            $("#HomeTeamScore").val("");
+            $("#HomeTeamOvers").val("");
+            $("#oppositionScore").val("");
+            $("#oppositionWicketsFallen").val("");
+            $("#OppositionTeamOvers").val("");
+            $("#isWin").prop("checked", false);
+        });
+
+        $("#performanceClear").on("click", function () {
+            $("#ddPlayerList").val(0);
+            $("#ddMatchList").val(0);
+            $("#runsScored").val("");
+            $("#ballFaced").val("");
+            $("#Fours").val("");
+            $("#Sixes").val("");
+            $("#wicketsTaken").val("");
+            $("#oversBowled").val("");
+            $("#runConceded").val("");
+            $("#Catches").val("");
+            $("#runOuts").val("");
+            $("#Out").prop("checked", false);
+            $("#ddWicketerList").val(0);
+        }); 
+
+
+
+
     });
 
     //arithmetic operation for fields 
@@ -1320,6 +1459,12 @@
         var Economy = runConceded / oversBowled;
         document.getElementById('BowlingEconomy').value = Economy.toFixed(0);
 
+        if (isNaN(document.getElementById('BowlingEconomy').value)) {
+            document.getElementById('BowlingEconomy').value = 0;
+        } else if (isFinite(document.getElementById('BowlingEconomy').value) == false) {
+            document.getElementById('BowlingEconomy').value = 0;
+        }
+
     }
 
     function calculateEconomyEdit() {
@@ -1328,6 +1473,13 @@
 
         var Economy = runConceded / oversBowled;
         document.getElementById('editBowlingEconomy').value = Economy.toFixed(0);
+
+
+        if (isNaN(document.getElementById('editBowlingEconomy').value)) {
+            document.getElementById('editBowlingEconomy').value = 0;
+        } else if (isFinite(document.getElementById('editBowlingEconomy').value) == false) {
+            document.getElementById('editBowlingEconomy').value = 0;
+        }
 
     }
 
@@ -1338,6 +1490,15 @@
         var bowlingavg = runConceded / wicketsTaken;
         document.getElementById('BowlingAverage').value = bowlingavg.toFixed(0);
 
+        if (isNaN(document.getElementById('BowlingAverage').value)) {
+            document.getElementById('BowlingAverage').value = 0;
+        } else if (isFinite(document.getElementById('BowlingAverage').value) == false) {
+            document.getElementById('BowlingAverage').value = 0;
+        }
+
+       
+       
+
     }
 
     function bowlingAvgEdit() {
@@ -1346,6 +1507,12 @@
 
         var bowlingavg = runConceded / wicketsTaken;
         document.getElementById('editBowlingAverage').value = bowlingavg.toFixed(0);
+
+        if (isNaN(document.getElementById('editBowlingAverage').value)) {
+            document.getElementById('editBowlingAverage').value = 0;
+        } else if (isFinite(document.getElementById('editBowlingAverage').value) == false) {
+            document.getElementById('editBowlingAverage').value = 0;
+        }
 
     }
 
@@ -1357,6 +1524,12 @@
         var battingStrikeRate = (runsScored / ballFaced) * 100;
         document.getElementById('BattingStrikeRate').value = battingStrikeRate.toFixed(0);
 
+        if (isNaN(document.getElementById('BattingStrikeRate').value)) {
+            document.getElementById('BattingStrikeRate').value = 0;
+        } else if (isFinite(document.getElementById('BattingStrikeRate').value) == false) {
+            document.getElementById('BattingStrikeRate').value = 0;
+        }
+
     }
 
     function battingStrEdit() {
@@ -1365,6 +1538,12 @@
 
         var battingStrikeRate = (runsScored / ballFaced) * 100;
         document.getElementById('editBattingStrikeRate').value = battingStrikeRate.toFixed(0);
+
+        if (isNaN(document.getElementById('editBattingStrikeRate').value)) {
+            document.getElementById('editBattingStrikeRate').value = 0;
+        } else if (isFinite(document.getElementById('editBattingStrikeRate').value) == false) {
+            document.getElementById('editBattingStrikeRate').value = 0;
+        }
 
     }
 

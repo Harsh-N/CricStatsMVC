@@ -24,7 +24,8 @@ namespace CricStats.Models
         private int _Out;
         private int _BowlingAverage;
         private int _BattingAverage;
-
+        private string _HowOut;
+        private int _TotalWicketerType;
 
         public String PlayerName
         {
@@ -251,6 +252,37 @@ namespace CricStats.Models
             }
         }
 
+        public string HowOut
+        {
+            get
+            {
+                return _HowOut;
+            }
+            set
+            {
+                if (_HowOut != value)
+                {
+                    _HowOut = value;
+                }
+            }
+        }
+
+        public int TotalWicketerType
+        {
+            get
+            {
+                return _TotalWicketerType;
+            }
+            set
+            {
+                if (_TotalWicketerType != value)
+                {
+                    _TotalWicketerType = value;
+                }
+            }
+        }
+
+
 
         #region "Constructors"
 
@@ -287,6 +319,8 @@ namespace CricStats.Models
             if ((dr["BowlingEconomy"]) != DBNull.Value) { _BowlingEconomy = (int)(dr["BowlingEconomy"]); }          
             if ((dr["BowlingAverage"]) != DBNull.Value) { _BowlingAverage = (int)(dr["BowlingAverage"]); }
             if ((dr["BattingAverage"]) != DBNull.Value) { _BattingAverage = (int)(dr["BattingAverage"]); }
+            { _HowOut = (String)(dr["HowOut"]); }
+            { _TotalWicketerType = (int)(dr["totalWicketerType"]); }
 
         }
 

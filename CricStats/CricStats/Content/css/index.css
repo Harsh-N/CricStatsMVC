@@ -32,6 +32,7 @@ body {
 
 
 
+
 /* Menu Button */
 .bar {
     height: 3px;
@@ -56,9 +57,9 @@ body {
     border-radius: 10px;
 }
 
-    .wrap:hover {
-        background-color: #29D7B1;
-    }
+.wrap:hover {
+    background-color: #29D7B1;
+}
 
    
 
@@ -715,10 +716,15 @@ figcaption {
         margin: auto;
     }
 
+    .wrapper {
+        background-color: #fffaf0;
+    }
+
     ul {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+        background-color: #fffaf0;
     }
 
         ul a {

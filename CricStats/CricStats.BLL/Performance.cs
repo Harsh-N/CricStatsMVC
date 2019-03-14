@@ -57,29 +57,15 @@ namespace CricStats.BLL
              int BattingStrikeRate,
              int BowlingEconomy,
              Boolean Out,
-             int BowlingAverage)
+             int BowlingAverage,
+             string HowOut)
         {
-            _db.Update(PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage);
+            _db.Update(PId, MId, runsScored, ballsFaced, Fours, Sixes, wicketsTaken, oversBowled, runConceded, Catches, runOuts, BattingStrikeRate, BowlingEconomy, Out, BowlingAverage, HowOut);
         }
 
         public void DeletePerformance(int PlayerId, int MatchId) {
             _db.DeletePerformance(PlayerId, MatchId);
         }
 
-
-        //check for duplicate entry of match
-        //public Models.Matches checkMatches(DateTime dateOfMatch, string homeTeam, string oppositionTeam)
-        //{
-        //    Models.Matches temp = null;
-
-        //    DataRow dr = _db.checkMatches(dateOfMatch, homeTeam, oppositionTeam);
-
-        //    if (dr != null)
-        //    {
-        //        temp = new Models.Matches(dr);
-        //    }
-
-        //    return temp;
-        //}
     }
 }

@@ -60,14 +60,19 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
+                   
                     <lablel> Password: </lablel><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    <span class="text-danger" id="password-msg"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="redirect()">login</button>
+                    <button type="submit" class="btn btn-primary" id="login" @*onclick="redirect()"*@>login</button>
+                    
 
                 </div>
+                  
             </div>
         </div>
     </div>
@@ -91,7 +96,7 @@
             @Html.ActionLink("Results", "Index", "Results", null, new { @class = "footer-Nav" }) &ensp;|&ensp;
             @Html.ActionLink("Stats", "Index", "Stats", null, new { @class = "footer-Nav" }) &ensp;|&ensp;
             @Html.ActionLink("Graph", "Index", "Graph", null, new { @class = "footer-Nav" }) &ensp;|&ensp;
-            @Html.ActionLink("Admin", "AdminMain", "Admin", null, new { @class = "footer-Nav" })
+            <a href="#" class = "footer-Nav" data-toggle="modal" data-target="#password">Admin</a>
         </p>
 
 
@@ -110,5 +115,26 @@
     @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    
+    <script>
+    $("#login").click(function () {
+        var password = $("#exampleInputPassword1").val();
+
+        $.ajax({
+            type: "post",
+            url: "/Admin/Login",
+            data: { "password": password },
+            success: function (data) {
+                if (data.status) {
+                    window.location.replace("/Admin/AdminMain?password=" + password);
+                }
+                else
+                    $('#password-msg').html("Incorrect password")
+            }
+
+        });
+
+    })
+</script>
 </body>
 </html>
